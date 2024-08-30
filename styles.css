@@ -5,6 +5,10 @@
     font-family: Arial, sans-serif;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: #3b4d64;
     color: #ffffff;
@@ -78,20 +82,20 @@ body {
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
+    margin: 0.2% 0.5%;
+
 }
 
 .background p,
 .skills p,
 .projects p {
     margin-bottom: 15px;
-
 }
 
 .skills .skill-categories {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-
 }
 
 .skill-category {
@@ -105,35 +109,43 @@ body {
     margin-bottom: 10px;
 }
 
+/* Center the .projects container */
+.projects {
+    display: flex;
+    /* Use flexbox for centering */
+    flex-direction: column;
+    /* Stack projects on top of each other */
+    align-items: center;
+    /* Center the projects horizontally */
+}
+
+/* Each project should take full width up to max-width */
 .projects .project {
     display: grid;
-    grid-template-columns: 2fr 3fr 1fr;
-    /* Three equal columns */
+    grid-template-columns: 2fr 3fr;
     gap: 20px;
-    margin: 20px 0;
+    margin: 20px 0 0 0;
     background-color: #5a7fb7;
-    border-radius: 10px;
+    border-radius: 20px;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     align-items: center;
-    /* Aligns items vertically in the center */
+    max-width: 1750px;
+    width: 100%;
+    /* Ensures each project takes up full width */
 }
 
 .projects .project .image-title-section {
     display: flex;
     flex-direction: column;
-    /* Stack image and title vertically */
     align-items: center;
-    /* Center the image and title together */
 }
 
 .projects .project img {
     width: auto;
-    /* Fixed width for the image */
     height: 130px;
     border-radius: 5px;
     margin-bottom: 10px;
-    /* Add space between image and title */
 }
 
 .projects .project h3 {
@@ -156,19 +168,9 @@ body {
 
 .projects .project .additional-info {
     text-align: center;
-    /* Aligns the last section to the right */
     display: flex;
     text-align: left;
 }
-
-
-
-
-.projects .project p {
-    text-align: left;
-    /* Align the last paragraph to the right */
-}
-
 
 .footer {
     text-align: center;
@@ -189,4 +191,42 @@ body {
 
 .social-links img:hover {
     transform: scale(1.1);
+}
+
+.dropdown-btn {
+    background-color: #ecf0f1;
+    color: #34495e;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.dropdown-btn:hover {
+    background-color: #bdc3c7;
+}
+
+.dropdown-content {
+    display: block;
+    /* Change display to block for transition */
+    overflow: hidden;
+    /* Hide overflow to make the max-height transition work smoothly */
+    max-height: 0;
+    /* Start with max-height set to 0 */
+    padding: 0 10px;
+    /* Adjust padding for better appearance */
+    background-color: #435d83;
+    /* border-radius: 15px; */
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    color: #ffffff;
+    max-width: 80%;
+    margin: 0 auto;
+    transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+    /* Smooth transition for height and padding */
 }

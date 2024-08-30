@@ -20,8 +20,8 @@
     <nav class="navigation">
         <ul>
             <li><a href="#background">Background</a></li>
-            <li><a href="#projects">Projects</a></li>
             <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li> 
             <li><a href="#links">Links</a></li>
         </ul>
     </nav>
@@ -61,6 +61,8 @@
     </section>
     <section id="projects" class="section projects">
         <h2>Game Projects</h2>
+
+        <!-- Example Project 1 -->
         <div class="project">
             <div class="image-title-section">
                 <h3>Where's my gun?</h3>
@@ -71,12 +73,16 @@
                     ability that you don't choose to upgrade will be disabled for the wave, so you need to be careful
                     with balancing what you truly want.</p>
                 <p>As the player mechanics developer I implemented the movement, combat, and abilities.</p>
-            </div>
-            <div class="additional-info">
-                <p>Made in JavaScript's Phaser Framework, as a 3 person team in 2 weeks.</p>
+                <button class="dropdown-btn" data-target="dropdown-1" onclick="toggleDropdown(this)">More Info</button>
             </div>
         </div>
+        <div id="dropdown-1" class="dropdown-content">
+            <p>Made in JavaScript's Phaser Framework, as a 3 person team in 2 weeks.</p>
+            <p>The game features various enemy types, a progression system, and a unique upgrade mechanic that adds
+                strategic depth to each playthrough.</p>
+        </div>
 
+        <!-- Example Project 2 -->
         <div class="project">
             <div class="image-title-section">
                 <h3>Dark Throne</h3>
@@ -87,12 +93,16 @@
                     their way out by finding new abilities, with a main focus on the combat and fun movement.</p>
                 <p>As the lead programmer and project lead, I worked on the player movement, abilities, and the back-end
                     of the game including the saving, scene management, managing and helping my group members.</p>
-            </div>
-            <div class="additional-info">
-                <p>Made in Unity and uploaded to Steam.</p>
+                <button class="dropdown-btn" data-target="dropdown-2" onclick="toggleDropdown(this)">More Info</button>
             </div>
         </div>
+        <div id="dropdown-2" class="dropdown-content">
+            <p>Made in Unity and uploaded to Steam.</p>
+            <p>The game features challenging boss fights, intricate level design, and a deep narrative that keeps
+                players engaged throughout.</p>
+        </div>
 
+        <!-- Example Project 3 -->
         <div class="project">
             <div class="image-title-section">
                 <h3>Pencil Pusher</h3>
@@ -102,57 +112,20 @@
                 <p>This is an endless runner where you grab letters from the page and make words in order to survive the
                     eraser that is coming at you.</p>
                 <p>I worked on the word checking implementation and the enemy that is chasing you.</p>
+                <button class="dropdown-btn" data-target="dropdown-3" onclick="toggleDropdown(this)">More Info</button>
             </div>
-            <div class="additional-info">
-                <p>Made in Phaser as a small 3 person team in 2 weeks.</p>
-            </div>
+        </div>
+        <div id="dropdown-3" class="dropdown-content">
+            <p>Made in Phaser as a small 3 person team in 2 weeks.</p>
+            <p>The game combines fast-paced action with word-building challenges, providing a unique and educational
+                twist to the endless runner genre.</p>
         </div>
     </section>
 
-
-    <section id="projects" class="section projects">
-        <h2>Non-Gaming Projects</h2>
-        <div class="project">
-            <div class="image-title-section">
-                <h3>Etsy</h3>
-                <img src="images/Soccer.jpg" alt="Image">
-            </div>
-            <div class="text-section">
-                <p>Etsy store doing a lot of things for client</p>
-                <p></p>
-            </div>
-            <div class="additional-info">
-                <p>AI, Discord integration, Google Suite integration</p>
-            </div>
-        </div>
-        <div class="project">
-            <div class="image-title-section">
-                <h3>Rocotics</h3>
-                <img src="images/Soccer.jpg" alt="Image">
-            </div>
-            <div class="text-section">
-                <p>FRC Team 199</p>
-                <p></p>
-            </div>
-            <div class="additional-info">
-                <p>Fabricator, designer, driver, project lead</p>
-            </div>
-        </div>
-        <div class="project">
-            <div class="image-title-section">
-                <h3>Soccer</h3>
-                <img src="images/Soccer.jpg" alt="Image">
-            </div>
-            <div class="text-section">
-                <p>Played soccer for 15 years of my life, very commited to team and shows dedication</p>
-            </div>
-            <div class="additional-info">
-                <!-- <p>Made in JavaScript's Phaser Framework, as a 3 person team in 2 weeks.</p> -->
-            </div>
-        </div>
-    </section>
+    
 
 
+    <!-- Other Sections Here... -->
 
     <footer id="links" class="footer">
         <h2>Links</h2>
@@ -165,6 +138,26 @@
             </a>
         </div>
     </footer>
+
+    <script>
+        function toggleDropdown(button) {
+            const targetId = button.getAttribute('data-target');
+            const dropdownContent = document.getElementById(targetId);
+
+            if (dropdownContent) {
+                if (dropdownContent.style.maxHeight) {
+                    // If already expanded, collapse it
+                    dropdownContent.style.maxHeight = null;
+                    dropdownContent.style.padding = "0 10px";
+                } else {
+                    // Expand the dropdown by setting max-height to its scroll height
+                    dropdownContent.style.maxHeight = dropdownContent.scrollHeight + "px";
+                    dropdownContent.style.padding = "10px";
+                }
+            }
+        }
+    </script>
+
 </body>
 
 </html>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elroy Saltzherr - Game Developer</title>
+    <title>Elroy Saltzherr - Game Programmer and Designer</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -13,7 +13,7 @@
         <div class="profile">
             <img src="images/ProfilePic.jpg" alt="Elroy Saltzherr">
             <h1>Elroy Saltzherr</h1>
-            <p>Game Developer</p>
+            <p>Game Programmer and Designer</p>
             <p>Creating immersive and engaging experiences</p>
         </div>
     </header>
@@ -23,15 +23,27 @@
             <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#game-jams">Game Jams</a></li>
-            <li><a href="#links">Links</a></li>
+            <!-- <li><a href="#links">Links</a></li> -->
         </ul>
     </nav>
+    <div class="social-links-top">
+        <a href="https://github.com/esaltzherr" target="_blank">
+            <img src="images/GitHubLogo.png" alt="GitHub">
+        </a>
+        <a href="https://www.linkedin.com/in/elroy-saltzherr" target="_blank">
+            <img src="images/LinkedInLogo.png" alt="LinkedIn">
+        </a>
+        <a href="images/ElroySaltzherr_GameDeveloper_Resume2024.pdf" target="_blank">
+            <img src="images/Resume.png" alt="Resume">
+        </a>
+    </div>
     <section id="background" class="section background">
         <h2>Background</h2>
         <p>Hello! I'm Elroy Saltzherr, a graduate from UC Santa Cruz with a degree in Computer Science: Game Design, currently based in California. My passion for gaming started in childhood, and after learning to program, game development naturally became my focus.</p>
         <p>I've dedicated thousands of hours to games like Minecraft, League of Legends, Pokémon, and Mario. Besides gaming, I've participated in various sports such as basketball, baseball, and soccer, with soccer being my longest commitment, spanning 15 years. I also spent my entire high school career in competitive robotics, which honed my problem-solving and teamwork skills.</p>
         <p>These experiences have equipped me with a strong foundation in technical skills and a passion for creating immersive, engaging games. I'm excited to continue honing my craft and contributing to the gaming industry.</p>
     </section>
+    
     <section id="skills" class="section skills">
         <h2>Skills</h2>
         <div class="skill-categories">
@@ -41,7 +53,7 @@
             </div>
             <div class="skill-category">
                 <h3>Engines/Frameworks</h3>
-                <p>Unity, Phaser, Construct 3, CAD: Solidworks, p5.js</p>
+                <p>Unity, Phaser, Construct 3, CAD: Solidworks, p5.js, Selenium</p>
             </div>
             <div class="skill-category">
                 <h3>Tools</h3>
@@ -157,6 +169,7 @@
                 <button class="dropdown-btn" data-target="dropdown-5" onclick="toggleDropdown(this)">More Info</button>
             </div>
         </div>
+        
 
         <!-- Dropdown Content -->
         <div id="dropdown-5" class="dropdown-content">
@@ -166,21 +179,30 @@
             <p><strong>Reflection:</strong> After learning from my previous game jam, I focused on keeping the game simple. Although I couldn't dedicate as much time as I wanted during the 96 hours, the game turned out to be an interesting idea that I would like to explore further, possibly as a multiplayer game. It's fun, but it needs some polish.</p>
             <p><strong>Links:</strong> <a href="https://esaltzherr.itch.io/building-scaler" target="_blank">Play on Browser</a> | <a href="https://itch.io/jam/gmtk-2024" target="_blank">GMTK Game Jam's Page</a></p>
         </div>
+
+        <div class="project">
+            <div class="image-title-section">
+                <h3>The Last Ember (Brackeys Game Jam)</h3>
+                <img src="images/BrackeysJam.png" alt="Last Ember">
+            </div>
+            <div class="text-section">
+                <p>A horror platformer where you use your limited torch's lifespan to see while you explore and find wood to find more wood to keep your campfire alive, with a focus on the mood being spooky but not too frightening</p>
+                <p><strong>My Contributions:</strong> Developed Ui intertactions and integrated in game elements together with the sounds and animations</p>
+                <button class="dropdown-btn" data-target="dropdown-6" onclick="toggleDropdown(this)">More Info</button>
+            </div>
+        </div>
+
+         <!-- Dropdown Content -->
+         <div id="dropdown-6" class="dropdown-content">
+            <p><strong>Jam Theme:</strong> Nothing can go wrong...</p>
+            <p><strong>Technical Specifications:</strong> Built using Unity and C#.</p>
+            <p><strong>Team and Development Details:</strong> Developed in a team of 4 in 1 week</p>
+            <p><strong>Reflection:</strong> First successful game jam with a group which was amazing, having the support of other people was wonderful to make up for the areas in which I lacked, it was also a great experience to try and figure out a system for all of us to work together in such a short time</p>
+            <p><strong>Links:</strong> <a href="https://esaltzherr.itch.io/the-last-ember" target="_blank">Play on Browser</a> | <a href="https://itch.io/jam/brackeys-13" target="_blank">Brackeys Game Jam's Page</a></p>
+        </div>
     </section>
 
-    <footer id="links" class="footer">
-        <h2>Links</h2>
-        <div class="social-links">
-            <a href="https://github.com/esaltzherr" target="_blank">
-                <img src="images/GitHubLogo.png" alt="GitHub">
-            </a>
-            <a href="https://www.linkedin.com/in/elroy-saltzherr" target="_blank">
-                <img src="images/LinkedInLogo.png" alt="LinkedIn">
-            </a>
-            <a href="images/ElroySaltzherr_GameDeveloper_Resume2024.pdf" target="_blank">
-                <img src="images/Resume.png" alt="Resume">
-        </div>
-    </footer>
+    
 
     <script>
         function toggleDropdown(button) {

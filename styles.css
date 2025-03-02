@@ -66,7 +66,7 @@ a:visited {
 }
 
 .header-content {
-    background-color: #34495e98; /* Same as other sections */
+    background-color: #34495eac; /* Same as other sections */
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);

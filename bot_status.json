@@ -1,0 +1,51 @@
+{
+  "updated_at": "2026-10-01 12:14:45 AM ET",
+  "timestamp_iso": "2026-10-01T00:14:45.385906-04:00",
+  "market_status": "Market Closed (Next Open: 2026-10-01 09:30 ET)",
+  "is_open": false,
+  "bot_status": "\ud83d\udfe2 Live \u2014 Sleeping Until Market Open",
+  "account": {
+    "portfolio_value": 100129.67,
+    "cash": 95191.73,
+    "buying_power": 394405.29,
+    "initial_capital": 100000.0,
+    "total_pnl": 129.67,
+    "total_return_pct": 0.13,
+    "today_pnl": 0,
+    "today_return_pct": 0.0
+  },
+  "strategies": [
+    {
+      "name": "GAP_BOTTOM_LONG",
+      "schedule": "09:30 AM ET (Market Open)",
+      "allocation": "50%",
+      "type": "Mean Reversion (Long)",
+      "description": "Scans most oversold overnight gap-down stocks and buys opening rebound.",
+      "backtest_return_2025": "+2,212.4%",
+      "backtest_winrate_2025": "53.6%",
+      "max_drawdown": "-7.01%",
+      "status": "Active"
+    },
+    {
+      "name": "INTRADAY_15M_SIGNAL_TOP_SHORT",
+      "schedule": "09:45 AM ET (15m Post-Open)",
+      "allocation": "50%",
+      "type": "Fade Momentum (Short)",
+      "description": "Scans morning 15-minute spike leaders and shorts the fading exhaustion.",
+      "backtest_return_2025": "+859.6%",
+      "backtest_winrate_2025": "52.7%",
+      "max_drawdown": "-15.69%",
+      "status": "Active"
+    }
+  ],
+  "stats": {
+    "total_trades": 0,
+    "wins": 0,
+    "losses": 0,
+    "win_rate": "0.0%",
+    "profit_factor": 0.0
+  },
+  "open_positions": [],
+  "recent_trades": [],
+  "strategy_summary": []
+}

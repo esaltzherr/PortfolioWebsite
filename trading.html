@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elroy Saltzherr — Algorithmic Trading Bot</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Trading Dashboard Styles ─────────────────────────────────────────── */
+    .dashboard-container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .status-banner {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      padding: 18px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .status-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .pulse-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background-color: #32ff84;
+      box-shadow: 0 0 0 0 rgba(50, 255, 132, 0.7);
+      animation: pulse 2s infinite;
+    }
+
+    .pulse-dot.market-closed {
+      background-color: #38bdf8;
+      box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7);
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(50, 255, 132, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 10px rgba(50, 255, 132, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(50, 255, 132, 0);
+      }
+    }
+
+    .status-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 0;
+    }
+
+    .status-sub {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin: 2px 0 0 0;
+    }
+
+    .status-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+    }
+
+    .refresh-btn {
+      background: #1e293b;
+      color: #32ff84;
+      border: 1px solid #32ff84;
+      padding: 6px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .refresh-btn:hover {
+      background: #32ff84;
+      color: #0f172a;
+    }
+
+    /* ── Metric Cards Grid ─────────────────────────────────────────────────── */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      margin-bottom: 30px;
+    }
+
+    .metric-card {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+      transition: transform 0.2s ease;
+    }
+
+    .metric-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .metric-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #94a3b8;
+      margin-bottom: 6px;
+    }
+
+    .metric-value {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin: 4px 0;
+    }
+
+    .metric-badge {
+      font-size: 0.82rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 6px;
+    }
+
+    .badge-green {
+      color: #32ff84;
+    }
+
+    .badge-red {
+      color: #f87171;
+    }
+
+    .badge-neutral {
+      color: #94a3b8;
+    }
+
+    /* ── Strategy Section ──────────────────────────────────────────────────── */
+    .section-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 32px 0 16px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .strategies-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .strategy-card {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 22px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .strat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .strat-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #38bdf8;
+    }
+
+    .strat-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .strat-tag.long {
+      background: rgba(50, 255, 132, 0.15);
+      color: #32ff84;
+      border-color: rgba(50, 255, 132, 0.3);
+    }
+
+    .strat-tag.short {
+      background: rgba(248, 113, 113, 0.15);
+      color: #f87171;
+      border-color: rgba(248, 113, 113, 0.3);
+    }
+
+    .strat-desc {
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+
+    .strat-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.8rem;
+    }
+
+    .strat-stat-item span {
+      display: block;
+      color: #94a3b8;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+    }
+
+    .strat-stat-item strong {
+      color: #ffffff;
+      font-size: 0.95rem;
+    }
+
+    /* ── Tables ────────────────────────────────────────────────────────────── */
+    .table-card {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .table-responsive {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    th {
+      background: rgba(30, 41, 59, 0.85);
+      color: #94a3b8;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 12px 16px;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    td {
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      color: #e2e8f0;
+    }
+
+    tr:hover td {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .empty-state {
+      padding: 30px;
+      text-align: center;
+      color: #94a3b8;
+      font-size: 0.92rem;
+    }
+
+    /* ── Architecture Highlights ───────────────────────────────────────────── */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .arch-item {
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      padding: 16px 20px;
+    }
+
+    .arch-item h4 {
+      color: #38bdf8;
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+    }
+
+    .arch-item p {
+      color: #94a3b8;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-overlay"></div>
+    <div class="header-content">
+      <div class="profile">
+        <img src="images/ProfilePic.jpg" alt="Elroy Saltzherr" />
+      </div>
+      <div class="header-text-box">
+        <h1>Elroy Saltzherr</h1>
+        <p>Game Programmer, Designer & Quantitative Developer</p>
+        <p>Live Algorithmic Trading Systems</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="navigation">
+    <ul>
+      <li><a href="index.html#background">Background</a></li>
+      <li><a href="index.html#skills">Skills</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#game-jams">Game Jams</a></li>
+      <li><a href="trading.html" style="color: #fcff3e; font-weight: bold;">Trading Bot</a></li>
+    </ul>
+  </nav>
+
+  <!-- Dashboard -->
+  <div class="dashboard-container">
+    
+    <!-- Status Banner -->
+    <div class="status-banner">
+      <div class="status-left">
+        <div id="statusDot" class="pulse-dot market-closed"></div>
+        <div>
+          <h2 id="botStatusText" class="status-title">🟢 Live — Sleeping Until Market Open</h2>
+          <p id="marketStatusText" class="status-sub">Alpaca Paper Engine • Cloud Host: Google Cloud (us-central1)</p>
+        </div>
+      </div>
+      <div class="status-right">
+        <span id="lastUpdatedText">Synced: Loading...</span>
+        <button id="refreshBtn" class="refresh-btn" onclick="fetchStatus()">Refresh</button>
+      </div>
+    </div>
+
+    <!-- Core Metrics -->
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-label">Portfolio Equity</div>
+        <div id="portfolioValue" class="metric-value">$100,129.67</div>
+        <div id="totalReturnBadge" class="metric-badge badge-green">+$129.67 (+0.13% All-Time)</div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-label">Cash & Buying Power</div>
+        <div id="cashValue" class="metric-value">$95,191.73</div>
+        <div id="buyingPowerBadge" class="metric-badge badge-neutral">BP: $394,405.29</div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-label">Today's P&amp;L</div>
+        <div id="todayPnlValue" class="metric-value">$0.00</div>
+        <div id="todayReturnBadge" class="metric-badge badge-neutral">0.00% Today</div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-label">Live Win Rate</div>
+        <div id="winRateValue" class="metric-value">--</div>
+        <div id="tradesCountBadge" class="metric-badge badge-neutral">0 trades closed</div>
+      </div>
+    </div>
+
+    <!-- Active Strategies -->
+    <h3 class="section-title">⚡ Active Strategies (50 / 50 Allocation)</h3>
+    <div class="strategies-grid">
+      
+      <!-- Strategy 1 -->
+      <div class="strategy-card">
+        <div class="strat-header">
+          <div>
+            <div class="strat-name">GAP_BOTTOM_LONG</div>
+            <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 2px;">Execution: 09:30 AM ET (Market Open)</div>
+          </div>
+          <span class="strat-tag long">Long • Mean Reversion</span>
+        </div>
+        <p class="strat-desc">
+          Identifies extreme overnight gap-down stocks driven by pre-market retail panic. 
+          Buys the open bounce and captures sharp mean-reversion during the morning session.
+        </p>
+        <div class="strat-stats">
+          <div class="strat-stat-item">
+            <span>2025 Backtest</span>
+            <strong style="color: #32ff84;">+2,212.4%</strong>
+          </div>
+          <div class="strat-stat-item">
+            <span>Win Rate</span>
+            <strong>53.6%</strong>
+          </div>
+          <div class="strat-stat-item">
+            <span>Max Drawdown</span>
+            <strong style="color: #f87171;">-7.01%</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Strategy 2 -->
+      <div class="strategy-card">
+        <div class="strat-header">
+          <div>
+            <div class="strat-name">INTRADAY_15M_SIGNAL_TOP_SHORT</div>
+            <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 2px;">Execution: 09:45 AM ET (15m Post-Open)</div>
+          </div>
+          <span class="strat-tag short">Short • Momentum Fade</span>
+        </div>
+        <p class="strat-desc">
+          Monitors the market's biggest gainers in the first 15 minutes of trading. 
+          Borrows and shorts overextended spike runners as early retail momentum collapses.
+        </p>
+        <div class="strat-stats">
+          <div class="strat-stat-item">
+            <span>2025 Backtest</span>
+            <strong style="color: #32ff84;">+859.6%</strong>
+          </div>
+          <div class="strat-stat-item">
+            <span>Win Rate</span>
+            <strong>52.7%</strong>
+          </div>
+          <div class="strat-stat-item">
+            <span>Max Drawdown</span>
+            <strong style="color: #f87171;">-15.69%</strong>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Live Positions Table -->
+    <h3 class="section-title">📊 Open Positions (Intraday)</h3>
+    <div class="table-card">
+      <div class="table-responsive">
+        <table id="positionsTable">
+          <thead>
+            <tr>
+              <th>Symbol</th>
+              <th>Strategy</th>
+              <th>Side</th>
+              <th>Shares</th>
+              <th>Open Price</th>
+              <th>Position Value</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="positionsBody">
+            <tr>
+              <td colspan="7" class="empty-state">
+                No active intraday positions currently. All positions are liquidated daily into 100% cash at 3:55 PM ET.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Trade History Table -->
+    <h3 class="section-title">📜 Recent Closed Trades</h3>
+    <div class="table-card">
+      <div class="table-responsive">
+        <table id="tradesTable">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Symbol</th>
+              <th>Strategy</th>
+              <th>Side</th>
+              <th>Entry Price</th>
+              <th>Exit Price</th>
+              <th>P&amp;L ($)</th>
+              <th>Return (%)</th>
+            </tr>
+          </thead>
+          <tbody id="tradesBody">
+            <tr>
+              <td colspan="8" class="empty-state">
+                No closed trades recorded yet for current session. Next scheduled execution starts at 09:30 AM ET.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Engineering Highlights -->
+    <h3 class="section-title">🛠️ System Architecture</h3>
+    <div class="arch-grid">
+      <div class="arch-item">
+        <h4>Google Cloud 24/7 Hosting</h4>
+        <p>Operates autonomously on a GCP Compute Engine instance running Ubuntu 24.04 with systemd daemon management.</p>
+      </div>
+      <div class="arch-item">
+        <h4>Alpaca Paper Trading API</h4>
+        <p>Executes live market orders, enforces whole-share shorting constraints, and validates easy-to-borrow status.</p>
+      </div>
+      <div class="arch-item">
+        <h4>100% Intraday Liquidation</h4>
+        <p>Guarantees all positions are flattened into cash at 3:55 PM ET before the bell, eliminating overnight gap risk.</p>
+      </div>
+      <div class="arch-item">
+        <h4>ACID SQLite Persistence</h4>
+        <p>Full database trade tracking with deterministic execution IDs, attribution tagging, and daily P&amp;L recaps.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Client-Side Dashboard Script -->
+  <script>
+    function formatCurrency(val) {
+      if (val === undefined || val === null || isNaN(val)) return "$0.00";
+      return "$" + Number(val).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function formatPct(val) {
+      if (val === undefined || val === null || isNaN(val)) return "0.00%";
+      const sign = val > 0 ? "+" : "";
+      return sign + Number(val).toFixed(2) + "%";
+    }
+
+    async function fetchStatus() {
+      const refreshBtn = document.getElementById("refreshBtn");
+      refreshBtn.innerText = "Syncing...";
+      refreshBtn.disabled = true;
+
+      try {
+        // Cache-busting query parameter ensures fresh status from GitHub Pages
+        const response = await fetch("bot_status.json?v=" + new Date().getTime());
+        if (!response.ok) {
+          throw new Error("HTTP " + response.status);
+        }
+        const data = await response.json();
+        renderDashboard(data);
+      } catch (err) {
+        console.warn("Could not fetch bot_status.json:", err);
+        document.getElementById("lastUpdatedText").innerText = "Synced: Offline / Cached";
+      } finally {
+        refreshBtn.innerText = "Refresh";
+        refreshBtn.disabled = false;
+      }
+    }
+
+    function renderDashboard(data) {
+      // 1. Status & Clock
+      if (data.bot_status) {
+        document.getElementById("botStatusText").innerText = data.bot_status;
+      }
+      if (data.market_status) {
+        document.getElementById("marketStatusText").innerText = data.market_status + " • Alpaca Paper API • GCP Cloud";
+      }
+      if (data.updated_at) {
+        document.getElementById("lastUpdatedText").innerText = "Synced: " + data.updated_at;
+      }
+
+      const dot = document.getElementById("statusDot");
+      if (data.is_open) {
+        dot.className = "pulse-dot";
+      } else {
+        dot.className = "pulse-dot market-closed";
+      }
+
+      // 2. Account Metrics
+      if (data.account) {
+        const acc = data.account;
+        document.getElementById("portfolioValue").innerText = formatCurrency(acc.portfolio_value);
+        document.getElementById("cashValue").innerText = formatCurrency(acc.cash);
+        document.getElementById("buyingPowerBadge").innerText = "BP: " + formatCurrency(acc.buying_power);
+
+        // Total Return
+        const totalPnlBadge = document.getElementById("totalReturnBadge");
+        const totalPnl = acc.total_pnl || 0;
+        const totalPct = acc.total_return_pct || 0;
+        const sign = totalPnl >= 0 ? "+" : "-";
+        totalPnlBadge.innerText = `${sign}${formatCurrency(Math.abs(totalPnl))} (${formatPct(totalPct)} All-Time)`;
+        totalPnlBadge.className = totalPnl >= 0 ? "metric-badge badge-green" : "metric-badge badge-red";
+
+        // Today PnL
+        const todayPnl = acc.today_pnl || 0;
+        const todayPct = acc.today_return_pct || 0;
+        document.getElementById("todayPnlValue").innerText = formatCurrency(todayPnl);
+        const todayBadge = document.getElementById("todayReturnBadge");
+        todayBadge.innerText = `${formatPct(todayPct)} Today`;
+        todayBadge.className = todayPnl > 0 ? "metric-badge badge-green" : (todayPnl < 0 ? "metric-badge badge-red" : "metric-badge badge-neutral");
+      }
+
+      // 3. Stats
+      if (data.stats) {
+        const stats = data.stats;
+        document.getElementById("winRateValue").innerText = stats.win_rate || "--";
+        document.getElementById("tradesCountBadge").innerText = `${stats.total_trades || 0} trades closed (${stats.wins || 0}W / ${stats.losses || 0}L)`;
+      }
+
+      // 4. Open Positions Table
+      const posBody = document.getElementById("positionsBody");
+      if (data.open_positions && data.open_positions.length > 0) {
+        posBody.innerHTML = data.open_positions.map(p => `
+          <tr>
+            <td><strong>${p.symbol}</strong></td>
+            <td>${p.strategy || '--'}</td>
+            <td><span class="strat-tag ${p.direction === 'LONG' ? 'long' : 'short'}">${p.direction}</span></td>
+            <td>${Number(p.open_shares).toFixed(2)}</td>
+            <td>${formatCurrency(p.open_price)}</td>
+            <td>${formatCurrency(p.open_value)}</td>
+            <td><span style="color: #32ff84;">OPEN</span></td>
+          </tr>
+        `).join("");
+      } else {
+        posBody.innerHTML = `
+          <tr>
+            <td colspan="7" class="empty-state">
+              No active intraday positions currently. All positions are liquidated daily into 100% cash at 3:55 PM ET.
+            </td>
+          </tr>
+        `;
+      }
+
+      // 5. Recent Trades Table
+      const tradesBody = document.getElementById("tradesBody");
+      const closed = (data.recent_trades || []).filter(t => t.status === "CLOSED");
+      if (closed.length > 0) {
+        tradesBody.innerHTML = closed.map(t => {
+          const pnl = t.pnl_dollars || 0;
+          const pnlColor = pnl >= 0 ? "#32ff84" : "#f87171";
+          return `
+            <tr>
+              <td>${t.close_date || t.open_date}</td>
+              <td><strong>${t.symbol}</strong></td>
+              <td>${t.strategy}</td>
+              <td><span class="strat-tag ${t.direction === 'LONG' ? 'long' : 'short'}">${t.direction}</span></td>
+              <td>${formatCurrency(t.open_price)}</td>
+              <td>${formatCurrency(t.close_price)}</td>
+              <td style="color: ${pnlColor}; font-weight: 600;">${formatCurrency(pnl)}</td>
+              <td style="color: ${pnlColor}; font-weight: 600;">${formatPct(t.pnl_pct)}</td>
+            </tr>
+          `;
+        }).join("");
+      } else {
+        tradesBody.innerHTML = `
+          <tr>
+            <td colspan="8" class="empty-state">
+              No closed trades recorded yet for current session. Next scheduled execution starts at 09:30 AM ET.
+            </td>
+          </tr>
+        `;
+      }
+    }
+
+    // Auto-fetch on load, then poll every 30 seconds
+    fetchStatus();
+    setInterval(fetchStatus, 30000);
+  </script>
+</body>
+</html>

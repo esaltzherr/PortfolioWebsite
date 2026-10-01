@@ -1,20 +1,20 @@
 {
   "is_paper_trading": true,
   "environment": "Alpaca Paper Trading Simulator (Virtual Currency - No Real Capital)",
-  "updated_at": "2026-10-01 12:27:32 AM ET",
-  "timestamp_iso": "2026-10-01T00:27:32.207580-04:00",
-  "market_status": "Market Closed (Next Open: 2026-10-01 09:30 ET)",
-  "is_open": false,
-  "bot_status": "\ud83d\udfe2 Paper Bot Active \u2014 Sleeping Until Market Open",
+  "updated_at": "2026-10-01 02:59:06 PM ET",
+  "timestamp_iso": "2026-10-01T14:59:06.206337-04:00",
+  "market_status": "Market Open \u2014 Simulated Paper Session Active",
+  "is_open": true,
+  "bot_status": "\ud83d\udfe2 Paper Bot Active \u2014 Monitoring Positions",
   "account": {
-    "portfolio_value": 100129.42,
-    "cash": 95191.73,
-    "buying_power": 394404.58,
+    "portfolio_value": 100156.84,
+    "cash": 100156.84,
+    "buying_power": 400627.36,
     "initial_capital": 100000.0,
-    "total_pnl": 129.42,
-    "total_return_pct": 0.13,
-    "today_pnl": 0.0,
-    "today_return_pct": 0.0
+    "total_pnl": 156.84,
+    "total_return_pct": 0.16,
+    "today_pnl": 27.52,
+    "today_return_pct": 0.03
   },
   "history": [
     {
@@ -47,10 +47,10 @@
     },
     {
       "date": "2026-10-01",
-      "equity": 100129.42,
-      "daily_pnl": 0.0,
-      "daily_pct": 0.0,
-      "cumulative_pct": 0.13
+      "equity": 100156.84,
+      "daily_pnl": 27.52,
+      "daily_pct": 0.03,
+      "cumulative_pct": 0.16
     }
   ],
   "strategies": [
@@ -84,223 +84,6 @@
     "win_rate": "53.1%",
     "profit_factor": 1.85
   },
-  "open_positions": [
-    {
-      "symbol": "BSX",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "LONG",
-      "open_shares": 4.224214,
-      "open_price": 46.828726,
-      "open_value": 185.129135,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "COIN",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "LONG",
-      "open_shares": 1.176266,
-      "open_price": 169.2,
-      "open_value": 220.985093,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "CSGP",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "LONG",
-      "open_shares": 6.115286,
-      "open_price": 31.89327,
-      "open_value": 167.558836,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "FIG",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "LONG",
-      "open_shares": 10.635847,
-      "open_price": 18.225038,
-      "open_value": 223.778221,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "FRMI",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "LONG",
-      "open_shares": 26.628589,
-      "open_price": 7.503058,
-      "open_value": 114.236647,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "FUTU",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "LONG",
-      "open_shares": 1.973803,
-      "open_price": 96.77,
-      "open_value": 218.796063,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "HUBS",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "LONG",
-      "open_shares": 1.045037,
-      "open_price": 183.99,
-      "open_value": 214.243035,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "INSM",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "LONG",
-      "open_shares": 2.033451,
-      "open_price": 97.096364,
-      "open_value": 235.232255,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "INTU",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "LONG",
-      "open_shares": 0.720847,
-      "open_price": 282.2,
-      "open_value": 199.242111,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "KLAR",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "LONG",
-      "open_shares": 11.818306,
-      "open_price": 17.7,
-      "open_value": 146.546994,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "MMYT",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "LONG",
-      "open_shares": 4.282142,
-      "open_price": 46.120784,
-      "open_value": 202.117102,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "OKLO",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "LONG",
-      "open_shares": 3.294553,
-      "open_price": 60.273929,
-      "open_value": 123.644574,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "OWL",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "LONG",
-      "open_shares": 19.994753,
-      "open_price": 9.65,
-      "open_value": 182.1522,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "PATH",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "LONG",
-      "open_shares": 18.53014,
-      "open_price": 10.522666,
-      "open_value": 239.780012,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "RBLX",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "LONG",
-      "open_shares": 4.532719,
-      "open_price": 46.069073,
-      "open_value": 192.051304,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "SBET",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "LONG",
-      "open_shares": 33.64437,
-      "open_price": 5.81,
-      "open_value": 316.257078,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "SMR",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "LONG",
-      "open_shares": 18.765029,
-      "open_price": 10.531631,
-      "open_value": 150.683183,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "SOUN",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "LONG",
-      "open_shares": 27.338927,
-      "open_price": 7.24,
-      "open_value": 166.220676,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "STLA",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "LONG",
-      "open_shares": 27.470455,
-      "open_price": 6.97,
-      "open_value": 120.595297,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "TEAM",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "LONG",
-      "open_shares": 2.224978,
-      "open_price": 90.181015,
-      "open_value": 399.383551,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "TSCO",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "LONG",
-      "open_shares": 6.357486,
-      "open_price": 30.442576,
-      "open_value": 198.307154,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "TTD",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "LONG",
-      "open_shares": 10.280224,
-      "open_price": 19.01,
-      "open_value": 125.007524,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "WDAY",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "LONG",
-      "open_shares": 1.529875,
-      "open_price": 127.71,
-      "open_value": 288.531365,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "ZS",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "LONG",
-      "open_shares": 1.53658,
-      "open_price": 125.48,
-      "open_value": 307.208439,
-      "status": "OPEN"
-    }
-  ],
+  "open_positions": [],
   "recent_trades": []
 }

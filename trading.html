@@ -3,18 +3,102 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Elroy Saltzherr — Algorithmic Trading Bot</title>
+  <title>Elroy Saltzherr — Algorithmic Paper Trading Dashboard</title>
   <link rel="stylesheet" href="styles.css" />
+  <!-- Chart.js for interactive equity and daily return charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    /* ── Trading Dashboard Styles ─────────────────────────────────────────── */
+    /* ── Paper Dashboard Styles ─────────────────────────────────────────── */
+    body {
+      background-color: #1e2638;
+      color: #e2e8f0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
     .dashboard-container {
       max-width: 1200px;
-      margin: 30px auto;
+      margin: 20px auto 40px auto;
       padding: 0 20px;
     }
 
+    /* ── High-Visibility Paper Trading Banner ────────────────────────────── */
+    .paper-alert-banner {
+      background: linear-gradient(90deg, rgba(234, 179, 8, 0.18) 0%, rgba(202, 138, 4, 0.28) 100%);
+      border: 1px solid rgba(250, 204, 21, 0.55);
+      border-radius: 12px;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+    }
+
+    .paper-pill {
+      background-color: #eab308;
+      color: #0f172a;
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border-radius: 999px;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .paper-alert-text {
+      font-size: 0.9rem;
+      color: #fef08a;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    .paper-alert-text strong {
+      color: #ffffff;
+    }
+
+    /* ── Header Bar ───────────────────────────────────────────────────────── */
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .back-link {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.88rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover {
+      color: #32ff84;
+    }
+
+    .system-badge {
+      font-size: 0.78rem;
+      color: #94a3b8;
+      background: rgba(15, 23, 42, 0.6);
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* ── Status Banner ────────────────────────────────────────────────────── */
     .status-banner {
-      background: rgba(15, 23, 42, 0.75);
+      background: rgba(15, 23, 42, 0.85);
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 14px;
       padding: 18px 24px;
@@ -25,7 +109,7 @@
       gap: 16px;
       margin-bottom: 24px;
       backdrop-filter: blur(10px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
     }
 
     .status-left {
@@ -49,15 +133,9 @@
     }
 
     @keyframes pulse {
-      0% {
-        box-shadow: 0 0 0 0 rgba(50, 255, 132, 0.7);
-      }
-      70% {
-        box-shadow: 0 0 0 10px rgba(50, 255, 132, 0);
-      }
-      100% {
-        box-shadow: 0 0 0 0 rgba(50, 255, 132, 0);
-      }
+      0% { box-shadow: 0 0 0 0 rgba(50, 255, 132, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(50, 255, 132, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(50, 255, 132, 0); }
     }
 
     .status-title {
@@ -98,16 +176,16 @@
       color: #0f172a;
     }
 
-    /* ── Metric Cards Grid ─────────────────────────────────────────────────── */
+    /* ── Metric Cards Grid (PERCENTAGE-FIRST) ──────────────────────────────── */
     .metrics-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 18px;
-      margin-bottom: 30px;
+      margin-bottom: 24px;
     }
 
     .metric-card {
-      background: rgba(15, 23, 42, 0.7);
+      background: rgba(15, 23, 42, 0.8);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 12px;
       padding: 20px;
@@ -124,45 +202,104 @@
     }
 
     .metric-label {
-      font-size: 0.85rem;
-      font-weight: 600;
+      font-size: 0.82rem;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
       color: #94a3b8;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
-    .metric-value {
-      font-size: 1.85rem;
+    .metric-value-huge {
+      font-size: 2.2rem;
       font-weight: 800;
       color: #ffffff;
-      margin: 4px 0;
+      margin: 4px 0 2px 0;
+      letter-spacing: -0.02em;
     }
 
-    .metric-badge {
+    .metric-subtext {
+      font-size: 0.86rem;
+      color: #94a3b8;
+      margin-top: 4px;
+    }
+
+    .val-green { color: #32ff84 !important; }
+    .val-red { color: #f87171 !important; }
+    .val-neutral { color: #ffffff !important; }
+
+    /* ── Chart Container & Controls ───────────────────────────────────────── */
+    .chart-card {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 30px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .chart-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .chart-title-block h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 0;
+    }
+
+    .chart-title-block p {
+      font-size: 0.84rem;
+      color: #94a3b8;
+      margin: 4px 0 0 0;
+    }
+
+    .chart-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chart-toggle-btn {
+      background: #1e293b;
+      color: #94a3b8;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 7px 14px;
+      border-radius: 8px;
       font-size: 0.82rem;
       font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      margin-top: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
     }
 
-    .badge-green {
-      color: #32ff84;
+    .chart-toggle-btn:hover {
+      background: #334155;
+      color: #ffffff;
     }
 
-    .badge-red {
-      color: #f87171;
+    .chart-toggle-btn.active {
+      background: #32ff84;
+      color: #0f172a;
+      border-color: #32ff84;
+      font-weight: 700;
     }
 
-    .badge-neutral {
-      color: #94a3b8;
+    .chart-wrapper {
+      position: relative;
+      width: 100%;
+      height: 340px;
     }
 
     /* ── Strategy Section ──────────────────────────────────────────────────── */
     .section-title {
-      font-size: 1.35rem;
+      font-size: 1.25rem;
       font-weight: 700;
       color: #ffffff;
       margin: 32px 0 16px 0;
@@ -179,7 +316,7 @@
     }
 
     .strategy-card {
-      background: rgba(15, 23, 42, 0.75);
+      background: rgba(15, 23, 42, 0.8);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 12px;
       padding: 22px;
@@ -195,13 +332,13 @@
     }
 
     .strat-name {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 700;
       color: #38bdf8;
     }
 
     .strat-tag {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 700;
       padding: 3px 8px;
       border-radius: 6px;
@@ -224,7 +361,7 @@
     }
 
     .strat-desc {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: #cbd5e1;
       line-height: 1.5;
       margin-bottom: 14px;
@@ -242,7 +379,7 @@
     .strat-stat-item span {
       display: block;
       color: #94a3b8;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       text-transform: uppercase;
     }
 
@@ -253,7 +390,7 @@
 
     /* ── Tables ────────────────────────────────────────────────────────────── */
     .table-card {
-      background: rgba(15, 23, 42, 0.75);
+      background: rgba(15, 23, 42, 0.8);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 12px;
       overflow: hidden;
@@ -270,13 +407,13 @@
       width: 100%;
       border-collapse: collapse;
       text-align: left;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
     }
 
     th {
       background: rgba(30, 41, 59, 0.85);
       color: #94a3b8;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       padding: 12px 16px;
@@ -295,10 +432,10 @@
     }
 
     .empty-state {
-      padding: 30px;
+      padding: 26px;
       text-align: center;
       color: #94a3b8;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
     }
 
     /* ── Architecture Highlights ───────────────────────────────────────────── */
@@ -318,13 +455,13 @@
 
     .arch-item h4 {
       color: #38bdf8;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       margin-bottom: 6px;
     }
 
     .arch-item p {
       color: #94a3b8;
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       line-height: 1.4;
       margin: 0;
     }
@@ -332,42 +469,31 @@
 </head>
 
 <body>
-  <!-- Header -->
-  <header class="header">
-    <div class="header-overlay"></div>
-    <div class="header-content">
-      <div class="profile">
-        <img src="images/ProfilePic.jpg" alt="Elroy Saltzherr" />
-      </div>
-      <div class="header-text-box">
-        <h1>Elroy Saltzherr</h1>
-        <p>Game Programmer, Designer & Quantitative Developer</p>
-        <p>Live Algorithmic Trading Systems</p>
-      </div>
-    </div>
-  </header>
-
-  <!-- Navigation -->
-  <nav class="navigation">
-    <ul>
-      <li><a href="index.html#background">Background</a></li>
-      <li><a href="index.html#skills">Skills</a></li>
-      <li><a href="index.html#projects">Projects</a></li>
-      <li><a href="index.html#game-jams">Game Jams</a></li>
-      <li><a href="trading.html" style="color: #fcff3e; font-weight: bold;">Trading Bot</a></li>
-    </ul>
-  </nav>
-
-  <!-- Dashboard -->
   <div class="dashboard-container">
-    
+
+    <!-- Top Breadcrumb / Return Link -->
+    <div class="top-bar">
+      <a href="index.html" class="back-link">
+        &larr; Return to Elroy Saltzherr Portfolio
+      </a>
+      <span class="system-badge">Alpaca Paper Simulator • Forward Testing Engine</span>
+    </div>
+
+    <!-- HIGH-VISIBILITY PAPER TRADING NOTICE -->
+    <div class="paper-alert-banner">
+      <div class="paper-pill">⚠️ SIMULATED PAPER TRADING</div>
+      <p class="paper-alert-text">
+        <strong>Paper Trading Environment:</strong> This dashboard tracks a fully autonomous quantitative algorithm running on the <strong>Alpaca Paper Trading Network</strong> with simulated capital. <strong>No real money is deployed or at risk.</strong> All execution orders and balances represent forward-tested paper trading.
+      </p>
+    </div>
+
     <!-- Status Banner -->
     <div class="status-banner">
       <div class="status-left">
         <div id="statusDot" class="pulse-dot market-closed"></div>
         <div>
-          <h2 id="botStatusText" class="status-title">🟢 Live — Sleeping Until Market Open</h2>
-          <p id="marketStatusText" class="status-sub">Alpaca Paper Engine • Cloud Host: Google Cloud (us-central1)</p>
+          <h2 id="botStatusText" class="status-title">🟢 Paper Bot Active — Sleeping Until Market Open</h2>
+          <p id="marketStatusText" class="status-sub">Alpaca Paper Trading Network • Cloud Host: Google Cloud (us-central1)</p>
         </div>
       </div>
       <div class="status-right">
@@ -376,35 +502,60 @@
       </div>
     </div>
 
-    <!-- Core Metrics -->
+    <!-- PERCENTAGE-FIRST METRIC CARDS -->
     <div class="metrics-grid">
+      
+      <!-- Card 1: Today's % Change -->
       <div class="metric-card">
-        <div class="metric-label">Portfolio Equity</div>
-        <div id="portfolioValue" class="metric-value">$100,129.67</div>
-        <div id="totalReturnBadge" class="metric-badge badge-green">+$129.67 (+0.13% All-Time)</div>
+        <div class="metric-label">Today's % Change</div>
+        <div id="todayPctValue" class="metric-value-huge val-neutral">0.00%</div>
+        <div id="todayDollarSub" class="metric-subtext">$0.00 simulated today</div>
       </div>
 
+      <!-- Card 2: Cumulative % Return -->
       <div class="metric-card">
-        <div class="metric-label">Cash & Buying Power</div>
-        <div id="cashValue" class="metric-value">$95,191.73</div>
-        <div id="buyingPowerBadge" class="metric-badge badge-neutral">BP: $394,405.29</div>
+        <div class="metric-label">All-Time % Return</div>
+        <div id="totalPctValue" class="metric-value-huge val-green">+0.13%</div>
+        <div id="totalDollarSub" class="metric-subtext">+$129.42 net paper gain</div>
       </div>
 
+      <!-- Card 3: Paper Portfolio Value -->
       <div class="metric-card">
-        <div class="metric-label">Today's P&amp;L</div>
-        <div id="todayPnlValue" class="metric-value">$0.00</div>
-        <div id="todayReturnBadge" class="metric-badge badge-neutral">0.00% Today</div>
+        <div class="metric-label">Paper Portfolio Value</div>
+        <div id="portfolioValue" class="metric-value-huge val-neutral">$100,129.42</div>
+        <div id="cashBuyingPowerSub" class="metric-subtext">Cash: $95,191.73 • BP: $394,404.58</div>
       </div>
 
+      <!-- Card 4: Paper Win Rate -->
       <div class="metric-card">
-        <div class="metric-label">Live Win Rate</div>
-        <div id="winRateValue" class="metric-value">--</div>
-        <div id="tradesCountBadge" class="metric-badge badge-neutral">0 trades closed</div>
+        <div class="metric-label">Strategy Win Rate</div>
+        <div id="winRateValue" class="metric-value-huge val-neutral">53.1%</div>
+        <div id="tradesCountSub" class="metric-subtext">2025 Backtest Baseline (0 closed live)</div>
+      </div>
+
+    </div>
+
+    <!-- PERFORMANCE CHART CARD (FOCUS ON % CHANGE) -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div class="chart-title-block">
+          <h3 id="chartTitle">Daily Performance (% Return)</h3>
+          <p id="chartSubtitle">Daily percentage return per trading session across paper strategies</p>
+        </div>
+        <div class="chart-controls">
+          <button class="chart-toggle-btn active" onclick="switchChartMode('daily_pct')">% Daily Return</button>
+          <button class="chart-toggle-btn" onclick="switchChartMode('cumulative_pct')">% Cumulative Growth</button>
+          <button class="chart-toggle-btn" onclick="switchChartMode('daily_pnl')">$ Daily P&amp;L</button>
+          <button class="chart-toggle-btn" onclick="switchChartMode('equity')">$ Paper Equity</button>
+        </div>
+      </div>
+      <div class="chart-wrapper">
+        <canvas id="performanceChart"></canvas>
       </div>
     </div>
 
     <!-- Active Strategies -->
-    <h3 class="section-title">⚡ Active Strategies (50 / 50 Allocation)</h3>
+    <h3 class="section-title">⚡ Active Paper Strategies (50 / 50 Allocation)</h3>
     <div class="strategies-grid">
       
       <!-- Strategy 1 -->
@@ -417,7 +568,7 @@
           <span class="strat-tag long">Long • Mean Reversion</span>
         </div>
         <p class="strat-desc">
-          Identifies extreme overnight gap-down stocks driven by pre-market retail panic. 
+          Identifies extreme overnight gap-down stocks driven by pre-market retail panic selling. 
           Buys the open bounce and captures sharp mean-reversion during the morning session.
         </p>
         <div class="strat-stats">
@@ -446,8 +597,8 @@
           <span class="strat-tag short">Short • Momentum Fade</span>
         </div>
         <p class="strat-desc">
-          Monitors the market's biggest gainers in the first 15 minutes of trading. 
-          Borrows and shorts overextended spike runners as early retail momentum collapses.
+          Monitors the market's highest gainers in the first 15 minutes of trading. 
+          Borrows and shorts overextended spike runners as early retail morning momentum collapses.
         </p>
         <div class="strat-stats">
           <div class="strat-stat-item">
@@ -468,7 +619,7 @@
     </div>
 
     <!-- Live Positions Table -->
-    <h3 class="section-title">📊 Open Positions (Intraday)</h3>
+    <h3 class="section-title">📊 Open Positions (Intraday Paper Trades)</h3>
     <div class="table-card">
       <div class="table-responsive">
         <table id="positionsTable">
@@ -478,15 +629,15 @@
               <th>Strategy</th>
               <th>Side</th>
               <th>Shares</th>
-              <th>Open Price</th>
+              <th>Entry Price</th>
               <th>Position Value</th>
-              <th>Status</th>
+              <th>Environment</th>
             </tr>
           </thead>
           <tbody id="positionsBody">
             <tr>
               <td colspan="7" class="empty-state">
-                No active intraday positions currently. All positions are liquidated daily into 100% cash at 3:55 PM ET.
+                No active intraday positions currently. All positions are liquidated daily into 100% cash at 3:55 PM ET to ensure zero overnight risk.
               </td>
             </tr>
           </tbody>
@@ -495,7 +646,7 @@
     </div>
 
     <!-- Trade History Table -->
-    <h3 class="section-title">📜 Recent Closed Trades</h3>
+    <h3 class="section-title">📜 Recent Closed Paper Trades</h3>
     <div class="table-card">
       <div class="table-responsive">
         <table id="tradesTable">
@@ -507,14 +658,14 @@
               <th>Side</th>
               <th>Entry Price</th>
               <th>Exit Price</th>
-              <th>P&amp;L ($)</th>
               <th>Return (%)</th>
+              <th>Net P&amp;L ($)</th>
             </tr>
           </thead>
           <tbody id="tradesBody">
             <tr>
               <td colspan="8" class="empty-state">
-                No closed trades recorded yet for current session. Next scheduled execution starts at 09:30 AM ET.
+                No closed trades recorded yet for current session. Next scheduled execution begins at 09:30 AM ET.
               </td>
             </tr>
           </tbody>
@@ -522,31 +673,35 @@
       </div>
     </div>
 
-    <!-- Engineering Highlights -->
+    <!-- Architecture Highlights -->
     <h3 class="section-title">🛠️ System Architecture</h3>
     <div class="arch-grid">
       <div class="arch-item">
         <h4>Google Cloud 24/7 Hosting</h4>
-        <p>Operates autonomously on a GCP Compute Engine instance running Ubuntu 24.04 with systemd daemon management.</p>
+        <p>Runs autonomously on an Always Free Google Cloud Compute Engine VM managed by systemd background services.</p>
       </div>
       <div class="arch-item">
         <h4>Alpaca Paper Trading API</h4>
-        <p>Executes live market orders, enforces whole-share shorting constraints, and validates easy-to-borrow status.</p>
+        <p>Forward-tested with whole-share integer constraints on short positions and easy-to-borrow asset validation.</p>
       </div>
       <div class="arch-item">
         <h4>100% Intraday Liquidation</h4>
-        <p>Guarantees all positions are flattened into cash at 3:55 PM ET before the bell, eliminating overnight gap risk.</p>
+        <p>Enforces same-day flattening of all positions at 3:55 PM ET before the market close, eliminating overnight gap risk.</p>
       </div>
       <div class="arch-item">
-        <h4>ACID SQLite Persistence</h4>
-        <p>Full database trade tracking with deterministic execution IDs, attribution tagging, and daily P&amp;L recaps.</p>
+        <h4>ACID SQLite Database</h4>
+        <p>Records all execution legs with deterministic trade IDs, strategy attribution tagging, and daily P&amp;L snapshots.</p>
       </div>
     </div>
 
   </div>
 
-  <!-- Client-Side Dashboard Script -->
+  <!-- Client-Side Dashboard & Chart Script -->
   <script>
+    let globalData = null;
+    let chartInstance = null;
+    let currentChartMode = "daily_pct"; // Default focus on Daily % Return
+
     function formatCurrency(val) {
       if (val === undefined || val === null || isNaN(val)) return "$0.00";
       return "$" + Number(val).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -564,13 +719,11 @@
       refreshBtn.disabled = true;
 
       try {
-        // Cache-busting query parameter ensures fresh status from GitHub Pages
         const response = await fetch("bot_status.json?v=" + new Date().getTime());
-        if (!response.ok) {
-          throw new Error("HTTP " + response.status);
-        }
-        const data = await response.json();
-        renderDashboard(data);
+        if (!response.ok) throw new Error("HTTP " + response.status);
+        globalData = await response.json();
+        renderDashboard(globalData);
+        updateChart();
       } catch (err) {
         console.warn("Could not fetch bot_status.json:", err);
         document.getElementById("lastUpdatedText").innerText = "Synced: Offline / Cached";
@@ -586,62 +739,60 @@
         document.getElementById("botStatusText").innerText = data.bot_status;
       }
       if (data.market_status) {
-        document.getElementById("marketStatusText").innerText = data.market_status + " • Alpaca Paper API • GCP Cloud";
+        document.getElementById("marketStatusText").innerText = data.market_status + " • Alpaca Paper Simulator • GCP Cloud";
       }
       if (data.updated_at) {
         document.getElementById("lastUpdatedText").innerText = "Synced: " + data.updated_at;
       }
 
       const dot = document.getElementById("statusDot");
-      if (data.is_open) {
-        dot.className = "pulse-dot";
-      } else {
-        dot.className = "pulse-dot market-closed";
-      }
+      dot.className = data.is_open ? "pulse-dot" : "pulse-dot market-closed";
 
-      // 2. Account Metrics
+      // 2. Metrics (PERCENTAGE FIRST)
       if (data.account) {
         const acc = data.account;
-        document.getElementById("portfolioValue").innerText = formatCurrency(acc.portfolio_value);
-        document.getElementById("cashValue").innerText = formatCurrency(acc.cash);
-        document.getElementById("buyingPowerBadge").innerText = "BP: " + formatCurrency(acc.buying_power);
 
-        // Total Return
-        const totalPnlBadge = document.getElementById("totalReturnBadge");
-        const totalPnl = acc.total_pnl || 0;
-        const totalPct = acc.total_return_pct || 0;
-        const sign = totalPnl >= 0 ? "+" : "-";
-        totalPnlBadge.innerText = `${sign}${formatCurrency(Math.abs(totalPnl))} (${formatPct(totalPct)} All-Time)`;
-        totalPnlBadge.className = totalPnl >= 0 ? "metric-badge badge-green" : "metric-badge badge-red";
-
-        // Today PnL
-        const todayPnl = acc.today_pnl || 0;
+        // Today's % Change
         const todayPct = acc.today_return_pct || 0;
-        document.getElementById("todayPnlValue").innerText = formatCurrency(todayPnl);
-        const todayBadge = document.getElementById("todayReturnBadge");
-        todayBadge.innerText = `${formatPct(todayPct)} Today`;
-        todayBadge.className = todayPnl > 0 ? "metric-badge badge-green" : (todayPnl < 0 ? "metric-badge badge-red" : "metric-badge badge-neutral");
+        const todayPnl = acc.today_pnl || 0;
+        const todayPctEl = document.getElementById("todayPctValue");
+        todayPctEl.innerText = formatPct(todayPct);
+        todayPctEl.className = "metric-value-huge " + (todayPct > 0 ? "val-green" : (todayPct < 0 ? "val-red" : "val-neutral"));
+        document.getElementById("todayDollarSub").innerText = `${formatCurrency(todayPnl)} simulated paper P&L today`;
+
+        // All-Time % Return
+        const totalPct = acc.total_return_pct || 0;
+        const totalPnl = acc.total_pnl || 0;
+        const totalPctEl = document.getElementById("totalPctValue");
+        totalPctEl.innerText = formatPct(totalPct);
+        totalPctEl.className = "metric-value-huge " + (totalPct >= 0 ? "val-green" : "val-red");
+        const sign = totalPnl >= 0 ? "+" : "";
+        document.getElementById("totalDollarSub").innerText = `${sign}${formatCurrency(totalPnl)} net paper gain (starting $100k)`;
+
+        // Portfolio Value & Cash
+        document.getElementById("portfolioValue").innerText = formatCurrency(acc.portfolio_value);
+        document.getElementById("cashBuyingPowerSub").innerText = `Cash: ${formatCurrency(acc.cash)} • BP: ${formatCurrency(acc.buying_power)}`;
       }
 
       // 3. Stats
       if (data.stats) {
         const stats = data.stats;
-        document.getElementById("winRateValue").innerText = stats.win_rate || "--";
-        document.getElementById("tradesCountBadge").innerText = `${stats.total_trades || 0} trades closed (${stats.wins || 0}W / ${stats.losses || 0}L)`;
+        document.getElementById("winRateValue").innerText = stats.win_rate || "53.1%";
+        document.getElementById("tradesCountSub").innerText = `${stats.total_trades || 0} live trades closed (${stats.wins || 0}W / ${stats.losses || 0}L)`;
       }
 
-      // 4. Open Positions Table
+      // 4. Open Positions
       const posBody = document.getElementById("positionsBody");
       if (data.open_positions && data.open_positions.length > 0) {
         posBody.innerHTML = data.open_positions.map(p => `
           <tr>
             <td><strong>${p.symbol}</strong></td>
-            <td>${p.strategy || '--'}</td>
+            <td>${p.strategy || 'Automated'}</td>
             <td><span class="strat-tag ${p.direction === 'LONG' ? 'long' : 'short'}">${p.direction}</span></td>
             <td>${Number(p.open_shares).toFixed(2)}</td>
             <td>${formatCurrency(p.open_price)}</td>
             <td>${formatCurrency(p.open_value)}</td>
-            <td><span style="color: #32ff84;">OPEN</span></td>
+            <td><span class="paper-pill" style="font-size: 0.65rem; padding: 2px 6px;">SIMULATED</span></td>
           </tr>
         `).join("");
       } else {
@@ -654,13 +805,14 @@
         `;
       }
 
-      // 5. Recent Trades Table
+      // 5. Recent Trades
       const tradesBody = document.getElementById("tradesBody");
       const closed = (data.recent_trades || []).filter(t => t.status === "CLOSED");
       if (closed.length > 0) {
         tradesBody.innerHTML = closed.map(t => {
           const pnl = t.pnl_dollars || 0;
-          const pnlColor = pnl >= 0 ? "#32ff84" : "#f87171";
+          const pnlPct = t.pnl_pct || 0;
+          const color = pnl >= 0 ? "#32ff84" : "#f87171";
           return `
             <tr>
               <td>${t.close_date || t.open_date}</td>
@@ -669,8 +821,8 @@
               <td><span class="strat-tag ${t.direction === 'LONG' ? 'long' : 'short'}">${t.direction}</span></td>
               <td>${formatCurrency(t.open_price)}</td>
               <td>${formatCurrency(t.close_price)}</td>
-              <td style="color: ${pnlColor}; font-weight: 600;">${formatCurrency(pnl)}</td>
-              <td style="color: ${pnlColor}; font-weight: 600;">${formatPct(t.pnl_pct)}</td>
+              <td style="color: ${color}; font-weight: 700;">${formatPct(pnlPct)}</td>
+              <td style="color: ${color}; font-weight: 700;">${formatCurrency(pnl)}</td>
             </tr>
           `;
         }).join("");
@@ -678,14 +830,146 @@
         tradesBody.innerHTML = `
           <tr>
             <td colspan="8" class="empty-state">
-              No closed trades recorded yet for current session. Next scheduled execution starts at 09:30 AM ET.
+              No closed trades recorded yet for current session. Next scheduled execution begins at 09:30 AM ET.
             </td>
           </tr>
         `;
       }
     }
 
-    // Auto-fetch on load, then poll every 30 seconds
+    // ── Chart Rendering ─────────────────────────────────────────────────────
+    function switchChartMode(mode) {
+      currentChartMode = mode;
+      document.querySelectorAll(".chart-toggle-btn").forEach(btn => btn.classList.remove("active"));
+      
+      const buttons = document.querySelectorAll(".chart-toggle-btn");
+      if (mode === 'daily_pct') buttons[0].classList.add("active");
+      if (mode === 'cumulative_pct') buttons[1].classList.add("active");
+      if (mode === 'daily_pnl') buttons[2].classList.add("active");
+      if (mode === 'equity') buttons[3].classList.add("active");
+
+      updateChart();
+    }
+
+    function updateChart() {
+      if (!globalData || !globalData.history || globalData.history.length === 0) return;
+
+      const history = globalData.history;
+      const labels = history.map(h => h.date);
+
+      const titleEl = document.getElementById("chartTitle");
+      const subEl = document.getElementById("chartSubtitle");
+
+      let chartType = "bar";
+      let dataValues = [];
+      let backgroundColors = [];
+      let borderColors = [];
+      let labelText = "";
+      let yAxisFormatter = null;
+
+      if (currentChartMode === "daily_pct") {
+        chartType = "bar";
+        labelText = "Daily Return (%)";
+        titleEl.innerText = "Daily Performance (% Return)";
+        subEl.innerText = "Net percentage gain or loss per trading day";
+        dataValues = history.map(h => h.daily_pct || 0);
+        backgroundColors = dataValues.map(v => v >= 0 ? "rgba(50, 255, 132, 0.75)" : "rgba(248, 113, 113, 0.75)");
+        borderColors = dataValues.map(v => v >= 0 ? "#32ff84" : "#f87171");
+        yAxisFormatter = val => val.toFixed(2) + "%";
+      } else if (currentChartMode === "cumulative_pct") {
+        chartType = "line";
+        labelText = "Cumulative Return (%)";
+        titleEl.innerText = "Cumulative Growth Curve (% Return)";
+        subEl.innerText = "Total compounded growth percentage since baseline initialization";
+        dataValues = history.map(h => h.cumulative_pct || 0);
+        backgroundColors = "rgba(50, 255, 132, 0.15)";
+        borderColors = "#32ff84";
+        yAxisFormatter = val => val.toFixed(2) + "%";
+      } else if (currentChartMode === "daily_pnl") {
+        chartType = "bar";
+        labelText = "Daily P&L ($)";
+        titleEl.innerText = "Daily Paper Profit & Loss ($ USD)";
+        subEl.innerText = "Dollar amount gained or lost per trading session";
+        dataValues = history.map(h => h.daily_pnl || 0);
+        backgroundColors = dataValues.map(v => v >= 0 ? "rgba(50, 255, 132, 0.75)" : "rgba(248, 113, 113, 0.75)");
+        borderColors = dataValues.map(v => v >= 0 ? "#32ff84" : "#f87171");
+        yAxisFormatter = val => formatCurrency(val);
+      } else if (currentChartMode === "equity") {
+        chartType = "line";
+        labelText = "Paper Equity ($)";
+        titleEl.innerText = "Paper Account Equity History ($ USD)";
+        subEl.innerText = "Simulated portfolio net liquidation value";
+        dataValues = history.map(h => h.equity || 100000.0);
+        backgroundColors = "rgba(56, 189, 248, 0.15)";
+        borderColors = "#38bdf8";
+        yAxisFormatter = val => formatCurrency(val);
+      }
+
+      const ctx = document.getElementById("performanceChart").getContext("2d");
+
+      if (chartInstance) {
+        chartInstance.destroy();
+      }
+
+      chartInstance = new Chart(ctx, {
+        type: chartType,
+        data: {
+          labels: labels,
+          datasets: [{
+            label: labelText,
+            data: dataValues,
+            backgroundColor: backgroundColors,
+            borderColor: borderColors,
+            borderWidth: chartType === "line" ? 3 : 1,
+            fill: chartType === "line",
+            tension: 0.3,
+            pointBackgroundColor: borderColors,
+            pointRadius: chartType === "line" ? 4 : 0,
+            pointHoverRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: "rgba(15, 23, 42, 0.95)",
+              titleColor: "#ffffff",
+              bodyColor: "#e2e8f0",
+              borderColor: "rgba(255, 255, 255, 0.15)",
+              borderWidth: 1,
+              padding: 12,
+              callbacks: {
+                label: function(context) {
+                  const val = context.raw;
+                  if (currentChartMode.includes("pct")) {
+                    return `Return: ${formatPct(val)}`;
+                  }
+                  return `P&L: ${formatCurrency(val)}`;
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { color: "rgba(255, 255, 255, 0.05)" },
+              ticks: { color: "#94a3b8", font: { size: 11 } }
+            },
+            y: {
+              grid: { color: "rgba(255, 255, 255, 0.06)" },
+              ticks: {
+                color: "#94a3b8",
+                font: { size: 11 },
+                callback: yAxisFormatter
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Initialize on load and poll every 30 seconds
     fetchStatus();
     setInterval(fetchStatus, 30000);
   </script>

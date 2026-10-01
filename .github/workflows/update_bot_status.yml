@@ -2,9 +2,9 @@ name: Update Trading Bot Status
 
 on:
   schedule:
-    # Run at 13:30, 14:00, 16:00, 18:00, 20:00, 21:00 UTC Monday-Friday (covering pre-market, open, mid-day, and close)
+    # Run at 13:30, 14:00, 16:00, 18:00, 20:00, 21:00 UTC Monday-Friday
     - cron: '30 13,14,16,18,20,21 * * 1-5'
-  workflow_dispatch: # Allows manual trigger anytime from the GitHub Actions web UI
+  workflow_dispatch:
 
 jobs:
   update-status:

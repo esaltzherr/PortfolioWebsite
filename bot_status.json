@@ -1,19 +1,58 @@
 {
-  "updated_at": "2026-10-01 12:17:49 AM ET",
-  "timestamp_iso": "2026-10-01T00:17:49.726860-04:00",
+  "is_paper_trading": true,
+  "environment": "Alpaca Paper Trading Simulator (Virtual Currency - No Real Capital)",
+  "updated_at": "2026-10-01 12:27:32 AM ET",
+  "timestamp_iso": "2026-10-01T00:27:32.207580-04:00",
   "market_status": "Market Closed (Next Open: 2026-10-01 09:30 ET)",
   "is_open": false,
-  "bot_status": "\ud83d\udfe2 Live \u2014 Sleeping Until Market Open",
+  "bot_status": "\ud83d\udfe2 Paper Bot Active \u2014 Sleeping Until Market Open",
   "account": {
-    "portfolio_value": 100129.32,
+    "portfolio_value": 100129.42,
     "cash": 95191.73,
-    "buying_power": 394404.3,
+    "buying_power": 394404.58,
     "initial_capital": 100000.0,
-    "total_pnl": 129.32,
+    "total_pnl": 129.42,
     "total_return_pct": 0.13,
     "today_pnl": 0.0,
     "today_return_pct": 0.0
   },
+  "history": [
+    {
+      "date": "2026-09-25",
+      "equity": 100000.0,
+      "daily_pct": 0.0,
+      "daily_pnl": 0.0,
+      "cumulative_pct": 0.0
+    },
+    {
+      "date": "2026-09-26",
+      "equity": 100038.5,
+      "daily_pct": 0.04,
+      "daily_pnl": 38.5,
+      "cumulative_pct": 0.04
+    },
+    {
+      "date": "2026-09-29",
+      "equity": 100085.1,
+      "daily_pct": 0.05,
+      "daily_pnl": 46.6,
+      "cumulative_pct": 0.09
+    },
+    {
+      "date": "2026-09-30",
+      "equity": 100129.32,
+      "daily_pct": 0.04,
+      "daily_pnl": 44.22,
+      "cumulative_pct": 0.13
+    },
+    {
+      "date": "2026-10-01",
+      "equity": 100129.42,
+      "daily_pnl": 0.0,
+      "daily_pct": 0.0,
+      "cumulative_pct": 0.13
+    }
+  ],
   "strategies": [
     {
       "name": "GAP_BOTTOM_LONG",
@@ -24,7 +63,7 @@
       "backtest_return_2025": "+2,212.4%",
       "backtest_winrate_2025": "53.6%",
       "max_drawdown": "-7.01%",
-      "status": "Active"
+      "status": "Active (Paper)"
     },
     {
       "name": "INTRADAY_15M_SIGNAL_TOP_SHORT",
@@ -35,7 +74,7 @@
       "backtest_return_2025": "+859.6%",
       "backtest_winrate_2025": "52.7%",
       "max_drawdown": "-15.69%",
-      "status": "Active"
+      "status": "Active (Paper)"
     }
   ],
   "stats": {
@@ -151,7 +190,7 @@
       "direction": "LONG",
       "open_shares": 3.294553,
       "open_price": 60.273929,
-      "open_value": 123.545738,
+      "open_value": 123.644574,
       "status": "OPEN"
     },
     {

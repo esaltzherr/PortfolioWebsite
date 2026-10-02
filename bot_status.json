@@ -1,56 +1,28 @@
 {
   "is_paper_trading": true,
   "environment": "Alpaca Paper Trading Simulator (Virtual Currency - No Real Capital)",
-  "updated_at": "2026-10-01 08:03:04 PM ET",
-  "timestamp_iso": "2026-10-01T20:03:04.779859-04:00",
+  "updated_at": "2026-10-01 09:40:40 PM ET",
+  "timestamp_iso": "2026-10-01T21:40:40.582441-04:00",
   "market_status": "Market Closed (Next Open: 2026-10-02 09:30 ET)",
   "is_open": false,
   "bot_status": "\ud83d\udfe2 Paper Bot Active \u2014 Sleeping Until Market Open",
   "account": {
-    "portfolio_value": 100156.84,
-    "cash": 100156.84,
-    "buying_power": 400627.36,
+    "portfolio_value": 100000.0,
+    "cash": 100000.0,
+    "buying_power": 400000.0,
     "initial_capital": 100000.0,
-    "total_pnl": 156.84,
-    "total_return_pct": 0.16,
-    "today_pnl": 27.52,
-    "today_return_pct": 0.03
+    "total_pnl": 0.0,
+    "total_return_pct": 0.0,
+    "today_pnl": 0,
+    "today_return_pct": 0.0
   },
   "history": [
     {
-      "date": "2026-09-25",
+      "date": "2026-10-02",
       "equity": 100000.0,
+      "daily_pnl": 0,
       "daily_pct": 0.0,
-      "daily_pnl": 0.0,
       "cumulative_pct": 0.0
-    },
-    {
-      "date": "2026-09-26",
-      "equity": 100038.5,
-      "daily_pct": 0.04,
-      "daily_pnl": 38.5,
-      "cumulative_pct": 0.04
-    },
-    {
-      "date": "2026-09-29",
-      "equity": 100085.1,
-      "daily_pct": 0.05,
-      "daily_pnl": 46.6,
-      "cumulative_pct": 0.09
-    },
-    {
-      "date": "2026-09-30",
-      "equity": 100129.32,
-      "daily_pct": 0.04,
-      "daily_pnl": 44.22,
-      "cumulative_pct": 0.13
-    },
-    {
-      "date": "2026-10-01",
-      "equity": 100156.84,
-      "daily_pnl": 27.52,
-      "daily_pct": 0.03,
-      "cumulative_pct": 0.16
     }
   ],
   "strategies": [
@@ -82,8 +54,9 @@
     "wins": 0,
     "losses": 0,
     "win_rate": "53.1%",
-    "profit_factor": 1.85
+    "profit_factor": 0.0
   },
   "open_positions": [],
-  "recent_trades": []
+  "recent_trades": [],
+  "strategy_summary": []
 }

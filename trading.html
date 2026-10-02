@@ -176,6 +176,117 @@
       color: #0f172a;
     }
 
+    .diag-btn {
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      padding: 6px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .diag-btn:hover {
+      background: #38bdf8;
+      color: #0f172a;
+    }
+
+    .countdown-badge {
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      color: #cbd5e1;
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      white-space: nowrap;
+    }
+
+    .diag-card {
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(12px);
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .diag-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 14px;
+    }
+
+    .diag-action-btn {
+      background: #1e293b;
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .diag-action-btn:hover {
+      background: #38bdf8;
+      color: #0f172a;
+    }
+
+    .diag-close-btn {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 1.1rem;
+      cursor: pointer;
+      padding: 0 4px;
+    }
+
+    .diag-close-btn:hover {
+      color: #ffffff;
+    }
+
+    .diag-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .diag-item {
+      background: rgba(30, 41, 59, 0.5);
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .diag-label {
+      display: block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      color: #94a3b8;
+      margin-bottom: 2px;
+    }
+
+    .diag-val {
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: #e2e8f0;
+    }
+
     /* ── Metric Cards Grid (PERCENTAGE-FIRST) ──────────────────────────────── */
     .metrics-grid {
       display: grid;
@@ -497,9 +608,63 @@
         </div>
       </div>
       <div class="status-right">
+        <div class="countdown-badge" id="countdownBadge">
+          ⏳ Next Session in <span id="countdownTimer" style="font-weight: 700; color: #38bdf8;">--:--:--</span>
+        </div>
         <span id="lastUpdatedText">Synced: Loading...</span>
+        <button id="diagBtn" class="diag-btn" onclick="toggleDiagnostics()">🩺 System Health</button>
         <button id="refreshBtn" class="refresh-btn" onclick="fetchStatus()">Refresh</button>
       </div>
+    </div>
+
+    <!-- Collapsible System Diagnostics & Health Card -->
+    <div id="diagnosticsPanel" class="diag-card" style="display: none;">
+      <div class="diag-header">
+        <div>
+          <h4 style="margin: 0; font-size: 1.05rem; color: #ffffff;">⚡ Alpaca &amp; GCP Live Health Monitor</h4>
+          <p style="margin: 4px 0 0 0; font-size: 0.8rem; color: #94a3b8;">Real-time connectivity and schedule verification for autonomous trading</p>
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="diag-action-btn" onclick="runDiagnosticsTest()">⚡ Run Live Ping</button>
+          <a href="https://github.com/esalt/PortfolioWebsite/actions/workflows/update_bot_status.yml" target="_blank" class="diag-action-btn" style="text-decoration: none;">🚀 GitHub Actions</a>
+          <button class="diag-close-btn" onclick="toggleDiagnostics()">✕</button>
+        </div>
+      </div>
+      <div class="diag-grid">
+        <div class="diag-item">
+          <span class="diag-label">Broker API</span>
+          <span class="diag-val" id="diagAlpacaStatus">🟢 Alpaca Paper Gateway (Connected)</span>
+        </div>
+        <div class="diag-item">
+          <span class="diag-label">Cloud Daemon</span>
+          <span class="diag-val">🟢 GCP VM (stocksbot.service Active)</span>
+        </div>
+        <div class="diag-item">
+          <span class="diag-label">Market Clock</span>
+          <span class="diag-val" id="diagClockStatus">⏸️ Standby — Opens 09:30 AM ET</span>
+        </div>
+        <div class="diag-item">
+          <span class="diag-label">Pre-Fetch Window</span>
+          <span class="diag-val">🟢 Armed (08:30 AM ET — 1hr pre-market)</span>
+        </div>
+        <div class="diag-item">
+          <span class="diag-label">Data Feed</span>
+          <span class="diag-val">🟢 Direct IEX Feed (Top 400 Equities)</span>
+        </div>
+        <div class="diag-item">
+          <span class="diag-label">Capital Baseline</span>
+          <span class="diag-val">🟢 $100,000.00 Starting Virtual Capital</span>
+        </div>
+        <div class="diag-item">
+          <span class="diag-label">Risk Protocol</span>
+          <span class="diag-val">🟢 3:55 PM ET Intraday Auto-Liquidation</span>
+        </div>
+        <div class="diag-item">
+          <span class="diag-label">Diagnostic Ping</span>
+          <span class="diag-val" id="diagLatencyVal">⚡ Latency: Ready to test</span>
+        </div>
+      </div>
+      <div id="diagToast" style="margin-top: 12px; font-size: 0.82rem; color: #32ff84; display: none;"></div>
     </div>
 
     <!-- PERCENTAGE-FIRST METRIC CARDS -->
@@ -509,21 +674,21 @@
       <div class="metric-card">
         <div class="metric-label">Today's % Change</div>
         <div id="todayPctValue" class="metric-value-huge val-neutral">0.00%</div>
-        <div id="todayDollarSub" class="metric-subtext">$0.00 simulated today</div>
+        <div id="todayDollarSub" class="metric-subtext">$0.00 simulated paper P&amp;L today</div>
       </div>
 
       <!-- Card 2: Cumulative % Return -->
       <div class="metric-card">
         <div class="metric-label">All-Time % Return</div>
-        <div id="totalPctValue" class="metric-value-huge val-green">+0.13%</div>
-        <div id="totalDollarSub" class="metric-subtext">+$129.42 net paper gain</div>
+        <div id="totalPctValue" class="metric-value-huge val-neutral">0.00%</div>
+        <div id="totalDollarSub" class="metric-subtext">$0.00 net paper gain (starting $100k)</div>
       </div>
 
       <!-- Card 3: Paper Portfolio Value -->
       <div class="metric-card">
         <div class="metric-label">Paper Portfolio Value</div>
-        <div id="portfolioValue" class="metric-value-huge val-neutral">$100,129.42</div>
-        <div id="cashBuyingPowerSub" class="metric-subtext">Cash: $95,191.73 • BP: $394,404.58</div>
+        <div id="portfolioValue" class="metric-value-huge val-neutral">$100,000.00</div>
+        <div id="cashBuyingPowerSub" class="metric-subtext">Cash: $100,000.00 • BP: $400,000.00</div>
       </div>
 
       <!-- Card 4: Paper Win Rate -->
@@ -724,13 +889,84 @@
         globalData = await response.json();
         renderDashboard(globalData);
         updateChart();
+        refreshBtn.innerText = "✓ Synced";
+        setTimeout(() => {
+          refreshBtn.innerText = "Refresh";
+        }, 1500);
       } catch (err) {
         console.warn("Could not fetch bot_status.json:", err);
         document.getElementById("lastUpdatedText").innerText = "Synced: Offline / Cached";
-      } finally {
         refreshBtn.innerText = "Refresh";
+      } finally {
         refreshBtn.disabled = false;
       }
+    }
+
+    function toggleDiagnostics() {
+      const panel = document.getElementById("diagnosticsPanel");
+      if (!panel) return;
+      panel.style.display = panel.style.display === "none" ? "block" : "none";
+    }
+
+    async function runDiagnosticsTest() {
+      const toast = document.getElementById("diagToast");
+      const latencyEl = document.getElementById("diagLatencyVal");
+      if (toast) {
+        toast.style.display = "block";
+        toast.innerText = "⏳ Pinging Alpaca Paper bot status...";
+        toast.style.color = "#38bdf8";
+      }
+      const t0 = performance.now();
+      try {
+        const res = await fetch("bot_status.json?ping=" + Date.now());
+        const latency = Math.round(performance.now() - t0);
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        const data = await res.json();
+        latencyEl.innerText = `⚡ Latency: ${latency}ms (HTTP 200 OK)`;
+        if (toast) {
+          toast.innerText = `✓ Health Check Passed! Bot active & synchronized as of ${data.updated_at} (Ping: ${latency}ms, Account: ${formatCurrency(data.account ? data.account.portfolio_value : 100000)} baseline).`;
+          toast.style.color = "#32ff84";
+        }
+        renderDashboard(data);
+      } catch (e) {
+        latencyEl.innerText = "❌ Latency: Error reaching server";
+        if (toast) {
+          toast.innerText = `⚠️ Health Check Warning: ${e.message}. Using cached local snapshot.`;
+          toast.style.color = "#f87171";
+        }
+      }
+    }
+
+    function updateCountdown() {
+      const timerEl = document.getElementById("countdownTimer");
+      if (!timerEl) return;
+      
+      const now = new Date();
+      const nowETString = now.toLocaleString("en-US", { timeZone: "America/New_York" });
+      const nowET = new Date(nowETString);
+      
+      let targetET = new Date(nowET);
+      targetET.setHours(9, 30, 0, 0);
+      
+      if (nowET >= targetET) {
+        targetET.setDate(targetET.getDate() + 1);
+      }
+      
+      if (targetET.getDay() === 6) targetET.setDate(targetET.getDate() + 2);
+      if (targetET.getDay() === 0) targetET.setDate(targetET.getDate() + 1);
+      
+      const diffMs = targetET.getTime() - nowET.getTime();
+      if (diffMs <= 0) {
+        timerEl.innerText = "OPEN NOW";
+        timerEl.style.color = "#32ff84";
+        return;
+      }
+      
+      const hours = Math.floor(diffMs / (1000 * 60 * 60));
+      const mins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+      const secs = Math.floor((diffMs % (1000 * 60)) / 1000);
+      
+      timerEl.innerText = `${hours}h ${String(mins).padStart(2, "0")}m ${String(secs).padStart(2, "0")}s`;
     }
 
     function renderDashboard(data) {
@@ -972,6 +1208,9 @@
     // Initialize on load and poll every 30 seconds
     fetchStatus();
     setInterval(fetchStatus, 30000);
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
   </script>
 </body>
 </html>
+

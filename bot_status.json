@@ -1,11 +1,11 @@
 {
   "is_paper_trading": true,
   "environment": "Alpaca Paper Trading Simulator (Virtual Currency - No Real Capital)",
-  "updated_at": "2026-10-01 02:59:06 PM ET",
-  "timestamp_iso": "2026-10-01T14:59:06.206337-04:00",
-  "market_status": "Market Open \u2014 Simulated Paper Session Active",
-  "is_open": true,
-  "bot_status": "\ud83d\udfe2 Paper Bot Active \u2014 Monitoring Positions",
+  "updated_at": "2026-10-01 08:03:04 PM ET",
+  "timestamp_iso": "2026-10-01T20:03:04.779859-04:00",
+  "market_status": "Market Closed (Next Open: 2026-10-02 09:30 ET)",
+  "is_open": false,
+  "bot_status": "\ud83d\udfe2 Paper Bot Active \u2014 Sleeping Until Market Open",
   "account": {
     "portfolio_value": 100156.84,
     "cash": 100156.84,

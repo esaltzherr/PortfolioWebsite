@@ -1,28 +1,28 @@
 {
   "is_paper_trading": true,
   "environment": "Alpaca Paper Trading Simulator (Virtual Currency - No Real Capital)",
-  "updated_at": "2026-10-02 02:37:16 PM ET",
-  "timestamp_iso": "2026-10-02T14:37:16.228256-04:00",
-  "market_status": "Market Open \u2014 Simulated Paper Session Active",
-  "is_open": true,
-  "bot_status": "\ud83d\udfe2 Paper Bot Active \u2014 Monitoring Positions",
+  "updated_at": "2026-10-02 07:57:51 PM ET",
+  "timestamp_iso": "2026-10-02T19:57:51.716148-04:00",
+  "market_status": "Market Closed (Next Open: 2026-10-05 09:30 ET)",
+  "is_open": false,
+  "bot_status": "\ud83d\udfe2 Paper Bot Active \u2014 Sleeping Until Market Open",
   "account": {
-    "portfolio_value": 100143.95,
-    "cash": 123980.62,
-    "buying_power": 362867.11,
+    "portfolio_value": 100166.85,
+    "cash": 125681.82,
+    "buying_power": 358903.6,
     "initial_capital": 100000.0,
-    "total_pnl": 143.95,
-    "total_return_pct": 0.14,
-    "today_pnl": 143.95,
-    "today_return_pct": 0.14
+    "total_pnl": 166.85,
+    "total_return_pct": 0.17,
+    "today_pnl": 166.85,
+    "today_return_pct": 0.17
   },
   "history": [
     {
       "date": "2026-10-02",
-      "equity": 100143.95,
-      "daily_pnl": 143.95,
-      "daily_pct": 0.14,
-      "cumulative_pct": 0.14
+      "equity": 100166.85,
+      "daily_pnl": 166.85,
+      "daily_pct": 0.17,
+      "cumulative_pct": 0.17
     }
   ],
   "strategies": [
@@ -58,228 +58,21 @@
   },
   "open_positions": [
     {
-      "symbol": "GEMI",
+      "symbol": "MPLX",
       "strategy": "Mean Reversion / Fade",
       "direction": "SHORT",
-      "open_shares": -187.0,
-      "open_price": 5.31,
-      "open_value": -863.94,
+      "open_shares": -221.0,
+      "open_price": 56.402036,
+      "open_value": -12486.5,
       "status": "OPEN"
     },
     {
-      "symbol": "GFL",
+      "symbol": "NMR",
       "strategy": "Mean Reversion / Fade",
       "direction": "SHORT",
-      "open_shares": -24.0,
-      "open_price": 41.24,
-      "open_value": -1009.2,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "GFR",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "SHORT",
-      "open_shares": -180.0,
-      "open_price": 5.56,
-      "open_value": -1043.1,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "GFS",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "SHORT",
-      "open_shares": -19.0,
-      "open_price": 50.32,
-      "open_value": -951.615,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "GH",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "SHORT",
-      "open_shares": -5.0,
-      "open_price": 176.17,
-      "open_value": -887.175,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "GLPI",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "SHORT",
-      "open_shares": -26.0,
-      "open_price": 37.89,
-      "open_value": -985.14,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "GO",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "SHORT",
-      "open_shares": -82.0,
-      "open_price": 12.1,
-      "open_value": -949.97,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "GOOG",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "SHORT",
-      "open_shares": -2.0,
-      "open_price": 341.22,
-      "open_value": -680.17,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "HASI",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "SHORT",
-      "open_shares": -27.0,
-      "open_price": 36.45,
-      "open_value": -983.61,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "HBM",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "SHORT",
-      "open_shares": -37.0,
-      "open_price": 27.03,
-      "open_value": -1002.515,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "HG",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "SHORT",
-      "open_shares": -29.0,
-      "open_price": 33.84,
-      "open_value": -988.03,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "HIMX",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "SHORT",
-      "open_shares": -66.0,
-      "open_price": 14.98,
-      "open_value": -1007.9058,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "HLNE",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "SHORT",
-      "open_shares": -11.0,
-      "open_price": 90.05,
-      "open_value": -978.34,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "HOOD",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "SHORT",
-      "open_shares": -8.0,
-      "open_price": 117.58,
-      "open_value": -906.96,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "HOV",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "SHORT",
-      "open_shares": -8.0,
-      "open_price": 115.67,
-      "open_value": -922.72,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "HPE",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "SHORT",
-      "open_shares": -14.0,
-      "open_price": 69.0,
-      "open_value": -978.88,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "HR",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "SHORT",
-      "open_shares": -56.0,
-      "open_price": 17.62,
-      "open_value": -983.64,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "HRMY",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "SHORT",
-      "open_shares": -25.0,
-      "open_price": 39.34,
-      "open_value": -989.625,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "HWKN",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "SHORT",
-      "open_shares": -7.0,
-      "open_price": 130.23,
-      "open_value": -919.415,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "IART",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "SHORT",
-      "open_shares": -73.0,
-      "open_price": 13.53,
-      "open_value": -961.045,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "IBKR",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "SHORT",
-      "open_shares": -11.0,
-      "open_price": 88.35,
-      "open_value": -972.62,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "IBRX",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "SHORT",
-      "open_shares": -99.0,
-      "open_price": 10.04,
-      "open_value": -997.92,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "INDB",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "SHORT",
-      "open_shares": -12.0,
-      "open_price": 80.15,
-      "open_value": -955.44,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "INSE",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "SHORT",
-      "open_shares": -266.0,
-      "open_price": 3.62,
-      "open_value": -941.64,
-      "status": "OPEN"
-    },
-    {
-      "symbol": "IRON",
-      "strategy": "Mean Reversion / Fade",
-      "direction": "SHORT",
-      "open_shares": -15.0,
-      "open_price": 64.24,
-      "open_value": -976.05,
+      "open_shares": -1339.0,
+      "open_price": 9.713845,
+      "open_value": -13028.47,
       "status": "OPEN"
     }
   ],

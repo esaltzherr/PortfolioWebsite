@@ -836,6 +836,28 @@
           </tbody>
         </table>
       </div>
+    <!-- Live Bot Console Logs Section -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 36px; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+      <h3 class="section-title" style="margin: 0;">🖥️ Live Bot Console &amp; Execution Logs</h3>
+      <div style="display: flex; gap: 8px; align-items: center;">
+        <span id="logCountBadge" class="countdown-badge" style="font-size: 0.78rem;">0 lines</span>
+        <button id="btnCopyLogs" class="diag-action-btn" onclick="copyConsoleLogs()">📋 Copy Logs</button>
+      </div>
+    </div>
+    <div class="table-card" style="padding: 16px; background: #070b13; border: 1px solid #1e293b; margin-bottom: 30px;">
+      <div style="display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; align-items: center;">
+        <input type="text" id="logSearchInput" placeholder="🔍 Filter logs (e.g. order, filled, error, 15M, liquidation)..." 
+               oninput="renderLogs()" 
+               style="flex: 1; min-width: 220px; background: #0f172a; border: 1px solid #334155; color: #f8fafc; border-radius: 6px; padding: 6px 12px; font-size: 0.85rem;" />
+        <div style="display: flex; gap: 6px;">
+          <button class="diag-action-btn active" id="filterAll" onclick="setLogFilter('ALL')">All Logs</button>
+          <button class="diag-action-btn" id="filterOrders" onclick="setLogFilter('ORDERS')">Orders &amp; Fills</button>
+          <button class="diag-action-btn" id="filterErrors" onclick="setLogFilter('ERRORS')">Warnings / Errors</button>
+        </div>
+      </div>
+      <div id="liveConsoleContainer" style="background: #020617; border: 1px solid #1e293b; border-radius: 8px; padding: 12px 16px; font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace; font-size: 0.82rem; height: 320px; overflow-y: auto; line-height: 1.5; color: #94a3b8; white-space: pre-wrap; word-break: break-all;">
+Loading live bot console logs...
+      </div>
     </div>
 
     <!-- Architecture Highlights -->
@@ -1071,6 +1093,88 @@
           </tr>
         `;
       }
+      
+      // 6. Live Bot Execution Logs
+      renderLogs();
+    }
+
+    // ── Live Bot Console Log Viewer ─────────────────────────────────────────
+    let currentLogFilter = "ALL";
+
+    function setLogFilter(filter) {
+      currentLogFilter = filter;
+      const bAll = document.getElementById("filterAll");
+      const bOrd = document.getElementById("filterOrders");
+      const bErr = document.getElementById("filterErrors");
+      if (bAll) bAll.classList.toggle("active", filter === "ALL");
+      if (bOrd) bOrd.classList.toggle("active", filter === "ORDERS");
+      if (bErr) bErr.classList.toggle("active", filter === "ERRORS");
+      renderLogs();
+    }
+
+    function renderLogs() {
+      const container = document.getElementById("liveConsoleContainer");
+      const badge = document.getElementById("logCountBadge");
+      if (!container || !globalData) return;
+
+      const rawLogs = globalData.logs || [];
+      const search = (document.getElementById("logSearchInput")?.value || "").toLowerCase().trim();
+
+      let filtered = rawLogs.filter(line => {
+        const lower = line.toLowerCase();
+        if (currentLogFilter === "ORDERS") {
+          return lower.includes("order") || lower.includes("filled") || lower.includes("buy") || lower.includes("sell") || lower.includes("short");
+        } else if (currentLogFilter === "ERRORS") {
+          return lower.includes("error") || lower.includes("warning") || lower.includes("failed") || lower.includes("exception");
+        }
+        return true;
+      });
+
+      if (search) {
+        filtered = filtered.filter(line => line.toLowerCase().includes(search));
+      }
+
+      if (badge) {
+        badge.innerText = `${filtered.length} / ${rawLogs.length} lines`;
+      }
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<span style="color: #64748b; font-style: italic;">No log lines matched the active filter.</span>`;
+        return;
+      }
+
+      container.innerHTML = filtered.map(line => {
+        let color = "#e2e8f0";
+        if (line.includes("ERROR") || line.includes("Exception") || line.includes("failed")) {
+          color = "#f87171";
+        } else if (line.includes("WARNING")) {
+          color = "#fbbf24";
+        } else if (line.includes("FILLED") || line.includes("liquidated") || line.includes("successfully") || line.includes("complete")) {
+          color = "#32ff84";
+        } else if (line.includes("INFO")) {
+          color = "#cbd5e1";
+        }
+        return `<div style="color: ${color}; padding: 1.5px 0;">${escapeHtml(line)}</div>`;
+      }).join("");
+
+      // auto-scroll to bottom of log terminal
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function copyConsoleLogs() {
+      const rawLogs = (globalData && globalData.logs) ? globalData.logs.join("\n") : "";
+      if (!rawLogs) return;
+      navigator.clipboard.writeText(rawLogs).then(() => {
+        const btn = document.getElementById("btnCopyLogs");
+        if (btn) {
+          btn.innerText = "✓ Copied!";
+          setTimeout(() => { btn.innerText = "📋 Copy Logs"; }, 1500);
+        }
+      });
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     }
 
     // ── Chart Rendering ─────────────────────────────────────────────────────

@@ -1,8 +1,8 @@
 {
   "is_paper_trading": true,
   "environment": "Alpaca Paper Trading Simulator (Virtual Currency - No Real Capital)",
-  "updated_at": "2026-10-05 05:17:16 PM ET",
-  "timestamp_iso": "2026-10-05T17:17:16.398741-04:00",
+  "updated_at": "2026-10-05 07:17:35 PM ET",
+  "timestamp_iso": "2026-10-05T19:17:35.832625-04:00",
   "market_status": "Market Closed (Next Open: 2026-10-06 09:30 ET)",
   "is_open": false,
   "bot_status": "\ud83d\udfe2 Paper Bot Active \u2014 Sleeping Until Market Open",
@@ -13,15 +13,22 @@
     "initial_capital": 100000.0,
     "total_pnl": 148.19,
     "total_return_pct": 0.15,
-    "today_pnl": 148.19,
-    "today_return_pct": 0.15
+    "today_pnl": -44.14,
+    "today_return_pct": -0.04
   },
   "history": [
     {
       "date": "2026-10-02",
+      "equity": 100192.33,
+      "daily_pnl": 192.33,
+      "daily_pct": 0.19,
+      "cumulative_pct": 0.19
+    },
+    {
+      "date": "2026-10-05",
       "equity": 100148.19,
-      "daily_pnl": 148.19,
-      "daily_pct": 0.15,
+      "daily_pnl": -44.14,
+      "daily_pct": -0.04,
       "cumulative_pct": 0.15
     }
   ],
@@ -60,13 +67,13 @@
   "recent_trades": [
     {
       "symbol": "UMC",
-      "strategy": "INTRADAY_15M_SIGNAL_TOP_SHORT",
-      "direction": "SHORT",
-      "open_date": "2026-10-05 09:46",
-      "close_date": "2026-10-05 09:34",
+      "strategy": "GAP_BOTTOM_LONG",
+      "direction": "LONG",
+      "open_date": "2026-10-05 09:34",
+      "close_date": "2026-10-05 09:46",
       "shares": 167.6415,
-      "open_price": 23.75,
-      "close_price": 23.74,
+      "open_price": 23.74,
+      "close_price": 23.75,
       "pnl_dollars": 1.66,
       "pnl_pct": 0.04,
       "status": "CLOSED"

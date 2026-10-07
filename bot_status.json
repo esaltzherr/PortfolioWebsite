@@ -2,21 +2,21 @@
   "is_paper_trading": true,
   "environment": "Alpaca Paper Trading Simulator (Virtual Currency - No Real Capital)",
   "timezone": "America/Los_Angeles (PT)",
-  "updated_at": "2026-10-07 12:10:06 PM PT",
-  "timestamp_iso": "2026-10-07T12:10:06.355027-07:00",
-  "market_status": "Market Open \u2014 Simulated Paper Session Active (PT)",
-  "is_open": true,
-  "bot_status": "\ud83d\udfe2 Paper Bot Active \u2014 Monitoring 1 Positions (Unrealized: $-2.91)",
+  "updated_at": "2026-10-07 04:22:58 PM PT",
+  "timestamp_iso": "2026-10-07T16:22:58.101864-07:00",
+  "market_status": "Market Closed (Next Open: 2026-10-08 06:30 AM PT)",
+  "is_open": false,
+  "bot_status": "\ud83d\udfe2 Paper Bot Active \u2014 Standby (Next Open: 2026-10-08 06:30 AM PT)",
   "account": {
-    "portfolio_value": 100108.2,
-    "cash": 102512.15,
-    "buying_power": 397548.05,
+    "portfolio_value": 100114.96,
+    "cash": 100114.96,
+    "buying_power": 400459.84,
     "initial_capital": 100000.0,
-    "total_pnl": 108.2,
+    "total_pnl": 114.96,
     "total_return_pct": 0.11,
-    "today_pnl": -135.78,
-    "today_return_pct": -0.14,
-    "total_unrealized_pl": -2.91
+    "today_pnl": -129.02,
+    "today_return_pct": -0.13,
+    "total_unrealized_pl": 0.0
   },
   "history": [
     {
@@ -35,9 +35,9 @@
     },
     {
       "date": "2026-10-07",
-      "equity": 100108.2,
-      "daily_pnl": -135.78,
-      "daily_pct": -0.14,
+      "equity": 100114.96,
+      "daily_pnl": -129.02,
+      "daily_pct": -0.13,
       "cumulative_pct": 0.11
     }
   ],
@@ -66,27 +66,31 @@
     }
   ],
   "stats": {
-    "total_trades": 53,
-    "wins": 24,
+    "total_trades": 54,
+    "wins": 25,
     "losses": 29,
-    "win_rate": "45.3%",
+    "win_rate": "46.3%",
     "profit_factor": 1.26
   },
-  "open_positions": [
-    {
-      "symbol": "U",
-      "strategy": "INTRADAY_15M_SIGNAL_TOP_SHORT",
-      "direction": "SHORT",
-      "open_shares": 53.0,
-      "open_price": 45.3,
-      "current_price": 45.36,
-      "open_value": -2403.95,
-      "unrealized_pl": -2.91,
-      "unrealized_plpc": -0.12,
-      "status": "OPEN"
-    }
-  ],
+  "open_positions": [],
   "recent_trades": [
+    {
+      "date": "2026-10-07",
+      "symbol": "U",
+      "strategy": "GAP_TOP_SHORT",
+      "direction": "SHORT",
+      "open_date": "2026-10-07 06:33",
+      "close_date": "2026-10-07 12:50",
+      "open_time": "06:33:38 AM PT",
+      "close_time": "12:50:21 PM PT",
+      "duration": "6h 16m",
+      "shares": 53.0,
+      "open_price": 45.3,
+      "close_price": 45.23,
+      "pnl_dollars": 3.85,
+      "pnl_pct": 0.16,
+      "status": "CLOSED"
+    },
     {
       "date": "2026-10-07",
       "symbol": "BMNR",
@@ -989,8 +993,89 @@
       "status": "CLOSED"
     }
   ],
+  "counterfactual_analysis": {
+    "date": "2026-10-07",
+    "total_trades": 3,
+    "actual_live_pnl": -126.91,
+    "actual_win_rate": "33.3%",
+    "what_if_held_to_close_pnl": -55.42,
+    "what_if_held_to_close_winrate": "0.0%",
+    "what_if_1h_hold_pnl": -83.33,
+    "what_if_1h_hold_winrate": "33.3%",
+    "total_rule_alpha": -71.49,
+    "avg_entry_slippage_bps": 364.5,
+    "stop_losses_triggered": 0,
+    "stop_loss_capital_saved": 0,
+    "stop_loss_whipsaw_cost": 0,
+    "stop_loss_net_value": 0,
+    "trades": [
+      {
+        "symbol": "STZ",
+        "direction": "LONG",
+        "strategy": "GAP_BOTTOM_LONG",
+        "exit_reason": "1H_EXIT",
+        "live_in": 118.86,
+        "live_out": 115.35,
+        "live_dur_m": 57.6,
+        "live_pnl": -79.23,
+        "live_pnl_pct": -2.95,
+        "px_1030": 115.15,
+        "what_if_1h_pnl": -83.74,
+        "what_if_1h_pct": -3.12,
+        "px_close": 118.39,
+        "what_if_close_pnl": -10.61,
+        "what_if_close_pct": -0.4,
+        "exit_alpha": -68.62,
+        "in_slip_bps": 688.8,
+        "sl_saved_dollars": 0.0,
+        "sl_status": "N/A"
+      },
+      {
+        "symbol": "BMNR",
+        "direction": "LONG",
+        "strategy": "GAP_BOTTOM_LONG",
+        "exit_reason": "1H_EXIT",
+        "live_in": 25.04,
+        "live_out": 24.53,
+        "live_dur_m": 56.9,
+        "live_pnl": -51.53,
+        "live_pnl_pct": -2.04,
+        "px_1030": 24.53,
+        "what_if_1h_pnl": -51.53,
+        "what_if_1h_pct": -2.04,
+        "px_close": 24.67,
+        "what_if_close_pnl": -37.39,
+        "what_if_close_pct": -1.48,
+        "exit_alpha": -14.14,
+        "in_slip_bps": -8.0,
+        "sl_saved_dollars": 0.0,
+        "sl_status": "N/A"
+      },
+      {
+        "symbol": "U",
+        "direction": "SHORT",
+        "strategy": "GAP_TOP_SHORT",
+        "exit_reason": "EOD_CLOSE",
+        "live_in": 45.3,
+        "live_out": 45.23,
+        "live_dur_m": 376.7,
+        "live_pnl": 3.85,
+        "live_pnl_pct": 0.16,
+        "px_1030": 44.32,
+        "what_if_1h_pnl": 51.94,
+        "what_if_1h_pct": 2.16,
+        "px_close": 45.44,
+        "what_if_close_pnl": -7.42,
+        "what_if_close_pct": -0.31,
+        "exit_alpha": 11.27,
+        "in_slip_bps": 412.7,
+        "sl_saved_dollars": 0.0,
+        "sl_status": "N/A"
+      }
+    ],
+    "stop_loss_audit": []
+  },
   "logs": [
-    "2026-10-02 09:45:07  INFO      ORDER FILLED: SELL 5.00 GH @ $176.17",
     "2026-10-02 09:45:08  INFO      ORDER FILLED: SELL 2.00 GOOG @ $341.22",
     "2026-10-02 09:45:08  INFO      ORDER FILLED: SELL 27.00 HASI @ $36.45",
     "2026-10-02 09:45:08  INFO      ORDER FILLED: SELL 15.00 IRON @ $64.24",
@@ -1109,6 +1194,7 @@
     "2026-10-07 09:33:23  INFO      ORDER FILLED: BUY 101.05 BMNR @ $25.04",
     "2026-10-07 09:33:38  INFO      ORDER FILLED: SELL 53.00 U @ $45.30",
     "2026-10-07 10:30:13  INFO      ORDER FILLED: SELL 22.57 STZ @ $115.35",
-    "2026-10-07 10:30:17  INFO      ORDER FILLED: SELL 101.05 BMNR @ $24.53"
+    "2026-10-07 10:30:17  INFO      ORDER FILLED: SELL 101.05 BMNR @ $24.53",
+    "2026-10-07 15:50:21  INFO      ORDER FILLED: BUY 53.00 U @ $45.23"
   ]
 }

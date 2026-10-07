@@ -316,6 +316,7 @@ status_data = {
     },
     "open_positions": pos_list,
     "recent_trades": recent_trades,
+    "counterfactual_analysis": counterfactual,
     "logs": live_logs[-120:]
 }
 

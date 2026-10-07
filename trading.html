@@ -784,7 +784,7 @@
     </div>
 
     <!-- Live Positions Table -->
-    <h3 class="section-title">📊 Open Positions (Intraday Paper Trades)</h3>
+    <h3 class="section-title">📊 Open Positions (Intraday Live Progression)</h3>
     <div class="table-card">
       <div class="table-responsive">
         <table id="positionsTable">
@@ -795,13 +795,15 @@
               <th>Side</th>
               <th>Shares</th>
               <th>Entry Price</th>
+              <th>Current Price</th>
               <th>Position Value</th>
-              <th>Environment</th>
+              <th>Unrealized P&amp;L ($)</th>
+              <th>Return (%)</th>
             </tr>
           </thead>
           <tbody id="positionsBody">
             <tr>
-              <td colspan="7" class="empty-state">
+              <td colspan="9" class="empty-state">
                 No active intraday positions currently. All positions are liquidated daily into 100% cash at 3:50 PM ET to ensure zero overnight risk.
               </td>
             </tr>
@@ -811,7 +813,7 @@
     </div>
 
     <!-- Trade History Table -->
-    <h3 class="section-title">📜 Recent Closed Paper Trades</h3>
+    <h3 class="section-title">📜 Recent Closed Paper Trades (Detailed Execution Times)</h3>
     <div class="table-card">
       <div class="table-responsive">
         <table id="tradesTable">
@@ -821,6 +823,9 @@
               <th>Symbol</th>
               <th>Strategy</th>
               <th>Side</th>
+              <th>Buy Time</th>
+              <th>Sell Time</th>
+              <th>Duration</th>
               <th>Entry Price</th>
               <th>Exit Price</th>
               <th>Return (%)</th>
@@ -829,13 +834,14 @@
           </thead>
           <tbody id="tradesBody">
             <tr>
-              <td colspan="8" class="empty-state">
+              <td colspan="11" class="empty-state">
                 No closed trades recorded yet for current session. Next scheduled execution begins at 09:30 AM ET.
               </td>
             </tr>
           </tbody>
         </table>
       </div>
+    </div>
     <!-- Live Bot Console Logs Section -->
     <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 36px; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
       <h3 class="section-title" style="margin: 0;">🖥️ Live Bot Console &amp; Execution Logs</h3>
@@ -1042,21 +1048,30 @@ Loading live bot console logs...
       // 4. Open Positions
       const posBody = document.getElementById("positionsBody");
       if (data.open_positions && data.open_positions.length > 0) {
-        posBody.innerHTML = data.open_positions.map(p => `
-          <tr>
-            <td><strong>${p.symbol}</strong></td>
-            <td>${p.strategy || 'Automated'}</td>
-            <td><span class="strat-tag ${p.direction === 'LONG' ? 'long' : 'short'}">${p.direction}</span></td>
-            <td>${Number(p.open_shares).toFixed(2)}</td>
-            <td>${formatCurrency(p.open_price)}</td>
-            <td>${formatCurrency(p.open_value)}</td>
-            <td><span class="paper-pill" style="font-size: 0.65rem; padding: 2px 6px;">SIMULATED</span></td>
-          </tr>
-        `).join("");
+        posBody.innerHTML = data.open_positions.map(p => {
+          const pnl = p.unrealized_pl || 0;
+          const pnlPct = p.unrealized_plpc || 0;
+          const pnlColor = pnl >= 0 ? "#32ff84" : "#f87171";
+          const sign = pnl >= 0 ? "+" : "";
+          const curPx = p.current_price || p.open_price;
+          return `
+            <tr>
+              <td><strong>${p.symbol}</strong></td>
+              <td>${p.strategy || 'Automated'}</td>
+              <td><span class="strat-tag ${p.direction === 'LONG' ? 'long' : 'short'}">${p.direction}</span></td>
+              <td>${Number(p.open_shares).toFixed(2)}</td>
+              <td>${formatCurrency(p.open_price)}</td>
+              <td style="font-weight: 700; color: #ffffff;">${formatCurrency(curPx)}</td>
+              <td>${formatCurrency(p.open_value)}</td>
+              <td style="color: ${pnlColor}; font-weight: 700;">${sign}${formatCurrency(pnl)}</td>
+              <td style="color: ${pnlColor}; font-weight: 700;">${formatPct(pnlPct)}</td>
+            </tr>
+          `;
+        }).join("");
       } else {
         posBody.innerHTML = `
           <tr>
-            <td colspan="7" class="empty-state">
+            <td colspan="9" class="empty-state">
               No active intraday positions currently. All positions are liquidated daily into 100% cash at 3:50 PM ET.
             </td>
           </tr>
@@ -1071,23 +1086,31 @@ Loading live bot console logs...
           const pnl = t.pnl_dollars || 0;
           const pnlPct = t.pnl_pct || 0;
           const color = pnl >= 0 ? "#32ff84" : "#f87171";
+          const sign = pnl >= 0 ? "+" : "";
+          const openTime = t.open_time || (t.open_date ? t.open_date.split(" ")[1] : "09:30 ET");
+          const closeTime = t.close_time || (t.close_date ? t.close_date.split(" ")[1] : "15:50 ET");
+          const dur = t.duration || "Intraday";
+          const tradeDate = t.date || (t.close_date ? t.close_date.split(" ")[0] : "");
           return `
             <tr>
-              <td>${t.close_date || t.open_date}</td>
+              <td>${tradeDate}</td>
               <td><strong>${t.symbol}</strong></td>
               <td>${t.strategy}</td>
               <td><span class="strat-tag ${t.direction === 'LONG' ? 'long' : 'short'}">${t.direction}</span></td>
+              <td style="font-size: 0.8rem; color: #94a3b8;">${openTime}</td>
+              <td style="font-size: 0.8rem; color: #94a3b8;">${closeTime}</td>
+              <td><span class="system-badge" style="font-size: 0.72rem; padding: 2px 6px;">⏱️ ${dur}</span></td>
               <td>${formatCurrency(t.open_price)}</td>
               <td>${formatCurrency(t.close_price)}</td>
               <td style="color: ${color}; font-weight: 700;">${formatPct(pnlPct)}</td>
-              <td style="color: ${color}; font-weight: 700;">${formatCurrency(pnl)}</td>
+              <td style="color: ${color}; font-weight: 700;">${sign}${formatCurrency(pnl)}</td>
             </tr>
           `;
         }).join("");
       } else {
         tradesBody.innerHTML = `
           <tr>
-            <td colspan="8" class="empty-state">
+            <td colspan="11" class="empty-state">
               No closed trades recorded yet for current session. Next scheduled execution begins at 09:30 AM ET.
             </td>
           </tr>

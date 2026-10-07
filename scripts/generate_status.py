@@ -61,28 +61,53 @@ else:
     bot_status = "🟢 Paper Bot Active — Sleeping Until Market Open"
 
 pos_list = []
+total_unrealized_dollars = 0.0
+
 for p in positions:
+    cur_px = float(p.current_price) if getattr(p, "current_price", None) else float(p.avg_entry_price)
+    entry_px = float(p.avg_entry_price)
+    unreal_pl = float(p.unrealized_pl) if getattr(p, "unrealized_pl", None) else 0.0
+    unreal_pct = (float(p.unrealized_plpc) * 100.0) if getattr(p, "unrealized_plpc", None) else 0.0
+    total_unrealized_dollars += unreal_pl
+    side_dir = "LONG" if str(p.side).lower().endswith("long") else "SHORT"
+    strat = "GAP_BOTTOM_LONG" if side_dir == "LONG" else "INTRADAY_15M_SIGNAL_TOP_SHORT"
     pos_list.append({
         "symbol": p.symbol,
-        "strategy": "Mean Reversion / Fade",
-        "direction": "LONG" if str(p.side).lower().endswith("long") else "SHORT",
-        "open_shares": float(p.qty),
-        "open_price": float(p.avg_entry_price),
-        "open_value": float(p.market_value),
+        "strategy": strat,
+        "direction": side_dir,
+        "open_shares": abs(float(p.qty)),
+        "open_price": round(entry_px, 2),
+        "current_price": round(cur_px, 2),
+        "open_value": round(float(p.market_value), 2),
+        "unrealized_pl": round(unreal_pl, 2),
+        "unrealized_plpc": round(unreal_pct, 2),
         "status": "OPEN"
     })
 
-# 1. Fetch closed trade history directly from Alpaca orders
+# 1. Fetch closed trade history directly from Alpaca orders (grouped strictly by date & symbol)
 recent_trades = []
+live_logs = []
 try:
-    req = GetOrdersRequest(status=QueryOrderStatus.CLOSED, limit=300)
-    closed_orders = client.get_orders(req)
-    by_symbol = {}
-    for o in closed_orders:
-        if o.filled_at:
-            by_symbol.setdefault(o.symbol, []).append(o)
+    req = GetOrdersRequest(status=QueryOrderStatus.ALL, limit=500)
+    all_orders = client.get_orders(req)
+    
+    # Sort orders chronologically
+    valid_orders = [o for o in all_orders if o.filled_at]
+    valid_orders.sort(key=lambda x: x.filled_at)
 
-    for sym, sym_orders in by_symbol.items():
+    by_day_sym = {}
+    for o in valid_orders:
+        d = o.filled_at.astimezone(ET).strftime("%Y-%m-%d")
+        if d >= "2026-10-02":
+            by_day_sym.setdefault((d, o.symbol), []).append(o)
+            
+        t_str = o.filled_at.astimezone(ET).strftime("%Y-%m-%d %H:%M:%S")
+        side_label = "BUY" if o.side == OrderSide.BUY else "SELL"
+        live_logs.append(
+            f"{t_str}  INFO      ORDER FILLED: {side_label} {float(o.filled_qty):.2f} {o.symbol} @ ${float(o.filled_avg_price):.2f}"
+        )
+
+    for (d, sym), sym_orders in by_day_sym.items():
         sym_orders.sort(key=lambda x: x.filled_at)
         sells = [o for o in sym_orders if o.side == OrderSide.SELL]
         buys = [o for o in sym_orders if o.side == OrderSide.BUY]
@@ -112,12 +137,26 @@ try:
                 pnl = round((open_price - close_price) * shares, 2)
                 pnl_pct = round(((open_price - close_price) / open_price) * 100.0, 2) if open_price > 0 else 0.0
 
+            ot = open_order.filled_at.astimezone(ET)
+            ct = close_order.filled_at.astimezone(ET)
+            dur_secs = int((ct - ot).total_seconds())
+            if dur_secs < 60:
+                dur_str = f"{dur_secs}s"
+            elif dur_secs < 3600:
+                dur_str = f"{dur_secs // 60}m {dur_secs % 60}s"
+            else:
+                dur_str = f"{dur_secs // 3600}h {(dur_secs % 3600) // 60}m"
+
             recent_trades.append({
+                "date": d,
                 "symbol": sym,
                 "strategy": strat,
                 "direction": direction,
-                "open_date": open_order.filled_at.astimezone(ET).strftime("%Y-%m-%d %H:%M"),
-                "close_date": close_order.filled_at.astimezone(ET).strftime("%Y-%m-%d %H:%M"),
+                "open_date": ot.strftime("%Y-%m-%d %H:%M"),
+                "close_date": ct.strftime("%Y-%m-%d %H:%M"),
+                "open_time": ot.strftime("%I:%M:%S %p ET"),
+                "close_time": ct.strftime("%I:%M:%S %p ET"),
+                "duration": dur_str,
                 "shares": shares,
                 "open_price": round(open_price, 2),
                 "close_price": round(close_price, 2),
@@ -125,24 +164,18 @@ try:
                 "pnl_pct": pnl_pct,
                 "status": "CLOSED"
             })
-    # Filter for trades on or after launch date (2026-10-02)
-    launch_date = "2026-10-02"
-    recent_trades = [t for t in recent_trades if t.get("close_date", "") >= launch_date]
-    recent_trades.sort(key=lambda x: x["close_date"], reverse=True)
+
+    recent_trades.sort(key=lambda x: (x["close_date"], x.get("close_time", "")), reverse=True)
 except Exception as e:
     print(f"Warning: Failed to fetch closed orders from Alpaca: {e}")
 
 # Retain trade history or logs if bot_status.json already exists
 history = []
-existing_logs = []
 if os.path.exists("bot_status.json"):
     try:
         with open("bot_status.json", "r", encoding="utf-8") as f:
             prev = json.load(f)
-            if not recent_trades:
-                recent_trades = prev.get("recent_trades", [])
             history = prev.get("history", [])
-            existing_logs = prev.get("logs", [])
     except Exception:
         pass
 
@@ -162,7 +195,6 @@ if today_str == "2026-10-02":
     today_pnl = 192.33
     today_pct = 0.19
 else:
-    # Prior day equity for daily % computation
     prev_dates = sorted([d for d in history_map.keys() if d < today_str])
     prev_equity = history_map[prev_dates[-1]]["equity"] if prev_dates else 100000.0
     today_pnl = round(portfolio_value - prev_equity, 2)
@@ -187,8 +219,25 @@ gross_wins = sum(t["pnl_dollars"] for t in recent_trades if (t.get("pnl_dollars"
 gross_losses = abs(sum(t["pnl_dollars"] for t in recent_trades if (t.get("pnl_dollars") or 0) < 0))
 profit_factor = round(gross_wins / gross_losses, 2) if gross_losses > 0 else (round(gross_wins, 2) if gross_wins > 0 else 1.85)
 
-if not existing_logs:
-    existing_logs = [
+# Dynamic Context-Aware Bot Status
+if len(pos_list) > 0:
+    sign_unreal = "+" if total_unrealized_dollars >= 0 else ""
+    bot_status = f"🟢 Paper Bot Active — Monitoring {len(pos_list)} Positions (Unrealized: {sign_unreal}${total_unrealized_dollars:,.2f})"
+elif clock.is_open:
+    now_time = now_et.time()
+    from datetime import time as dt_time
+    if now_time >= dt_time(15, 50):
+        bot_status = "🟢 Intraday Session Complete — 100% Cash Held Overnight (Zero Overnight Risk)"
+    elif now_time < dt_time(9, 30):
+        bot_status = "🟢 Pre-Market Analysis — Scanning Overnight Gap Candidates"
+    else:
+        bot_status = "🟢 Paper Bot Active — Monitoring Session"
+else:
+    next_open_str = clock.next_open.astimezone(ET).strftime("%Y-%m-%d %H:%M ET")
+    bot_status = f"🟢 Paper Bot Active — Standby (Next Open: {next_open_str})"
+
+if not live_logs:
+    live_logs = [
         f"{now_et.strftime('%Y-%m-%d %H:%M:%S')}  INFO      Live Trader engine standby.",
         f"{now_et.strftime('%Y-%m-%d %H:%M:%S')}  INFO      Total closed trades: {total_closed}. Win rate: {win_rate}."
     ]
@@ -210,6 +259,7 @@ status_data = {
         "total_return_pct": total_return_pct,
         "today_pnl": today_pnl,
         "today_return_pct": today_pct,
+        "total_unrealized_pl": round(total_unrealized_dollars, 2),
     },
     "history": history,
     "strategies": [
@@ -245,7 +295,7 @@ status_data = {
     },
     "open_positions": pos_list,
     "recent_trades": recent_trades,
-    "logs": existing_logs
+    "logs": live_logs[-120:]
 }
 
 with open("bot_status.json", "w", encoding="utf-8") as f:

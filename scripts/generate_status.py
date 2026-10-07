@@ -10,6 +10,7 @@ import os
 import json
 from datetime import datetime
 from zoneinfo import ZoneInfo
+from pathlib import Path
 from alpaca.trading.client import TradingClient
 from alpaca.trading.requests import GetOrdersRequest
 from alpaca.trading.enums import QueryOrderStatus, OrderSide
@@ -32,9 +33,11 @@ account = client.get_account()
 clock = client.get_clock()
 positions = client.get_all_positions()
 
+PT = ZoneInfo("America/Los_Angeles")
 ET = ZoneInfo("America/New_York")
+now_pt = datetime.now(PT)
 now_et = datetime.now(ET)
-today_str = now_et.strftime("%Y-%m-%d")
+today_str = now_pt.strftime("%Y-%m-%d")
 
 raw_portfolio_value = float(account.portfolio_value)
 raw_cash = float(account.cash)
@@ -53,12 +56,12 @@ total_pnl = round(portfolio_value - initial_capital, 2)
 total_return_pct = round((total_pnl / initial_capital) * 100.0, 2)
 
 if clock.is_open:
-    market_status = "Market Open — Simulated Paper Session Active"
+    market_status = "Market Open — Simulated Paper Session Active (PT)"
     bot_status = "🟢 Paper Bot Active — Monitoring Positions"
 else:
-    next_open_str = clock.next_open.astimezone(ET).strftime("%Y-%m-%d %H:%M ET")
+    next_open_str = clock.next_open.astimezone(PT).strftime("%Y-%m-%d %I:%M %p PT")
     market_status = f"Market Closed (Next Open: {next_open_str})"
-    bot_status = "🟢 Paper Bot Active — Sleeping Until Market Open"
+    bot_status = f"🟢 Paper Bot Active — Standby (Next Open: {next_open_str})"
 
 pos_list = []
 total_unrealized_dollars = 0.0
@@ -137,8 +140,8 @@ try:
                 pnl = round((open_price - close_price) * shares, 2)
                 pnl_pct = round(((open_price - close_price) / open_price) * 100.0, 2) if open_price > 0 else 0.0
 
-            ot = open_order.filled_at.astimezone(ET)
-            ct = close_order.filled_at.astimezone(ET)
+            ot = open_order.filled_at.astimezone(PT)
+            ct = close_order.filled_at.astimezone(PT)
             dur_secs = int((ct - ot).total_seconds())
             if dur_secs < 60:
                 dur_str = f"{dur_secs}s"
@@ -154,8 +157,8 @@ try:
                 "direction": direction,
                 "open_date": ot.strftime("%Y-%m-%d %H:%M"),
                 "close_date": ct.strftime("%Y-%m-%d %H:%M"),
-                "open_time": ot.strftime("%I:%M:%S %p ET"),
-                "close_time": ct.strftime("%I:%M:%S %p ET"),
+                "open_time": ot.strftime("%I:%M:%S %p PT"),
+                "close_time": ct.strftime("%I:%M:%S %p PT"),
                 "duration": dur_str,
                 "shares": shares,
                 "open_price": round(open_price, 2),
@@ -233,20 +236,38 @@ elif clock.is_open:
     else:
         bot_status = "🟢 Paper Bot Active — Monitoring Session"
 else:
-    next_open_str = clock.next_open.astimezone(ET).strftime("%Y-%m-%d %H:%M ET")
+    next_open_str = clock.next_open.astimezone(PT).strftime("%Y-%m-%d %I:%M %p PT")
     bot_status = f"🟢 Paper Bot Active — Standby (Next Open: {next_open_str})"
 
 if not live_logs:
     live_logs = [
-        f"{now_et.strftime('%Y-%m-%d %H:%M:%S')}  INFO      Live Trader engine standby.",
-        f"{now_et.strftime('%Y-%m-%d %H:%M:%S')}  INFO      Total closed trades: {total_closed}. Win rate: {win_rate}."
+        f"{now_pt.strftime('%Y-%m-%d %H:%M:%S')} PT  INFO      Live Trader engine standby.",
+        f"{now_pt.strftime('%Y-%m-%d %H:%M:%S')} PT  INFO      Total closed trades: {total_closed}. Win rate: {win_rate}."
     ]
+
+# Load latest EOD counterfactual / reconciliation analysis if available
+counterfactual = None
+rep_dir = Path("reports")
+if not rep_dir.exists():
+    rep_dir = Path("../alpaca_bot/reports")
+rec_file = rep_dir / f"reconciliation_{today_str}.json"
+if not rec_file.exists():
+    rec_files = sorted(rep_dir.glob("reconciliation_*.json")) if rep_dir.exists() else []
+    if rec_files:
+        rec_file = rec_files[-1]
+if rec_file and rec_file.exists():
+    try:
+        with open(rec_file, "r", encoding="utf-8") as f:
+            counterfactual = json.load(f)
+    except Exception:
+        pass
 
 status_data = {
     "is_paper_trading": True,
     "environment": "Alpaca Paper Trading Simulator (Virtual Currency - No Real Capital)",
-    "updated_at": now_et.strftime("%Y-%m-%d %I:%M:%S %p ET"),
-    "timestamp_iso": now_et.isoformat(),
+    "timezone": "America/Los_Angeles (PT)",
+    "updated_at": now_pt.strftime("%Y-%m-%d %I:%M:%S %p PT"),
+    "timestamp_iso": now_pt.isoformat(),
     "market_status": market_status,
     "is_open": clock.is_open,
     "bot_status": bot_status,
@@ -265,10 +286,10 @@ status_data = {
     "strategies": [
         {
             "name": "GAP_BOTTOM_LONG",
-            "schedule": "09:30 AM ET -> 10:30 AM ET (1-Hour Hold)",
+            "schedule": "06:30 AM PT -> 07:30 AM PT (1-Hour Hold)",
             "allocation": "50%",
             "type": "Mean Reversion (Long)",
-            "description": "Buys liquid oversold gap-down stocks at open and exits at 10:30 AM ET to harvest the peak morning bounce.",
+            "description": "Buys liquid oversold gap-down stocks at 6:30 AM PT open and exits at 7:30 AM PT to harvest the peak morning bounce.",
             "backtest_return_2025": "+25.1%",
             "backtest_winrate_2025": "53.6%",
             "max_drawdown": "-5.2%",
@@ -276,10 +297,10 @@ status_data = {
         },
         {
             "name": "GAP_TOP_SHORT",
-            "schedule": "09:30 AM ET -> 15:50 PM ET (EOD Close)",
+            "schedule": "06:30 AM PT -> 12:50 PM PT (EOD Close)",
             "allocation": "50%",
             "type": "Fade Overextended Runners (Short)",
-            "description": "Shorts overextended gap-up stocks at market open and holds into afternoon exhaustion with active stop-loss.",
+            "description": "Shorts overextended gap-up stocks at 6:30 AM PT open and holds until 12:50 PM PT close with active stop-loss.",
             "backtest_return_2025": "+51.1%",
             "backtest_winrate_2025": "54.8%",
             "max_drawdown": "-8.1%",

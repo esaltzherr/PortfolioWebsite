@@ -587,7 +587,10 @@
       <a href="index.html" class="back-link">
         &larr; Return to Elroy Saltzherr Portfolio
       </a>
-      <span class="system-badge">Alpaca Paper Simulator • Forward Testing Engine</span>
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+        <span class="system-badge" style="background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3);">🕒 Pacific Time (PT)</span>
+        <span class="system-badge">Alpaca Paper Simulator • Forward Testing Engine</span>
+      </div>
     </div>
 
     <!-- HIGH-VISIBILITY PAPER TRADING NOTICE -->
@@ -641,11 +644,11 @@
         </div>
         <div class="diag-item">
           <span class="diag-label">Market Clock</span>
-          <span class="diag-val" id="diagClockStatus">⏸️ Standby — Opens 09:30 AM ET</span>
+          <span class="diag-val" id="diagClockStatus">⏸️ Standby — Opens 06:30 AM PT</span>
         </div>
         <div class="diag-item">
           <span class="diag-label">Pre-Fetch Window</span>
-          <span class="diag-val">🟢 Armed (08:30 AM ET — 1hr pre-market)</span>
+          <span class="diag-val">🟢 Armed (05:30 AM PT — 1hr pre-market)</span>
         </div>
         <div class="diag-item">
           <span class="diag-label">Data Feed</span>
@@ -657,7 +660,7 @@
         </div>
         <div class="diag-item">
           <span class="diag-label">Risk Protocol</span>
-          <span class="diag-val">🟢 3:50 PM ET Intraday Auto-Liquidation</span>
+          <span class="diag-val">🟢 12:50 PM PT Intraday Auto-Liquidation</span>
         </div>
         <div class="diag-item">
           <span class="diag-label">Diagnostic Ping</span>
@@ -728,18 +731,18 @@
         <div class="strat-header">
           <div>
             <div class="strat-name">GAP_BOTTOM_LONG</div>
-            <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 2px;">Execution: 09:30 AM ET (Market Open)</div>
+            <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 2px;">Execution: 06:30 AM PT -> 07:30 AM PT (1-Hour Hold)</div>
           </div>
           <span class="strat-tag long">Long • Mean Reversion</span>
         </div>
         <p class="strat-desc">
           Identifies extreme overnight gap-down stocks driven by pre-market retail panic selling. 
-          Buys the open bounce and captures sharp mean-reversion during the morning session.
+          Buys the 06:30 AM PT open bounce and exits at 07:30 AM PT to capture peak morning mean-reversion without afternoon drift.
         </p>
         <div class="strat-stats">
           <div class="strat-stat-item">
             <span>2025 Backtest</span>
-            <strong style="color: #32ff84;">+2,212.4%</strong>
+            <strong style="color: #32ff84;">+25.1%</strong>
           </div>
           <div class="strat-stat-item">
             <span>Win Rate</span>
@@ -747,7 +750,7 @@
           </div>
           <div class="strat-stat-item">
             <span>Max Drawdown</span>
-            <strong style="color: #f87171;">-7.01%</strong>
+            <strong style="color: #f87171;">-5.2%</strong>
           </div>
         </div>
       </div>
@@ -756,27 +759,27 @@
       <div class="strategy-card">
         <div class="strat-header">
           <div>
-            <div class="strat-name">INTRADAY_15M_SIGNAL_TOP_SHORT</div>
-            <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 2px;">Execution: 09:45 AM ET (15m Post-Open)</div>
+            <div class="strat-name">GAP_TOP_SHORT</div>
+            <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 2px;">Execution: 06:30 AM PT -> 12:50 PM PT (EOD Close)</div>
           </div>
           <span class="strat-tag short">Short • Momentum Fade</span>
         </div>
         <p class="strat-desc">
-          Monitors the market's highest gainers in the first 15 minutes of trading. 
-          Borrows and shorts overextended spike runners as early retail morning momentum collapses.
+          Monitors liquid stocks with extreme gap-ups at the 06:30 AM PT market open. 
+          Borrows and shorts overextended runners into afternoon exhaustion with active stop-loss risk controls.
         </p>
         <div class="strat-stats">
           <div class="strat-stat-item">
             <span>2025 Backtest</span>
-            <strong style="color: #32ff84;">+859.6%</strong>
+            <strong style="color: #32ff84;">+51.1%</strong>
           </div>
           <div class="strat-stat-item">
             <span>Win Rate</span>
-            <strong>52.7%</strong>
+            <strong>54.8%</strong>
           </div>
           <div class="strat-stat-item">
             <span>Max Drawdown</span>
-            <strong style="color: #f87171;">-15.69%</strong>
+            <strong style="color: #f87171;">-8.1%</strong>
           </div>
         </div>
       </div>
@@ -804,7 +807,7 @@
           <tbody id="positionsBody">
             <tr>
               <td colspan="9" class="empty-state">
-                No active intraday positions currently. All positions are liquidated daily into 100% cash at 3:50 PM ET to ensure zero overnight risk.
+                No active intraday positions currently. All positions are liquidated daily into 100% cash at 12:50 PM PT to ensure zero overnight risk.
               </td>
             </tr>
           </tbody>
@@ -823,8 +826,8 @@
               <th>Symbol</th>
               <th>Strategy</th>
               <th>Side</th>
-              <th>Buy Time</th>
-              <th>Sell Time</th>
+              <th>Buy Time (PT)</th>
+              <th>Sell Time (PT)</th>
               <th>Duration</th>
               <th>Entry Price</th>
               <th>Exit Price</th>
@@ -835,7 +838,7 @@
           <tbody id="tradesBody">
             <tr>
               <td colspan="11" class="empty-state">
-                No closed trades recorded yet for current session. Next scheduled execution begins at 09:30 AM ET.
+                No closed trades recorded yet for current session. Next scheduled execution begins at 06:30 AM PT.
               </td>
             </tr>
           </tbody>
@@ -855,7 +858,7 @@
         <div id="cfActualWinRate" class="metric-subtext">Win Rate: 40.0%</div>
       </div>
       <div class="metric-card" style="padding: 14px 18px;">
-        <div class="metric-label">What-If Held to Close (16:00 ET)</div>
+        <div class="metric-label">What-If Held to Close (1:00 PM PT)</div>
         <div id="cfClosePnl" class="metric-value-huge val-neutral" style="font-size: 1.5rem;">+$70.92</div>
         <div id="cfCloseWinRate" class="metric-subtext">Win Rate: 52.0%</div>
       </div>
@@ -883,7 +886,7 @@
               <th>Entry Price</th>
               <th>Actual Exit</th>
               <th>Actual P&amp;L ($)</th>
-              <th>EOD Close (16:00)</th>
+              <th>EOD Close (1:00 PM PT)</th>
               <th>What-If Close P&amp;L</th>
               <th>Exit Alpha ($)</th>
             </tr>
@@ -891,7 +894,7 @@
           <tbody id="counterfactualBody">
             <tr>
               <td colspan="9" class="empty-state">
-                EOD Counterfactual Analysis runs automatically at 3:55 PM ET, comparing actual executions against full-day holding scenarios and stop-loss efficacy.
+                EOD Counterfactual Analysis runs automatically at 12:55 PM PT, comparing actual executions against full-day holding scenarios and stop-loss efficacy.
               </td>
             </tr>
           </tbody>
@@ -936,7 +939,7 @@ Loading live bot console logs...
       </div>
       <div class="arch-item">
         <h4>100% Intraday Liquidation</h4>
-        <p>Enforces same-day flattening of all positions at 3:50 PM ET before the market close, eliminating overnight gap risk.</p>
+        <p>Enforces same-day flattening of all positions at 12:50 PM PT before the market close, eliminating overnight gap risk.</p>
       </div>
       <div class="arch-item">
         <h4>ACID SQLite Database</h4>
@@ -1027,20 +1030,20 @@ Loading live bot console logs...
       if (!timerEl) return;
       
       const now = new Date();
-      const nowETString = now.toLocaleString("en-US", { timeZone: "America/New_York" });
-      const nowET = new Date(nowETString);
+      const nowPTString = now.toLocaleString("en-US", { timeZone: "America/Los_Angeles" });
+      const nowPT = new Date(nowPTString);
       
-      let targetET = new Date(nowET);
-      targetET.setHours(9, 30, 0, 0);
+      let targetPT = new Date(nowPT);
+      targetPT.setHours(6, 30, 0, 0);
       
-      if (nowET >= targetET) {
-        targetET.setDate(targetET.getDate() + 1);
+      if (nowPT >= targetPT) {
+        targetPT.setDate(targetPT.getDate() + 1);
       }
       
-      if (targetET.getDay() === 6) targetET.setDate(targetET.getDate() + 2);
-      if (targetET.getDay() === 0) targetET.setDate(targetET.getDate() + 1);
+      if (targetPT.getDay() === 6) targetPT.setDate(targetPT.getDate() + 2);
+      if (targetPT.getDay() === 0) targetPT.setDate(targetPT.getDate() + 1);
       
-      const diffMs = targetET.getTime() - nowET.getTime();
+      const diffMs = targetPT.getTime() - nowPT.getTime();
       if (diffMs <= 0) {
         timerEl.innerText = "OPEN NOW";
         timerEl.style.color = "#32ff84";
@@ -1129,7 +1132,7 @@ Loading live bot console logs...
         posBody.innerHTML = `
           <tr>
             <td colspan="9" class="empty-state">
-              No active intraday positions currently. All positions are liquidated daily into 100% cash at 3:50 PM ET.
+              No active intraday positions currently. All positions are liquidated daily into 100% cash at 12:50 PM PT.
             </td>
           </tr>
         `;
@@ -1144,8 +1147,8 @@ Loading live bot console logs...
           const pnlPct = t.pnl_pct || 0;
           const color = pnl >= 0 ? "#32ff84" : "#f87171";
           const sign = pnl >= 0 ? "+" : "";
-          const openTime = t.open_time || (t.open_date ? t.open_date.split(" ")[1] : "09:30 ET");
-          const closeTime = t.close_time || (t.close_date ? t.close_date.split(" ")[1] : "15:50 ET");
+          const openTime = t.open_time || (t.open_date ? t.open_date.split(" ")[1] : "06:30 PT");
+          const closeTime = t.close_time || (t.close_date ? t.close_date.split(" ")[1] : "12:50 PT");
           const dur = t.duration || "Intraday";
           const tradeDate = t.date || (t.close_date ? t.close_date.split(" ")[0] : "");
           return `
@@ -1168,7 +1171,7 @@ Loading live bot console logs...
         tradesBody.innerHTML = `
           <tr>
             <td colspan="11" class="empty-state">
-              No closed trades recorded yet for current session. Next scheduled execution begins at 09:30 AM ET.
+              No closed trades recorded yet for current session. Next scheduled execution begins at 06:30 AM PT.
             </td>
           </tr>
         `;

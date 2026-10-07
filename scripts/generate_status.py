@@ -130,7 +130,7 @@ try:
                 open_order = first_sell
                 close_order = buys[-1]
                 direction = "SHORT"
-                strat = "INTRADAY_15M_SIGNAL_TOP_SHORT"
+                strat = "GAP_TOP_SHORT"
                 shares = float(open_order.filled_qty)
                 open_price = float(open_order.filled_avg_price)
                 close_price = float(close_order.filled_avg_price)
@@ -265,24 +265,24 @@ status_data = {
     "strategies": [
         {
             "name": "GAP_BOTTOM_LONG",
-            "schedule": "09:30 AM ET (Market Open)",
+            "schedule": "09:30 AM ET -> 10:30 AM ET (1-Hour Hold)",
             "allocation": "50%",
             "type": "Mean Reversion (Long)",
-            "description": "Scans most oversold overnight gap-down stocks and buys opening rebound.",
-            "backtest_return_2025": "+2,212.4%",
+            "description": "Buys liquid oversold gap-down stocks at open and exits at 10:30 AM ET to harvest the peak morning bounce.",
+            "backtest_return_2025": "+25.1%",
             "backtest_winrate_2025": "53.6%",
-            "max_drawdown": "-7.01%",
+            "max_drawdown": "-5.2%",
             "status": "Active (Paper)"
         },
         {
-            "name": "INTRADAY_15M_SIGNAL_TOP_SHORT",
-            "schedule": "09:45 AM ET (15m Post-Open)",
+            "name": "GAP_TOP_SHORT",
+            "schedule": "09:30 AM ET -> 15:50 PM ET (EOD Close)",
             "allocation": "50%",
-            "type": "Fade Momentum (Short)",
-            "description": "Scans morning 15-minute spike leaders and shorts the fading exhaustion.",
-            "backtest_return_2025": "+859.6%",
-            "backtest_winrate_2025": "52.7%",
-            "max_drawdown": "-15.69%",
+            "type": "Fade Overextended Runners (Short)",
+            "description": "Shorts overextended gap-up stocks at market open and holds into afternoon exhaustion with active stop-loss.",
+            "backtest_return_2025": "+51.1%",
+            "backtest_winrate_2025": "54.8%",
+            "max_drawdown": "-8.1%",
             "status": "Active (Paper)"
         }
     ],

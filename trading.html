@@ -841,7 +841,64 @@
           </tbody>
         </table>
       </div>
+    <!-- EOD Execution & Counterfactual "What Would Have Been" Analysis -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 36px; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+      <h3 class="section-title" style="margin: 0;">⚖️ End-of-Day Execution &amp; "What Would Have Been" Audit</h3>
+      <span class="system-badge" style="font-size: 0.78rem;">Rule Attribution Engine</span>
     </div>
+    
+    <!-- Counterfactual Scorecard Grid -->
+    <div class="metrics-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-bottom: 16px;">
+      <div class="metric-card" style="padding: 14px 18px;">
+        <div class="metric-label">Actual Live Realized P&amp;L</div>
+        <div id="cfActualPnl" class="metric-value-huge val-positive" style="font-size: 1.5rem;">+$95.88</div>
+        <div id="cfActualWinRate" class="metric-subtext">Win Rate: 40.0%</div>
+      </div>
+      <div class="metric-card" style="padding: 14px 18px;">
+        <div class="metric-label">What-If Held to Close (16:00 ET)</div>
+        <div id="cfClosePnl" class="metric-value-huge val-neutral" style="font-size: 1.5rem;">+$70.92</div>
+        <div id="cfCloseWinRate" class="metric-subtext">Win Rate: 52.0%</div>
+      </div>
+      <div class="metric-card" style="padding: 14px 18px;">
+        <div class="metric-label">Net Rule Alpha Generated</div>
+        <div id="cfAlphaPnl" class="metric-value-huge val-positive" style="font-size: 1.5rem;">+$24.96</div>
+        <div class="metric-subtext">Value added vs Buy &amp; Hold to close</div>
+      </div>
+      <div class="metric-card" style="padding: 14px 18px;">
+        <div class="metric-label">Stop-Loss Audit (Net Value)</div>
+        <div id="cfSlValue" class="metric-value-huge val-neutral" style="font-size: 1.5rem;">$0.00</div>
+        <div id="cfSlSub" class="metric-subtext">0 stop-outs (all within -6% limit)</div>
+      </div>
+    </div>
+
+    <!-- Trade-by-Trade Comparison Table -->
+    <div class="table-card" style="margin-bottom: 30px;">
+      <div class="table-responsive">
+        <table id="counterfactualTable">
+          <thead>
+            <tr>
+              <th>Symbol</th>
+              <th>Side</th>
+              <th>Exit Reason</th>
+              <th>Entry Price</th>
+              <th>Actual Exit</th>
+              <th>Actual P&amp;L ($)</th>
+              <th>EOD Close (16:00)</th>
+              <th>What-If Close P&amp;L</th>
+              <th>Exit Alpha ($)</th>
+            </tr>
+          </thead>
+          <tbody id="counterfactualBody">
+            <tr>
+              <td colspan="9" class="empty-state">
+                EOD Counterfactual Analysis runs automatically at 3:55 PM ET, comparing actual executions against full-day holding scenarios and stop-loss efficacy.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
     <!-- Live Bot Console Logs Section -->
     <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 36px; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
       <h3 class="section-title" style="margin: 0;">🖥️ Live Bot Console &amp; Execution Logs</h3>
@@ -1117,6 +1174,78 @@ Loading live bot console logs...
         `;
       }
       
+      // 5b. EOD Counterfactual & "What Would Have Been" Analysis
+      const cf = data.counterfactual_analysis;
+      if (cf) {
+        const cfActual = document.getElementById("cfActualPnl");
+        const cfActualWr = document.getElementById("cfActualWinRate");
+        const cfClose = document.getElementById("cfClosePnl");
+        const cfCloseWr = document.getElementById("cfCloseWinRate");
+        const cfAlpha = document.getElementById("cfAlphaPnl");
+        const cfSlVal = document.getElementById("cfSlValue");
+        const cfSlSub = document.getElementById("cfSlSub");
+
+        if (cfActual) {
+          const actVal = cf.actual_live_pnl || 0;
+          cfActual.innerText = (actVal >= 0 ? "+" : "") + formatCurrency(actVal);
+          cfActual.className = `metric-value-huge ${actVal > 0 ? 'val-positive' : (actVal < 0 ? 'val-negative' : 'val-neutral')}`;
+          if (cfActualWr) cfActualWr.innerText = `Win Rate: ${cf.actual_win_rate || '0.0%'}`;
+        }
+        if (cfClose) {
+          const clVal = cf.what_if_held_to_close_pnl || 0;
+          cfClose.innerText = (clVal >= 0 ? "+" : "") + formatCurrency(clVal);
+          cfClose.className = `metric-value-huge ${clVal > 0 ? 'val-positive' : (clVal < 0 ? 'val-negative' : 'val-neutral')}`;
+          if (cfCloseWr) cfCloseWr.innerText = `Win Rate: ${cf.what_if_held_to_close_winrate || '0.0%'}`;
+        }
+        if (cfAlpha) {
+          const alphaVal = cf.total_rule_alpha || 0;
+          cfAlpha.innerText = (alphaVal >= 0 ? "+" : "") + formatCurrency(alphaVal);
+          cfAlpha.className = `metric-value-huge ${alphaVal > 0 ? 'val-positive' : (alphaVal < 0 ? 'val-negative' : 'val-neutral')}`;
+        }
+        if (cfSlVal) {
+          const slNet = cf.stop_loss_net_value || 0;
+          cfSlVal.innerText = (slNet >= 0 ? "+" : "") + formatCurrency(slNet);
+          cfSlVal.className = `metric-value-huge ${slNet > 0 ? 'val-positive' : (slNet < 0 ? 'val-negative' : 'val-neutral')}`;
+          if (cfSlSub) {
+            cfSlSub.innerText = `${cf.stop_losses_triggered || 0} stop-outs (Saved: $${cf.stop_loss_capital_saved || 0}, Whipsaw: -$${cf.stop_loss_whipsaw_cost || 0})`;
+          }
+        }
+
+        const cfBody = document.getElementById("counterfactualBody");
+        if (cfBody && cf.trades && cf.trades.length > 0) {
+          cfBody.innerHTML = cf.trades.map(t => {
+            const alpha = t.exit_alpha || 0;
+            const alphaColor = alpha >= 0 ? "#32ff84" : "#f87171";
+            const alphaSign = alpha >= 0 ? "+" : "";
+            const liveColor = t.live_pnl >= 0 ? "#32ff84" : "#f87171";
+            const liveSign = t.live_pnl >= 0 ? "+" : "";
+            const closeColor = t.what_if_close_pnl >= 0 ? "#32ff84" : "#f87171";
+            const closeSign = t.what_if_close_pnl >= 0 ? "+" : "";
+
+            let reasonBadge = `<span class="system-badge" style="font-size: 0.72rem; padding: 2px 6px;">${t.exit_reason}</span>`;
+            if (t.exit_reason === "STOP_LOSS") {
+              reasonBadge = `<span class="strat-tag short" style="font-size: 0.72rem;">🛑 STOP LOSS</span>`;
+            } else if (t.exit_reason === "1H_EXIT") {
+              reasonBadge = `<span class="strat-tag long" style="font-size: 0.72rem;">⏱️ 1H EXIT</span>`;
+            }
+
+            return `
+              <tr>
+                <td><strong>${t.symbol}</strong></td>
+                <td><span class="strat-tag ${t.direction === 'LONG' ? 'long' : 'short'}">${t.direction}</span></td>
+                <td>${reasonBadge}</td>
+                <td>${formatCurrency(t.live_in)}</td>
+                <td>${formatCurrency(t.live_out)}</td>
+                <td style="color: ${liveColor}; font-weight: 700;">${liveSign}${formatCurrency(t.live_pnl)}</td>
+                <td>${formatCurrency(t.px_close)}</td>
+                <td style="color: ${closeColor};">${closeSign}${formatCurrency(t.what_if_close_pnl)}</td>
+                <td style="color: ${alphaColor}; font-weight: 700;">${alphaSign}${formatCurrency(alpha)}</td>
+              </tr>
+            `;
+          }).join("");
+        }
+      }
+
       // 6. Live Bot Execution Logs
       renderLogs();
     }

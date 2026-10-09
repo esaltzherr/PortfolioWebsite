@@ -2,8 +2,8 @@
   "is_paper_trading": true,
   "environment": "Alpaca Paper Trading Simulator (Virtual Currency - No Real Capital)",
   "timezone": "America/Los_Angeles (PT)",
-  "updated_at": "2026-10-08 08:05:34 PM PT",
-  "timestamp_iso": "2026-10-08T20:05:34.729994-07:00",
+  "updated_at": "2026-10-09 12:20:07 AM PT",
+  "timestamp_iso": "2026-10-09T00:20:07.574004-07:00",
   "market_status": "Market Closed (Next Open: 2026-10-09 06:30 AM PT)",
   "is_open": false,
   "bot_status": "\ud83d\udfe2 Paper Bot Active \u2014 Standby (Next Open: 2026-10-09 06:30 AM PT)",
@@ -14,8 +14,8 @@
     "initial_capital": 100000.0,
     "total_pnl": 114.79,
     "total_return_pct": 0.11,
-    "today_pnl": -0.17,
-    "today_return_pct": -0.0,
+    "today_pnl": 0.0,
+    "today_return_pct": 0.0,
     "total_unrealized_pl": 0.0
   },
   "history": [
@@ -45,6 +45,13 @@
       "equity": 100114.79,
       "daily_pnl": -0.17,
       "daily_pct": -0.0,
+      "cumulative_pct": 0.11
+    },
+    {
+      "date": "2026-10-09",
+      "equity": 100114.79,
+      "daily_pnl": 0.0,
+      "daily_pct": 0.0,
       "cumulative_pct": 0.11
     }
   ],

@@ -1026,6 +1026,7 @@ Loading live bot console logs...
     }
 
     function updateCountdown() {
+      const badgeEl = document.getElementById("countdownBadge");
       const timerEl = document.getElementById("countdownTimer");
       if (!timerEl) return;
       
@@ -1033,6 +1034,29 @@ Loading live bot console logs...
       const nowPTString = now.toLocaleString("en-US", { timeZone: "America/Los_Angeles" });
       const nowPT = new Date(nowPTString);
       
+      const day = nowPT.getDay(); // 0 = Sun, 1 = Mon, ..., 5 = Fri, 6 = Sat
+      const isWeekday = (day >= 1 && day <= 5);
+      
+      // Market hours in PT: 06:30 AM PT to 01:00 PM PT
+      const openToday = new Date(nowPT);
+      openToday.setHours(6, 30, 0, 0);
+      
+      const closeToday = new Date(nowPT);
+      closeToday.setHours(13, 0, 0, 0);
+      
+      // Case 1: Market is currently OPEN right now (Weekday 06:30 AM - 01:00 PM PT)
+      if (isWeekday && nowPT >= openToday && nowPT < closeToday) {
+        const diffCloseMs = closeToday.getTime() - nowPT.getTime();
+        const hours = Math.floor(diffCloseMs / (1000 * 60 * 60));
+        const mins = Math.floor((diffCloseMs % (1000 * 60 * 60)) / (1000 * 60));
+        const secs = Math.floor((diffCloseMs % (1000 * 60)) / 1000);
+        if (badgeEl) {
+          badgeEl.innerHTML = `🟢 Market Open • Closes in <span id="countdownTimer" style="font-weight: 700; color: #32ff84;">${hours}h ${String(mins).padStart(2, "0")}m ${String(secs).padStart(2, "0")}s</span>`;
+        }
+        return;
+      }
+      
+      // Case 2: Market is CLOSED -- find next open (06:30 AM PT)
       let targetPT = new Date(nowPT);
       targetPT.setHours(6, 30, 0, 0);
       
@@ -1040,21 +1064,18 @@ Loading live bot console logs...
         targetPT.setDate(targetPT.getDate() + 1);
       }
       
-      if (targetPT.getDay() === 6) targetPT.setDate(targetPT.getDate() + 2);
-      if (targetPT.getDay() === 0) targetPT.setDate(targetPT.getDate() + 1);
+      // Skip weekend to Monday
+      if (targetPT.getDay() === 6) targetPT.setDate(targetPT.getDate() + 2); // Saturday -> Monday
+      if (targetPT.getDay() === 0) targetPT.setDate(targetPT.getDate() + 1); // Sunday -> Monday
       
       const diffMs = targetPT.getTime() - nowPT.getTime();
-      if (diffMs <= 0) {
-        timerEl.innerText = "OPEN NOW";
-        timerEl.style.color = "#32ff84";
-        return;
-      }
-      
       const hours = Math.floor(diffMs / (1000 * 60 * 60));
       const mins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
       const secs = Math.floor((diffMs % (1000 * 60)) / 1000);
       
-      timerEl.innerText = `${hours}h ${String(mins).padStart(2, "0")}m ${String(secs).padStart(2, "0")}s`;
+      if (badgeEl) {
+        badgeEl.innerHTML = `⏳ Next Session in <span id="countdownTimer" style="font-weight: 700; color: #38bdf8;">${hours}h ${String(mins).padStart(2, "0")}m ${String(secs).padStart(2, "0")}s</span>`;
+      }
     }
 
     function renderDashboard(data) {

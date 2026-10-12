@@ -1,0 +1,50 @@
+{
+  "updated_at": "2026-10-12 14:22:00 PT",
+  "bot_version": "3.2.1-strat2",
+  "account_id": "PA3EM0YADDLM",
+  "account_label": "Portfolio 2: High-Volume Gap-Fade Short ()",
+  "account": {
+    "portfolio_value": 10000.0,
+    "cash": 10000.0,
+    "buying_power": 40000.0,
+    "total_pnl": 0.0,
+    "total_return_pct": "0.00",
+    "starting_equity": 10000.0,
+    "status": "ACTIVE"
+  },
+  "strategies": [
+    {
+      "name": "GAP_TOP_SHORT (Aggressive Gap Fade)",
+      "schedule": "06:30 AM PT -> 12:50 PM PT (EOD Close)",
+      "allocation": "100%",
+      "type": "Fade Overextended Gap-Ups (Short)",
+      "description": "Shorts the top overextended gap-up stocks (>= +2.0% gap) at 06:30 AM PT open with dynamic +2%/+4% trailing profit-lock and -5% stop-loss, holding into the 12:50 PM PT close.",
+      "backtest_return_full_year": "+578.7%",
+      "backtest_winrate_full_year": "58.7%",
+      "profit_factor": "1.35",
+      "status": "Ready (Sleeping until 05:30 AM PT)"
+    }
+  ],
+  "stats": {
+    "total_trades": 0,
+    "wins": 0,
+    "losses": 0,
+    "win_rate": "0.0%",
+    "profit_factor": "0.00"
+  },
+  "open_positions": [],
+  "recent_trades": [],
+  "history": [
+    {
+      "date": "2026-10-12",
+      "portfolio_value": 10000.0,
+      "daily_pnl": 0.0,
+      "cum_return": 0.0
+    }
+  ],
+  "logs": [
+    "2026-10-12 14:22:00 PT  INFO      Strat 2 ( Gap-Fade Short) initialized successfully.",
+    "2026-10-12 14:22:00 PT  INFO      Connected to Alpaca Paper Account PA3EM0YADDLM. Balance: ,000.00.",
+    "2026-10-12 14:22:00 PT  INFO      Bot service standby. Sleeping until pre-market open tomorrow at 05:30 AM PT."
+  ]
+}

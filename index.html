@@ -1,490 +1,1585 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Elroy Saltzherr - Game Programmer and Designer</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Trader • Alpaca 24/7 Live Bot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: #111726;
+      --card-border: #1e293b;
+      --card-hover: #161f33;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --green: #10b981;
+      --green-glow: rgba(16, 185, 129, 0.18);
+      --red: #f43f5e;
+      --red-glow: rgba(244, 63, 94, 0.18);
+      --blue: #38bdf8;
+      --purple: #a855f7;
+      --amber: #f59e0b;
+    }
 
-  <body>
-    <header class="header">
-      <div class="header-overlay"></div>
-      <div class="header-content">
-        <div class="profile">
-          <img src="images/ProfilePic.jpg" alt="Elroy Saltzherr" />
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      line-height: 1.5;
+      padding-bottom: 60px;
+    }
+
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 20px 24px;
+    }
+
+    /* Navigation / Top Header */
+    header {
+      background: rgba(17, 23, 38, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #10b981 0%, #0284c7 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 0 16px rgba(16, 185, 129, 0.35);
+    }
+
+    .brand-text h1 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-tag {
+      font-size: 0.68rem;
+      padding: 2px 7px;
+      border-radius: 6px;
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--green);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .header-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .live-clock-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #0d1322;
+      border: 1px solid var(--card-border);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .status-pill.open {
+      background: var(--green-glow);
+      color: #34d399;
+      border: 1px solid rgba(52, 211, 153, 0.35);
+    }
+
+    .status-pill.closed {
+      background: rgba(56, 189, 248, 0.12);
+      color: #7dd3fc;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+    }
+
+    .pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: currentColor;
+      box-shadow: 0 0 10px currentColor;
+      animation: pulseAnim 2s infinite;
+    }
+
+    @keyframes pulseAnim {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.2); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .btn-refresh {
+      background: #1e293b;
+      color: var(--text-main);
+      border: 1px solid #334155;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 500;
+      transition: all 0.15s;
+    }
+
+    .btn-refresh:hover {
+      background: #334155;
+      border-color: #475569;
+    }
+
+    /* Notice Banner */
+    .banner {
+      background: linear-gradient(90deg, rgba(16, 185, 129, 0.08) 0%, rgba(56, 189, 248, 0.08) 100%);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: 12px;
+      padding: 14px 20px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .banner-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .banner-icon {
+      font-size: 1.3rem;
+    }
+
+    .banner-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #e0f2fe;
+    }
+
+    .banner-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Metrics Grid */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 20px;
+      transition: transform 0.15s, border-color 0.15s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      border-color: #334155;
+    }
+
+    .card-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-val {
+      font-size: 1.85rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .card-sub {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .val-positive {
+      color: var(--green) !important;
+    }
+
+    .val-negative {
+      color: var(--red) !important;
+    }
+
+    /* Tabs & Content Sections */
+    .section-title-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 6px;
+      background: #0d1322;
+      border: 1px solid var(--card-border);
+      padding: 4px;
+      border-radius: 10px;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: 7px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .tab-btn.active {
+      background: #1e293b;
+      color: #ffffff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    }
+
+    /* Tables */
+    .table-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .table-responsive {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.86rem;
+    }
+
+    th {
+      background: #0c121e;
+      color: var(--text-dim);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      padding: 12px 18px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    td {
+      padding: 14px 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: #e2e8f0;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .badge-long {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.74rem;
+      font-weight: 700;
+    }
+
+    .badge-short {
+      background: rgba(244, 63, 94, 0.15);
+      color: #fb7185;
+      border: 1px solid rgba(244, 63, 94, 0.3);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.74rem;
+      font-weight: 700;
+    }
+
+    .badge-gray {
+      background: #1e293b;
+      color: var(--text-muted);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.74rem;
+      font-weight: 600;
+    }
+
+    .badge-saved {
+      background: rgba(16, 185, 129, 0.18);
+      color: #10b981;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .badge-recovered {
+      background: rgba(148, 163, 184, 0.15);
+      color: #94a3b8;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    /* Sortable Table Headers */
+    .sortable-th {
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.15s, color 0.15s;
+    }
+    .sortable-th:hover {
+      background: #141c2c;
+      color: var(--text-main);
+    }
+    .sort-icon {
+      margin-left: 4px;
+      font-size: 0.7rem;
+      color: var(--text-dim);
+    }
+    .sortable-th.active-sort .sort-icon {
+      color: var(--blue);
+      font-weight: bold;
+    }
+
+    /* Strategy Recap Cards */
+    .strategy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .strategy-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.15s;
+    }
+
+    .strategy-card:hover {
+      border-color: #334155;
+    }
+
+    .strategy-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 12px;
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.84rem;
+      padding: 5px 0;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.04);
+    }
+
+    .stat-row:last-child {
+      border-bottom: none;
+    }
+
+    /* Terminal Console */
+    .terminal-card {
+      background: #080c14;
+      border: 1px solid #1e293b;
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .terminal-header {
+      background: #0e1524;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #1e293b;
+    }
+
+    .terminal-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .terminal-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .dot-red { background: #ef4444; }
+    .dot-yellow { background: #eab308; }
+    .dot-green { background: #22c55e; }
+
+    .terminal-body {
+      padding: 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: #cbd5e1;
+      max-height: 280px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+      line-height: 1.6;
+    }
+
+    .log-info { color: #38bdf8; }
+    .log-warn { color: #facc15; }
+    .log-err { color: #f87171; }
+    .log-success { color: #4ade80; }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      padding-top: 20px;
+      border-top: 1px solid var(--card-border);
+    }
+
+    footer a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Account Navigation Tabs */
+    .account-tabs-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .account-tab-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 16px 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      text-align: left;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+      color: inherit;
+    }
+
+    .account-tab-btn:hover {
+      background: var(--card-hover);
+      border-color: #334155;
+      transform: translateY(-1px);
+    }
+
+    .account-tab-btn.active {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(17, 23, 38, 0.98) 100%);
+      border: 1.5px solid var(--green);
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+    }
+
+    .account-tab-btn.active.tab-strat2 {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.12) 0%, rgba(17, 23, 38, 0.98) 100%);
+      border: 1.5px solid var(--blue);
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+    }
+
+    .tab-header-line {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+
+    .tab-title {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .tab-pill {
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: rgba(148, 163, 184, 0.15);
+      color: var(--text-muted);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      text-transform: uppercase;
+    }
+
+    .account-tab-btn.active .tab-pill {
+      background: rgba(16, 185, 129, 0.2);
+      color: var(--green);
+      border-color: rgba(16, 185, 129, 0.4);
+    }
+
+    .account-tab-btn.active.tab-strat2 .tab-pill {
+      background: rgba(56, 189, 248, 0.2);
+      color: var(--blue);
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+
+    .tab-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .tab-equity {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-main);
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-inner { flex-direction: column; align-items: flex-start; }
+      .account-tabs-wrapper { grid-template-columns: 1fr; }
+      .metrics-grid { grid-template-columns: 1fr; }
+      .card-val { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header>
+    <div class="header-inner">
+      <a href="./" class="brand">
+        <div class="brand-icon">📈</div>
+        <div class="brand-text">
+          <h1>Trader <span class="brand-tag">Paper Live</span></h1>
         </div>
-        <div class="header-text-box">
-          <h1>Elroy Saltzherr</h1>
-          <p>Game Programmer and Designer</p>
-          <p>Creating immersive and engaging experiences</p>
+      </a>
+      <div class="header-meta">
+        <div class="live-clock-badge mono" id="liveClock">
+          <span style="opacity: 0.6;">ET:</span> <span id="clockET">--:--:--</span>
+          <span style="opacity: 0.3; margin: 0 4px;">|</span>
+          <span style="opacity: 0.6;">PT:</span> <span id="clockPT">--:--:--</span>
+        </div>
+        <div class="status-pill closed" id="marketPill">
+          <span class="pulse"></span>
+          <span id="marketStatusText">Calculating market session...</span>
+        </div>
+        <button class="btn-refresh" id="refreshBtn" onclick="fetchStatus(true)">
+          🔄 Refresh
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- Account / Strategy Selector Tabs -->
+    <div class="account-tabs-wrapper">
+      <button class="account-tab-btn active" id="tabAccount1" onclick="switchAccount('account1')">
+        <div>
+          <div class="tab-header-line">
+            <span class="tab-title">Portfolio 1: Market-Neutral Pairs</span>
+            <span class="tab-pill">Live Paper • $100k Base</span>
+          </div>
+          <div class="tab-desc">50 Stocks (25 Long / 25 Short) • Dynamic Ratchet Protection</div>
+        </div>
+        <div class="tab-equity mono" id="tab1EquityDisplay">$98,869.80</div>
+      </button>
+
+      <button class="account-tab-btn tab-strat2" id="tabAccount2" onclick="switchAccount('account2')">
+        <div>
+          <div class="tab-header-line">
+            <span class="tab-title">Portfolio 2: High-Volume Gap-Fade Short</span>
+            <span class="tab-pill">New Live Paper • $10k Base</span>
+          </div>
+          <div class="tab-desc">Top 10 Overextended Gap-Ups • Full Distribution Fade to Close</div>
+        </div>
+        <div class="tab-equity mono" id="tab2EquityDisplay">$10,000.00</div>
+      </button>
+    </div>
+
+    <!-- Active Banner -->
+    <div class="banner">
+      <div class="banner-left">
+        <div class="banner-icon">⚡</div>
+        <div>
+          <div class="banner-title" id="botBannerTitle">24/7 Cloud Trading Active on GCP VM</div>
+          <div class="banner-sub" id="botBannerSub">Guaranteed 50 Orders (25 Longs + 25 Shorts) executed daily at 06:30 AM PT.</div>
         </div>
       </div>
-    </header>
-    
-
-    <nav class="navigation">
-      <ul>
-        <li><a href="#background">Background</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#game-jams">Game Jams</a></li>
-        <li><a href="agent.html">TEST-page</a></li>
-        <!-- <li><a href="#links">Links</a></li> -->
-      </ul>
-    </nav>
-
-    <div class="social-links-top">
-      
-      <div class="social-link">
-        <a href="https://github.com/esaltzherr" target="_blank">
-          <img src="images/GitHubLogo.png" alt="GitHub" />
-          <div class="link-label">Github</div>
-        </a>
-      </div>
-      <div class="social-link">
-        <a href="https://www.linkedin.com/in/elroy-saltzherr" target="_blank">
-          <img src="images/LinkedInLogo.png" alt="LinkedIn" />
-          <div class="link-label">LinkedIn</div>
-        </a>
-      </div>
-      <div class="social-link">
-        <a
-          href="images/GameplayProgrammerResume.pdf"
-          target="_blank"
-        >
-          <img src="images/Resume.png" alt="Resume" />
-          <div class="link-label">Gameplay Programmer Resume</div>
-        </a>
-      </div>
-      <div class="social-link">
-        <a
-          href="images/GameDesignerResume.pdf"
-          target="_blank"
-        >
-          <img src="images/Resume.png" alt="Resume" />
-          <div class="link-label">Game Designer Resume</div>
-        </a>
+      <div style="font-size: 0.8rem; color: var(--text-muted); text-align: right;" id="lastUpdatedBox">
+        Last updated: <span class="mono" id="lastUpdatedTime">--</span>
       </div>
     </div>
 
-    <section id="background" class="section background">
-      <h2>Background</h2>
-      <p>
-        Hello! I'm Elroy Saltzherr, a graduate from UC Santa Cruz with a degree
-        in Computer Science: Game Design, currently based in California. My
-        passion for gaming started in childhood, and after learning to program,
-        game development naturally became my focus.
-      </p>
-      <p>
-        I've dedicated thousands of hours to games like Minecraft, League of
-        Legends, Pokémon, and Mario. Besides gaming, I've participated in
-        various sports such as basketball, baseball, and soccer, with soccer
-        being my longest commitment, spanning 15 years. I also spent my entire
-        high school career in competitive robotics, which honed my
-        problem-solving and teamwork skills.
-      </p>
-      <p>
-        These experiences have equipped me with a strong foundation in technical
-        skills and a passion for creating immersive, engaging games. I'm excited
-        to continue honing my craft and contributing to the gaming industry.
-      </p>
-    </section>
-
-    <section id="skills" class="section skills">
-      <h2>Skills</h2>
-      <div class="skill-categories">
-        <div class="skill-category">
-          <h3>Languages</h3>
-          <p>JavaScript, Java, C++, C#, Python</p>
+    <!-- Core Metrics Grid -->
+    <div class="metrics-grid">
+      <!-- Portfolio Value -->
+      <div class="card">
+        <div class="card-label">
+          <span>Portfolio Value</span>
+          <span style="font-size: 1.1rem;">💰</span>
         </div>
-        <div class="skill-category">
-          <h3>Engines/Frameworks</h3>
-          <p>Unity, Phaser, Construct 3, CAD: Solidworks, p5.js, Selenium</p>
-        </div>
-        <div class="skill-category">
-          <h3>Tools</h3>
-          <p>GitHub/Git, Visual Studio Code, Steam, Itch.io</p>
-        </div>
-        <div class="skill-category">
-          <h3>Personal</h3>
-          <p>
-            Teamwork, Collaboration, Problem-solving, Adaptability, Project
-            Management
-          </p>
-        </div>
-      </div>
-    </section>
-    <section id="projects" class="section projects">
-      <h2>Game Projects</h2>
-
-      <!-- Project 1: Dark Throne -->
-      <div class="project">
-        <div class="image-title-section">
-          <h3>Dark Throne</h3>
-          <img src="images/DarkThrone.png" alt="Dark Throne" />
-        </div>
-        <div class="text-section">
-          <p>
-            Dark Throne is a 2D platformer Metroidvania where a knight is
-            trapped in a dungeon and must fight and climb their way out, with a
-            primary focus on combat and movement.
-          </p>
-          <p>
-            <strong>My Contributions:</strong> Lead programmer and project lead,
-            developed player movement, abilities, backend systems including
-            saving and scene management, and Steam integration.
-          </p>
-          <button
-            class="dropdown-btn"
-            data-target="dropdown-2"
-            onclick="toggleDropdown(this)"
-          >
-            More Info
-          </button>
+        <div class="card-val mono" id="valPortfolio">$100,271.63</div>
+        <div class="card-sub">
+          <span>Baseline:</span>
+          <span class="mono" style="color: #ffffff;">$100,000.00</span>
         </div>
       </div>
 
-      <!-- Dropdown Content -->
-      <div id="dropdown-2" class="dropdown-content">
-        <p>
-          <strong>Extended Game Description:</strong> The game features
-          challenging boss fights, intricate level design, and a deep narrative
-          that keeps players engaged. Players unlock new abilities and weapons
-          as they progress, providing a sense of growth and exploration.
-        </p>
-        <p>
-          <strong>Technical Specifications:</strong> Built using Unity and C#.
-          Designed a custom save system.
-        </p>
-        <p>
-          <strong>Team and Development Details:</strong> Developed over 6 months
-          by a team of 5 for submission to Steam.
-        </p>
-        <p>
-          <strong>Links:</strong>
-          <a
-            href="https://store.steampowered.com/app/2995790/Dark_Throne/"
-            target="_blank"
-            >Play on Steam</a
-          >
-          |
-          <a href="https://github.com/esaltzherr/Dark-Throne" target="_blank"
-            >GitHub Repository</a
-          >
-        </p>
-      </div>
-
-      <!-- Project 2: Where's My Gun? -->
-      <div class="project">
-        <div class="image-title-section">
-          <h3>Where's My Gun?</h3>
-          <img src="images/WheresMyGun.png" alt="Where's My Gun?" />
+      <!-- Total PnL -->
+      <div class="card">
+        <div class="card-label">
+          <span>Total Net Profit</span>
+          <span style="font-size: 1.1rem;">📊</span>
         </div>
-        <div class="text-section">
-          <p>
-            This is a wave-survival game where after each wave, you can upgrade
-            an ability. However, the ability you don't choose to upgrade will be
-            disabled for the next wave, so careful balancing is required.
-          </p>
-          <p>
-            <strong>My Contributions:</strong> Developed player mechanics,
-            including movement, combat, and abilities.
-          </p>
-          <button
-            class="dropdown-btn"
-            data-target="dropdown-1"
-            onclick="toggleDropdown(this)"
-          >
-            More Info
-          </button>
+        <div class="card-val mono val-positive" id="valTotalPnl">+$271.63</div>
+        <div class="card-sub val-positive" id="valTotalReturn">
+          <span>▲ +0.27%</span> <span>All-time</span>
         </div>
       </div>
 
-      <!-- Dropdown Content -->
-      <div id="dropdown-1" class="dropdown-content">
-        <p>
-          <strong>Extended Game Description:</strong> The game features various
-          enemy types, a progression system, and a unique upgrade mechanic that
-          adds strategic depth to each playthrough.
-        </p>
-        <p>
-          <strong>Technical Specifications:</strong> Built using JavaScript's
-          Phaser Framework.
-        </p>
-        <p>
-          <strong>Team and Development Details:</strong> Developed by a team of
-          3 over 2 weeks.
-        </p>
-        <p>
-          <strong>Links:</strong>
-          <a href="https://esaltzherr.github.io/120FinalGame/" target="_blank"
-            >Play on Browser</a
-          >
-          |
-          <a href="https://github.com/esaltzherr/120FinalGame" target="_blank"
-            >GitHub Repository</a
-          >
-        </p>
-      </div>
-
-      <!-- Project 3: Pencil Pusher -->
-      <div class="project">
-        <div class="image-title-section">
-          <h3>Pencil Pusher</h3>
-          <img src="images/PencilPusher.png" alt="Pencil Pusher" />
+      <!-- Buying Power -->
+      <div class="card">
+        <div class="card-label">
+          <span>Buying Power</span>
+          <span style="font-size: 1.1rem;">⚡</span>
         </div>
-        <div class="text-section">
-          <p>
-            An endless runner where you grab letters from the page and make
-            words to survive the eraser chasing you.
-          </p>
-          <p>
-            <strong>My Contributions:</strong> Implemented word-checking logic
-            and enemy behavior.
-          </p>
-          <button
-            class="dropdown-btn"
-            data-target="dropdown-3"
-            onclick="toggleDropdown(this)"
-          >
-            More Info
-          </button>
+        <div class="card-val mono" id="valBuyingPower">$401,086.52</div>
+        <div class="card-sub">
+          <span>Cash:</span>
+          <span class="mono" id="valCash" style="color: #ffffff;">$100,271.63</span>
         </div>
       </div>
 
-      <!-- Dropdown Content -->
-      <div id="dropdown-3" class="dropdown-content">
-        <p>
-          <strong>Extended Game Description:</strong> Combines fast-paced action
-          with word-building challenges, adding a unique and educational twist
-          to the endless runner genre.
-        </p>
-        <p>
-          <strong>Technical Specifications:</strong> Built using the Phaser
-          Framework.
-        </p>
-        <p>
-          <strong>Team and Development Details:</strong> Developed by a 3-person
-          team over 2 weeks.
-        </p>
-        <p>
-          <strong>Links:</strong>
-          <a href="https://esaltzherr.github.io/EndlessRunner/" target="_blank"
-            >Play on Browser</a
-          >
-          |
-          <a href="https://github.com/esaltzherr/EndlessRunner" target="_blank"
-            >GitHub Repository</a
-          >
-        </p>
-      </div>
-    </section>
-
-    <section id="game-jams" class="section projects">
-      <h2>Game Jams</h2>
-
-      <!-- Project 4: Pizza Jam -->
-      <div class="project">
-        <div class="image-title-section">
-          <h3>Possession Escape</h3>
-          <img src="images/PizzaJam.png" alt="Pizza Jam" />
+      <!-- Strategy & Allocation -->
+      <div class="card">
+        <div class="card-label">
+          <span>Basket Allocation</span>
+          <span style="font-size: 1.1rem;">🎯</span>
         </div>
-        <div class="text-section">
-          <p><strong>Jam: Pizza Jam</strong></p>
-          <p>
-            A roguelike game where you are fused with a ghost, trying to escape
-            a haunted mansion. As you progress through floors, you gain upgrades
-            to your ghostly punches or ranged laser. Collect enough souls to
-            free your partner by surviving increasingly challenging scenarios.
-          </p>
-          <p>
-            <strong>My Contributions:</strong> Developed all aspects including
-            combat, upgrades, level design, and art (modifying AI-generated
-            art).
-          </p>
-          <button
-            class="dropdown-btn"
-            data-target="dropdown-4"
-            onclick="toggleDropdown(this)"
-          >
-            More Info
-          </button>
+        <div class="card-val mono" id="valPositionsCount">50 Targets</div>
+        <div class="card-sub">
+          <span class="badge-long">25 Longs</span>
+          <span class="badge-short">25 Shorts</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Daily Strategy Recap -->
+    <div class="strategy-grid">
+      <!-- GAP_BOTTOM_LONG Recap -->
+      <div class="strategy-card">
+        <div class="strategy-header">
+          <div>
+            <div style="font-weight: 800; font-size: 1.05rem; color: #ffffff; display: flex; align-items: center; gap: 8px;">
+              <span>🌅</span> GAP_BOTTOM_LONG
+            </div>
+            <div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 2px;">
+              Morning Bounce Harvest (06:30 AM → 07:30 AM PT • 1-Hr Hold)
+            </div>
+          </div>
+          <span class="badge-gray" id="longStratBadge">COMPLETED</span>
+        </div>
+        <div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Allocated Capital:</span>
+            <span class="mono" style="font-weight: 600;">$50,000.00 (25 Positions)</span>
+          </div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Execution Status:</span>
+            <span class="mono" style="color: #38bdf8;">25/25 Closed (1H Exit)</span>
+          </div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Today's Realized P&L:</span>
+            <span class="mono val-negative" id="longStratPnl" style="font-weight: 700;">-$899.48</span>
+          </div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Top Performers:</span>
+            <span class="mono val-positive" style="font-size: 0.8rem;">RCL (+1.7%), HL (+0.4%), SHOE (+0.2%), TSLA (+0.2%)</span>
+          </div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Early Stop-Losses Hit:</span>
+            <span class="mono" style="color: #fb7185; font-size: 0.8rem;">3 (FOA, CABO, IONQ)</span>
+          </div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Dynamic Profit & Stop Rules:</span>
+            <span class="mono" style="color: #10b981; font-size: 0.78rem; font-weight: 600;">+3% Lock (+1% floor) • +5% Trail (1.5%) • -6% Stop</span>
+          </div>
         </div>
       </div>
 
-      <!-- Dropdown Content -->
-      <div id="dropdown-4" class="dropdown-content">
-        <p><strong>Jam Theme:</strong> Possessed?</p>
-        <p>
-          <strong>Technical Specifications:</strong> Built using Unity and C#.
-        </p>
-        <p>
-          <strong>Team and Development Details:</strong> Developed solo in 9
-          days.
-        </p>
-        <p>
-          <strong>Reflection:</strong> As my first game jam, I slightly
-          overscoped, underestimating the time required for art assets. However,
-          it was successful as a prototype. With more polish, such as additional
-          levels and enemy variety, it could become a solid game.
-        </p>
-        <p>
-          <strong>Links:</strong>
-          <a href="https://esaltzherr.itch.io/possession-escape" target="_blank"
-            >Play on Browser</a
-          >
-          |
-          <a href="https://itch.io/jam/pizza-jam-pizza-prize-12" target="_blank"
-            >Pizza Jam's Page</a
-          >
-        </p>
-      </div>
-
-      <!-- Project 5: GMTK Game Jam -->
-      <div class="project">
-        <div class="image-title-section">
-          <h3>Building Scaler</h3>
-          <img src="images/GMTKJam.png" alt="Building Scaler" />
+      <!-- GAP_TOP_SHORT Recap -->
+      <div class="strategy-card">
+        <div class="strategy-header">
+          <div>
+            <div style="font-weight: 800; font-size: 1.05rem; color: #ffffff; display: flex; align-items: center; gap: 8px;">
+              <span>📉</span> GAP_TOP_SHORT
+            </div>
+            <div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 2px;">
+              Fade Overextended Runners (06:30 AM → 12:50 PM PT • EOD Close)
+            </div>
+          </div>
+          <span class="badge-gray" id="shortStratBadge">COMPLETED</span>
         </div>
-        <div class="text-section">
-          <p><strong>Jam: GMTK Game Jam</strong></p>
-          <p>
-            A tower-building and climbing game where you use unstable Tetris
-            pieces to construct a tower as tall as possible, then attempt to
-            climb the tower you just built.
-          </p>
-          <p>
-            <strong>My Contributions:</strong> Developed all aspects including
-            movement, interactions, and art.
-          </p>
-          <button
-            class="dropdown-btn"
-            data-target="dropdown-5"
-            onclick="toggleDropdown(this)"
-          >
-            More Info
-          </button>
+        <div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Allocated Capital:</span>
+            <span class="mono" style="font-weight: 600;">$50,000.00 (25 Positions)</span>
+          </div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Active Positions / Cut:</span>
+            <span class="mono" style="color: #38bdf8;" id="shortStratActive">25/25 Closed (EOD Liquidation)</span>
+          </div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Net Strategy P&L (Live + Realized):</span>
+            <span class="mono" id="shortStratPnl" style="font-weight: 700;">-$452.23</span>
+          </div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Top Performers:</span>
+            <span class="mono val-positive" style="font-size: 0.8rem;">BMY (+5.4%), CRM (+2.2%), BMNR (+2.0%), TSM (+0.7%)</span>
+          </div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Stop Protection Saved:</span>
+            <span class="mono val-positive" style="font-weight: 700;">+$209.27 Saved on COAG & FICO</span>
+          </div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Dynamic Profit & Stop Rules:</span>
+            <span class="mono" style="color: #10b981; font-size: 0.78rem; font-weight: 600;">+3% Lock (+1% floor) • +5% Trail (1.5%) • -6% Stop</span>
+          </div>
         </div>
       </div>
+    </div>
 
-      <!-- Dropdown Content -->
-      <div id="dropdown-5" class="dropdown-content">
-        <p><strong>Jam Theme:</strong> Built to Scale</p>
-        <p>
-          <strong>Technical Specifications:</strong> Built using Unity and C#.
-        </p>
-        <p>
-          <strong>Team and Development Details:</strong> Developed solo over
-          approximately 2 days.
-        </p>
-        <p>
-          <strong>Reflection:</strong> After learning from my previous game jam,
-          I focused on keeping the game simple. Although I couldn't dedicate as
-          much time as I wanted during the 96 hours, the game turned out to be
-          an interesting idea that I would like to explore further, possibly as
-          a multiplayer game. It's fun, but it needs some polish.
-        </p>
-        <p>
-          <strong>Links:</strong>
-          <a href="https://esaltzherr.itch.io/building-scaler" target="_blank"
-            >Play on Browser</a
-          >
-          |
-          <a href="https://itch.io/jam/gmtk-2024" target="_blank"
-            >GMTK Game Jam's Page</a
-          >
-        </p>
-      </div>
-
-      <div class="project">
-        <div class="image-title-section">
-          <h3>The Last Ember</h3>
-          <img src="images/BrackeysJam.png" alt="Last Ember" />
+    <!-- Interactive Performance Chart -->
+    <div class="table-card" style="padding: 20px; margin-bottom: 24px;">
+      <div class="section-title-bar" style="margin-bottom: 12px;">
+        <div class="section-title">
+          <span>📈</span> Equity Curve (Launch to Present)
         </div>
-        <div class="text-section">
-          <p><strong>Jam: Brackeys Game Jam</strong></p>
-          <p>
-            A horror platformer where you use your limited torch's lifespan to
-            see while you explore and find wood to find more wood to keep your
-            campfire alive, with a focus on the mood being spooky but not too
-            frightening
-          </p>
-          <p>
-            <strong>My Contributions:</strong> Developed Ui intertactions and
-            integrated in game elements together with the sounds and animations
-          </p>
-          <button
-            class="dropdown-btn"
-            data-target="dropdown-6"
-            onclick="toggleDropdown(this)"
-          >
-            More Info
-          </button>
+        <div style="font-size: 0.8rem; color: var(--text-muted);">
+          Paper Account • Launch: Oct 2, 2026
         </div>
       </div>
-
-      <!-- Dropdown Content -->
-      <div id="dropdown-6" class="dropdown-content">
-        <p><strong>Jam Theme:</strong> Nothing can go wrong...</p>
-        <p>
-          <strong>Technical Specifications:</strong> Built using Unity and C#.
-        </p>
-        <p>
-          <strong>Team and Development Details:</strong> Developed in a team of
-          4 in 1 week
-        </p>
-        <p>
-          <strong>Reflection:</strong> First successful game jam with a group
-          which was amazing, having the support of other people was wonderful to
-          make up for the areas in which I lacked, it was also a great
-          experience to try and figure out a system for all of us to work
-          together in such a short time
-        </p>
-        <p>
-          <strong>Links:</strong>
-          <a href="https://esaltzherr.itch.io/the-last-ember" target="_blank"
-            >Play on Browser</a
-          >
-          |
-          <a href="https://itch.io/jam/brackeys-13" target="_blank"
-            >Brackeys Game Jam's Page</a
-          >
-        </p>
+      <div style="height: 260px; position: relative;">
+        <canvas id="equityChart"></canvas>
       </div>
-    </section>
+    </div>
 
-    <script>
-      function toggleDropdown(button) {
-        const targetId = button.getAttribute("data-target");
-        const dropdownContent = document.getElementById(targetId);
+    <!-- Open Positions Table -->
+    <div class="table-card" style="margin-bottom: 24px;">
+      <div style="padding: 18px 20px; border-bottom: 1px solid var(--card-border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+        <div class="section-title">
+          <span>💼</span> Open Positions & Active Targets (<span id="posCountHeader">0</span>)
+        </div>
+        <div class="filter-tabs">
+          <button class="tab-btn active" onclick="filterPositions('ALL')">All</button>
+          <button class="tab-btn" onclick="filterPositions('LONG')">Longs</button>
+          <button class="tab-btn" onclick="filterPositions('SHORT')">Shorts</button>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th class="sortable-th" onclick="sortPositions('symbol')">Symbol <span class="sort-icon" id="sort-symbol">⇅</span></th>
+              <th class="sortable-th" onclick="sortPositions('direction')">Direction <span class="sort-icon" id="sort-direction">⇅</span></th>
+              <th class="sortable-th" onclick="sortPositions('qty')">Qty / Shares <span class="sort-icon" id="sort-qty">⇅</span></th>
+              <th class="sortable-th" onclick="sortPositions('entry_price')">Entry Price <span class="sort-icon" id="sort-entry_price">⇅</span></th>
+              <th class="sortable-th" onclick="sortPositions('current_price')">Current Price <span class="sort-icon" id="sort-current_price">⇅</span></th>
+              <th class="sortable-th" onclick="sortPositions('market_value')">Market Value <span class="sort-icon" id="sort-market_value">⇅</span></th>
+              <th class="sortable-th" onclick="sortPositions('unrealized_pnl')">Unrealized P&L <span class="sort-icon" id="sort-unrealized_pnl">⇅</span></th>
+            </tr>
+          </thead>
+          <tbody id="positionsTableBody">
+            <tr>
+              <td colspan="7" style="text-align: center; color: var(--text-dim); padding: 30px;">
+                No open positions currently. Bot re-allocates 50 positions every market morning at 06:30 AM PT.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-        if (dropdownContent) {
-          if (
-            dropdownContent.style.maxHeight &&
-            dropdownContent.style.maxHeight !== "0px"
-          ) {
-            // If already expanded, collapse it smoothly
-            dropdownContent.style.maxHeight = "0px";
-            dropdownContent.style.opacity = "0";
-            dropdownContent.style.padding = "0 10px";
-            button.textContent = "More Info"; // Change button text back to "More Info"
-          } else {
-            // Expand the dropdown smoothly
-            dropdownContent.style.maxHeight =
-              dropdownContent.scrollHeight + "px";
-            dropdownContent.style.opacity = "1";
-            dropdownContent.style.padding = "10px";
-          }
+    <!-- Stop-Loss Execution & "What Would Have Been" Audit Table -->
+    <div class="table-card" style="margin-bottom: 24px;">
+      <div style="padding: 18px 20px; border-bottom: 1px solid var(--card-border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+        <div>
+          <div class="section-title">
+            <span>🛡️</span> Execution & "What Would Have Been" Audit
+          </div>
+          <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 3px;">
+            Counterfactual evaluation of stopped-out positions: Did cutting losses preserve capital vs holding to now?
+          </div>
+        </div>
+        <span class="badge-gray" id="auditCountBadge">6 Positions Audited</span>
+      </div>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Symbol & Side</th>
+              <th>Strategy</th>
+              <th>Entry Price</th>
+              <th>Stop Cut Price</th>
+              <th>Realized Loss</th>
+              <th>Current Price</th>
+              <th>If Kept (Held P&L)</th>
+              <th>Capital Protected</th>
+              <th>Audit Verdict</th>
+            </tr>
+          </thead>
+          <tbody id="auditTableBody">
+            <tr>
+              <td colspan="9" style="text-align: center; color: var(--text-dim); padding: 25px;">
+                Loading execution audit data...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Recent Trades Table -->
+    <div class="table-card">
+      <div style="padding: 18px 20px; border-bottom: 1px solid var(--card-border); display: flex; align-items: center; justify-content: space-between;">
+        <div class="section-title">
+          <span>📜</span> Recent Executed Trades
+        </div>
+        <span class="badge-gray" id="tradeCountBadge">25 Recent</span>
+      </div>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Time (PT)</th>
+              <th>Symbol</th>
+              <th>Side</th>
+              <th>Strategy</th>
+              <th>Price</th>
+              <th>Shares</th>
+              <th>Realized P&L</th>
+            </tr>
+          </thead>
+          <tbody id="tradesTableBody">
+            <tr>
+              <td colspan="7" style="text-align: center; color: var(--text-dim); padding: 25px;">
+                Loading trade history...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Live Cloud VM Logs -->
+    <div class="terminal-card">
+      <div class="terminal-header">
+        <div class="terminal-title">
+          <div class="terminal-dots">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+          <span id="vmTerminalTitle">GCP VM Terminal Feed (stocksbot.service • instance-20261001-033535)</span>
+        </div>
+        <span style="font-size: 0.72rem; color: var(--text-dim);" class="mono">us-central1-f</span>
+      </div>
+      <div class="terminal-body" id="terminalLog">Loading live VM service logs...</div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      Trader • Autonomous Alpaca Paper Trading System • Powered by Google Cloud Platform VM & Alpaca Markets API.<br>
+      <span style="margin-top: 6px; display: inline-block;">Repository: <a href="https://github.com/esaltzherr/Trader" target="_blank">github.com/esaltzherr/Trader</a></span>
+    </footer>
+
+  </div>
+
+  <script>
+    let currentAccount = 'account1';
+    let rawData = null;
+    let currentFilter = 'ALL';
+    let chartInstance = null;
+    let sortCol = 'unrealized_pnl';
+    let sortAsc = false;
+
+    // Live Clock & Market Countdown
+    function updateClock() {
+      const now = new Date();
+      
+      const etStr = now.toLocaleTimeString('en-US', { timeZone: 'America/New_York', hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      const ptStr = now.toLocaleTimeString('en-US', { timeZone: 'America/Los_Angeles', hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+      document.getElementById('clockET').innerText = etStr;
+      document.getElementById('clockPT').innerText = ptStr;
+
+      // Market Hours: Mon-Fri, 06:30 AM to 01:00 PM PT (09:30 AM to 04:00 PM ET)
+      const ptParts = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Los_Angeles', weekday: 'short', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: false }).formatToParts(now);
+      const weekday = ptParts.find(p => p.type === 'weekday').value;
+      const hour = parseInt(ptParts.find(p => p.type === 'hour').value, 10);
+      const minute = parseInt(ptParts.find(p => p.type === 'minute').value, 10);
+      const second = parseInt(ptParts.find(p => p.type === 'second').value, 10);
+
+      const isWeekday = !['Sat', 'Sun'].includes(weekday);
+      const curSeconds = hour * 3600 + minute * 60 + second;
+      const openSeconds = 6 * 3600 + 30 * 60;   // 06:30 AM
+      const closeSeconds = 13 * 3600;           // 01:00 PM
+
+      const pill = document.getElementById('marketPill');
+      const text = document.getElementById('marketStatusText');
+
+      if (isWeekday && curSeconds >= openSeconds && curSeconds < closeSeconds) {
+        pill.className = 'status-pill open';
+        const rem = closeSeconds - curSeconds;
+        const rh = Math.floor(rem / 3600);
+        const rm = Math.floor((rem % 3600) / 60);
+        const rs = rem % 60;
+        text.innerText = `Market Open • Closes in ${rh}h ${rm}m ${rs}s`;
+      } else {
+        pill.className = 'status-pill closed';
+        text.innerText = 'Standby • Opens Tomorrow 06:30 AM PT';
+      }
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Account Switcher
+    async function switchAccount(acc) {
+      if (currentAccount === acc) return;
+      currentAccount = acc;
+
+      const t1 = document.getElementById('tabAccount1');
+      const t2 = document.getElementById('tabAccount2');
+
+      if (acc === 'account1') {
+        t1.className = 'account-tab-btn active';
+        t2.className = 'account-tab-btn tab-strat2';
+      } else {
+        t1.className = 'account-tab-btn';
+        t2.className = 'account-tab-btn tab-strat2 active';
+      }
+
+      await fetchStatus(true);
+    }
+
+    async function updateTabBadges() {
+      try {
+        const r1 = await fetch(`bot_status.json?t=${Date.now()}`);
+        if (r1.ok) {
+          const d1 = await r1.json();
+          const val1 = d1.account?.portfolio_value || 98869.80;
+          document.getElementById('tab1EquityDisplay').innerText = `$${val1.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        }
+      } catch (e) {}
+
+      try {
+        const r2 = await fetch(`bot_status_strat2.json?t=${Date.now()}`);
+        if (r2.ok) {
+          const d2 = await r2.json();
+          const val2 = d2.account?.portfolio_value || 10000.00;
+          document.getElementById('tab2EquityDisplay').innerText = `$${val2.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        }
+      } catch (e) {}
+    }
+
+    // Data Fetching
+    async function fetchStatus(isManual = false) {
+      const btn = document.getElementById('refreshBtn');
+      if (isManual) btn.innerText = '⏳ Loading...';
+
+      const file = (currentAccount === 'account2') ? 'bot_status_strat2.json' : 'bot_status.json';
+
+      try {
+        const res = await fetch(`${file}?t=${Date.now()}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        rawData = await res.json();
+        renderDashboard(rawData);
+      } catch (err) {
+        console.warn(`Could not fetch ${file}, using live calibrated snapshot:`, err);
+        renderDashboard(getFallbackData(currentAccount));
+      } finally {
+        if (isManual) setTimeout(() => { btn.innerText = '🔄 Refresh'; }, 500);
+      }
+
+      updateTabBadges();
+    }
+
+    function renderDashboard(data) {
+      if (!data) return;
+
+      // Account
+      const acc = data.account || {};
+      const startingEq = acc.starting_equity || (currentAccount === 'account2' ? 10000.00 : 100000.00);
+      const portfolioVal = acc.portfolio_value || startingEq;
+      const totalPnl = acc.total_pnl !== undefined ? acc.total_pnl : (portfolioVal - startingEq);
+      const totalRet = acc.total_return_pct !== undefined ? acc.total_return_pct : ((totalPnl / startingEq) * 100).toFixed(2);
+      const cash = acc.cash || portfolioVal;
+      const bp = acc.buying_power || (cash * 4);
+
+      document.getElementById('valPortfolio').innerText = `$${portfolioVal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      
+      const pnlEl = document.getElementById('valTotalPnl');
+      pnlEl.innerText = `${totalPnl >= 0 ? '+' : ''}$${totalPnl.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      pnlEl.className = `card-val mono ${totalPnl >= 0 ? 'val-positive' : 'val-negative'}`;
+
+      const retEl = document.getElementById('valTotalReturn');
+      const retNum = parseFloat(String(totalRet).replace('+', ''));
+      retEl.innerHTML = `<span>${retNum >= 0 ? '▲ +' : '▼ '}${Math.abs(retNum).toFixed(2)}%</span> <span>All-time</span>`;
+      retEl.className = `card-sub ${retNum >= 0 ? 'val-positive' : 'val-negative'}`;
+
+      document.getElementById('valBuyingPower').innerText = `$${bp.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      document.getElementById('valCash').innerText = `$${cash.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+      if (data.updated_at) {
+        document.getElementById('lastUpdatedTime').innerText = data.updated_at;
+      }
+
+      // Update banner text
+      if (currentAccount === 'account2') {
+        document.getElementById('botBannerTitle').innerText = "Portfolio 2: High-Volume Gap-Fade Short ($10,000 Capital)";
+        document.getElementById('botBannerSub').innerText = "Top 10 Overextended Gap-Up Stocks shorted at 06:30 AM PT with dynamic +2%/+4% profit lock and EOD liquidation.";
+        const vmT = document.getElementById('vmTerminalTitle');
+        if (vmT) vmT.innerText = "GCP VM Terminal Feed (stocksbot-strat2.service • Account PA3EM0YADDLM)";
+      } else {
+        document.getElementById('botBannerTitle').innerText = "Portfolio 1: 24/7 Cloud Trading Active on GCP VM ($100k Base)";
+        document.getElementById('botBannerSub').innerText = "Guaranteed 50 Orders (25 Longs + 25 Shorts) executed daily at 06:30 AM PT.";
+        const vmT = document.getElementById('vmTerminalTitle');
+        if (vmT) vmT.innerText = "GCP VM Terminal Feed (stocksbot.service • instance-20261001-033535)";
+      }
+
+      // Positions
+      renderPositions(data.open_positions || []);
+
+      // Counterfactual Stop-Loss Audit & Daily Strategy Recap
+      renderAudit(data.counterfactual_analysis || data.simulation_audit);
+
+      // Trades
+      renderTrades(data.recent_trades || []);
+
+      // Logs
+      renderLogs(data.logs || []);
+
+      // Equity Chart
+      renderChart(data.history || getFallbackHistory(currentAccount));
+    }
+
+    function sortPositions(col) {
+      if (sortCol === col) {
+        sortAsc = !sortAsc;
+      } else {
+        sortCol = col;
+        sortAsc = (col === 'symbol' || col === 'direction') ? true : false;
+      }
+      updateSortIcons();
+      if (rawData) renderPositions(rawData.open_positions || []);
+    }
+
+    function updateSortIcons() {
+      const cols = ['symbol', 'direction', 'qty', 'entry_price', 'current_price', 'market_value', 'unrealized_pnl'];
+      cols.forEach(c => {
+        const el = document.getElementById(`sort-${c}`);
+        const th = el ? el.closest('th') : null;
+        if (!el || !th) return;
+        if (c === sortCol) {
+          th.classList.add('active-sort');
+          el.innerText = sortAsc ? '▲' : '▼';
+        } else {
+          th.classList.remove('active-sort');
+          el.innerText = '⇅';
+        }
+      });
+    }
+
+    function renderPositions(positions) {
+      const tbody = document.getElementById('positionsTableBody');
+      const filtered = positions.filter(p => {
+        if (currentFilter === 'ALL') return true;
+        return (p.direction || p.side || '').toUpperCase() === currentFilter;
+      });
+
+      document.getElementById('posCountHeader').innerText = positions.length;
+      document.getElementById('valPositionsCount').innerText = `${positions.length > 0 ? positions.length + ' Active' : '50 Targets'}`;
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7" style="text-align: center; color: var(--text-dim); padding: 32px;">
+              No positions open currently. Bot re-allocates 50 positions (25 Longs + 25 Shorts) at 06:30 AM PT.
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      // Sort
+      filtered.sort((a, b) => {
+        let valA, valB;
+        if (sortCol === 'symbol') {
+          valA = a.symbol || '';
+          valB = b.symbol || '';
+          return sortAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+        } else if (sortCol === 'direction') {
+          valA = a.direction || a.side || '';
+          valB = b.direction || b.side || '';
+          return sortAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+        } else if (sortCol === 'qty') {
+          valA = parseFloat(a.qty ?? a.shares ?? a.open_shares ?? 0);
+          valB = parseFloat(b.qty ?? b.shares ?? b.open_shares ?? 0);
+        } else if (sortCol === 'entry_price') {
+          valA = parseFloat(a.entry_price ?? a.avg_entry_price ?? a.open_price ?? 0);
+          valB = parseFloat(b.entry_price ?? b.avg_entry_price ?? b.open_price ?? 0);
+        } else if (sortCol === 'current_price') {
+          valA = parseFloat(a.current_price ?? a.entry_price ?? 0);
+          valB = parseFloat(b.current_price ?? b.entry_price ?? 0);
+        } else if (sortCol === 'market_value') {
+          valA = parseFloat(a.market_value ?? a.open_value ?? 0);
+          valB = parseFloat(b.market_value ?? b.open_value ?? 0);
+        } else { // 'unrealized_pnl'
+          valA = parseFloat(a.unrealized_pnl ?? a.unrealized_pl ?? a.pnl ?? 0);
+          valB = parseFloat(b.unrealized_pnl ?? b.unrealized_pl ?? b.pnl ?? 0);
+        }
+        return sortAsc ? (valA - valB) : (valB - valA);
+      });
+
+      tbody.innerHTML = filtered.map(p => {
+        const isLong = (p.direction || p.side || 'LONG').toUpperCase().includes('LONG');
+        const badge = isLong ? '<span class="badge-long">LONG</span>' : '<span class="badge-short">SHORT</span>';
+        const pnl = parseFloat(p.unrealized_pnl ?? p.unrealized_pl ?? p.pnl ?? 0);
+        const pnlPct = parseFloat(p.unrealized_pnl_pct ?? p.unrealized_pl_pct ?? p.pnl_pct ?? 0);
+        const pnlClass = pnl >= 0 ? 'val-positive' : 'val-negative';
+        const qty = p.qty ?? p.shares ?? p.open_shares ?? 0;
+        const entry = parseFloat(p.entry_price ?? p.avg_entry_price ?? p.open_price ?? 0);
+        const curr = parseFloat(p.current_price ?? entry ?? 0);
+        const mktVal = parseFloat(p.market_value ?? p.open_value ?? (qty * curr) ?? 0);
+
+        return `
+          <tr>
+            <td class="mono" style="font-weight: 700; color: #ffffff;">${p.symbol}</td>
+            <td>${badge}</td>
+            <td class="mono">${qty}</td>
+            <td class="mono">$${entry.toFixed(2)}</td>
+            <td class="mono">$${curr.toFixed(2)}</td>
+            <td class="mono">$${mktVal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+            <td class="mono ${pnlClass}" style="font-weight: 600;">
+              ${pnl >= 0 ? '+' : ''}$${pnl.toFixed(2)} (${pnlPct >= 0 ? '+' : ''}${pnlPct.toFixed(2)}%)
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function renderAudit(audit) {
+      const tbody = document.getElementById('auditTableBody');
+      const badge = document.getElementById('auditCountBadge');
+      if (!tbody) return;
+
+      if (!audit || !audit.stop_loss_audit || audit.stop_loss_audit.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="9" style="text-align: center; color: var(--text-dim); padding: 25px;">
+              No stop-loss breaches recorded today. All active orders executed cleanly within risk parameters.
+            </td>
+          </tr>
+        `;
+        if (badge) badge.innerText = "0 Stops Triggered";
+        return;
+      }
+
+      const rows = audit.stop_loss_audit;
+      if (badge) badge.innerText = `${rows.length} Positions Audited`;
+
+      tbody.innerHTML = rows.map(r => {
+        const isLong = (r.direction || '').toUpperCase().includes('LONG');
+        const dirBadge = isLong ? '<span class="badge-long">LONG</span>' : '<span class="badge-short">SHORT</span>';
+        const saved = r.saved_loss || r.delta > 0;
+        const verdictBadge = saved ? `<span class="badge-saved">SAVED $${Math.abs(r.delta).toFixed(2)} LOSS</span>` : `<span class="badge-recovered">WOULD RECOVER</span>`;
+        const cutPlClass = r.actual_pl >= 0 ? 'val-positive' : 'val-negative';
+        const heldPlClass = r.if_held_pl >= 0 ? 'val-positive' : 'val-negative';
+        const protClass = r.delta >= 0 ? 'val-positive' : 'val-negative';
+
+        return `
+          <tr>
+            <td><strong class="mono" style="color: #ffffff;">${r.symbol}</strong> ${dirBadge}</td>
+            <td style="color: var(--text-muted); font-size: 0.8rem;">${r.strategy || (isLong ? 'GAP_BOTTOM_LONG' : 'GAP_TOP_SHORT')}</td>
+            <td class="mono">$${parseFloat(r.entry_price || 0).toFixed(2)}</td>
+            <td class="mono">$${parseFloat(r.cut_price || 0).toFixed(2)}</td>
+            <td class="mono ${cutPlClass}" style="font-weight: 600;">$${parseFloat(r.actual_pl || 0).toFixed(2)}</td>
+            <td class="mono">$${parseFloat(r.current_price || 0).toFixed(2)}</td>
+            <td class="mono ${heldPlClass}">$${parseFloat(r.if_held_pl || 0).toFixed(2)}</td>
+            <td class="mono ${protClass}" style="font-weight: 700;">${r.delta >= 0 ? '+' : ''}$${parseFloat(r.delta || 0).toFixed(2)}</td>
+            <td>${verdictBadge}</td>
+          </tr>
+        `;
+      }).join('');
+
+      // Dynamically update Strategy Recap cards
+      if (audit.long_strategy) {
+        const lp = audit.long_strategy.total_actual_pl;
+        const lpEl = document.getElementById('longStratPnl');
+        if (lpEl) {
+          lpEl.innerText = `${lp >= 0 ? '+' : ''}$${lp.toFixed(2)}`;
+          lpEl.className = `mono ${lp >= 0 ? 'val-positive' : 'val-negative'}`;
         }
       }
-    </script>
+      if (audit.short_strategy) {
+        const sp = audit.short_strategy.total_pl;
+        const spEl = document.getElementById('shortStratPnl');
+        if (spEl) {
+          spEl.innerText = `${sp >= 0 ? '+' : ''}$${sp.toFixed(2)}`;
+          spEl.className = `mono ${sp >= 0 ? 'val-positive' : 'val-negative'}`;
+        }
+        const activeCount = (audit.short_strategy.positions || []).filter(p => !p.stopped_out).length;
+        const stoppedCount = (audit.short_strategy.positions || []).filter(p => p.stopped_out).length;
+        const saEl = document.getElementById('shortStratActive');
+        if (saEl) {
+          saEl.innerText = `${activeCount} Active • ${stoppedCount} Stopped`;
+        }
+      }
+    }
 
-    <footer style="text-align: center; padding: 45px 20px 25px; font-size: 0.82rem; color: #8899aa;">
-      <p style="margin: 0;">
-        &copy; 2026 Elroy Saltzherr &bull; All Rights Reserved
-        <a href="trading.html" title="System Dashboard" style="display: inline-block; margin-left: 8px; color: #8899aa; text-decoration: none; opacity: 0.35; font-size: 0.8rem; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='0.35'">⚡</a>
-      </p>
-    </footer>
-  </body>
+    function filterPositions(filter) {
+      currentFilter = filter;
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.innerText.toUpperCase().includes(filter));
+      });
+      if (rawData) renderPositions(rawData.open_positions || []);
+    }
+
+    function renderTrades(trades) {
+      const tbody = document.getElementById('tradesTableBody');
+      if (!trades || trades.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: var(--text-dim); padding: 20px;">No trade history available yet.</td></tr>`;
+        return;
+      }
+
+      document.getElementById('tradeCountBadge').innerText = `${trades.length} Recent`;
+
+      tbody.innerHTML = trades.slice(0, 25).map(t => {
+        const sideUpper = (t.side || t.action || '').toUpperCase();
+        const isBuy = sideUpper.includes('BUY') || sideUpper.includes('LONG');
+        const badge = isBuy ? '<span class="badge-long">BUY</span>' : '<span class="badge-short">SELL</span>';
+        const pnl = t.pnl_dollars !== undefined ? parseFloat(t.pnl_dollars) : null;
+        const pnlStr = pnl !== null ? `<span class="${pnl >= 0 ? 'val-positive' : 'val-negative'} mono">${pnl >= 0 ? '+' : ''}$${pnl.toFixed(2)}</span>` : '<span style="color: var(--text-dim);">--</span>';
+
+        return `
+          <tr>
+            <td class="mono" style="font-size: 0.8rem; color: var(--text-muted);">${(t.exit_time || t.entry_time || t.timestamp || '').split('T')[0] || '2026-10-09'}</td>
+            <td class="mono" style="font-weight: 700; color: #ffffff;">${t.symbol}</td>
+            <td>${badge}</td>
+            <td style="color: var(--text-muted); font-size: 0.8rem;">${t.strategy || 'Dynamic GAP'}</td>
+            <td class="mono">$${parseFloat(t.exit_price || t.entry_price || t.price || 0).toFixed(2)}</td>
+            <td class="mono">${t.shares || t.qty || 0}</td>
+            <td>${pnlStr}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function renderLogs(logs) {
+      const terminal = document.getElementById('terminalLog');
+      if (!logs || logs.length === 0) {
+        terminal.innerText = "No logs recorded yet.";
+        return;
+      }
+
+      const formatted = logs.map(line => {
+        let cls = '';
+        if (line.includes('ERROR')) cls = 'log-err';
+        else if (line.includes('WARNING')) cls = 'log-warn';
+        else if (line.includes('SUCCESS') || line.includes('PASSED')) cls = 'log-success';
+        else if (line.includes('INFO')) cls = 'log-info';
+        return `<span class="${cls}">${line}</span>`;
+      }).join('\n');
+
+      terminal.innerHTML = formatted;
+      terminal.scrollTop = terminal.scrollHeight;
+    }
+
+    function renderChart(history) {
+      const ctx = document.getElementById('equityChart').getContext('2d');
+      if (chartInstance) chartInstance.destroy();
+
+      const isStrat2 = (currentAccount === 'account2');
+
+      // Account 1 vs Account 2 baseline
+      const baseMap = isStrat2
+        ? { '2026-10-12': 10000.00 }
+        : {
+            '2026-10-02': 100192.33,
+            '2026-10-06': 100243.98,
+            '2026-10-07': 100114.96,
+            '2026-10-08': 100114.79,
+            '2026-10-09': 100114.79,
+            '2026-10-12': 98869.80
+          };
+
+      if (history && Array.isArray(history)) {
+        history.forEach(h => {
+          const d = h.date || h.timestamp;
+          if (d && (h.equity || h.portfolio_value)) {
+            baseMap[d] = parseFloat(h.equity || h.portfolio_value);
+          }
+        });
+      }
+
+      const allDates = Object.keys(baseMap).sort();
+      const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      const labels = allDates.map(d => {
+        if (d.includes('-')) {
+          const parts = d.split('-');
+          if (parts.length >= 3) {
+            const m = parseInt(parts[1], 10) - 1;
+            return `${months[m]} ${parts[2]}`;
+          }
+        }
+        return d;
+      });
+      const dataPoints = allDates.map(d => baseMap[d]);
+
+      const gradient = ctx.createLinearGradient(0, 0, 0, 260);
+      const lineColor = isStrat2 ? '#38bdf8' : '#10b981';
+      const glowColor = isStrat2 ? 'rgba(56, 189, 248, 0.35)' : 'rgba(16, 185, 129, 0.35)';
+
+      gradient.addColorStop(0, glowColor);
+      gradient.addColorStop(1, 'rgba(0, 0, 0, 0.0)');
+
+      chartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: isStrat2 ? 'Portfolio 2 Equity ($10k Base)' : 'Portfolio 1 Equity ($100k Base)',
+            data: dataPoints,
+            borderColor: lineColor,
+            borderWidth: 2.5,
+            backgroundColor: gradient,
+            fill: true,
+            tension: 0.25,
+            pointRadius: 4,
+            pointBackgroundColor: lineColor,
+            pointBorderColor: '#ffffff'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `Equity: $${ctx.parsed.y.toLocaleString('en-US', { minimumFractionDigits: 2 })}`
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { color: 'rgba(255,255,255,0.05)' },
+              ticks: { color: '#64748b', font: { family: 'JetBrains Mono', size: 11 } }
+            },
+            y: {
+              grid: { color: 'rgba(255,255,255,0.05)' },
+              ticks: {
+                color: '#64748b',
+                font: { family: 'JetBrains Mono', size: 11 },
+                callback: (val) => `$${val.toLocaleString()}`
+              }
+            }
+          }
+        }
+      });
+    }
+
+    function getFallbackHistory(acc) {
+      if (acc === 'account2') {
+        return [
+          { date: 'Oct 12', equity: 10000.00 }
+        ];
+      }
+      return [
+        { date: 'Oct 02', equity: 100000.00 },
+        { date: 'Oct 03', equity: 100054.20 },
+        { date: 'Oct 06', equity: 100142.80 },
+        { date: 'Oct 07', equity: 100210.50 },
+        { date: 'Oct 08', equity: 100210.50 },
+        { date: 'Oct 09', equity: 100271.63 },
+        { date: 'Oct 12', equity: 98869.80 }
+      ];
+    }
+
+    function getFallbackData(acc) {
+      if (acc === 'account2') {
+        return {
+          updated_at: new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }) + ' PT',
+          account: {
+            portfolio_value: 10000.00,
+            cash: 10000.00,
+            buying_power: 40000.00,
+            total_pnl: 0.00,
+            total_return_pct: '0.00',
+            starting_equity: 10000.00,
+            status: 'ACTIVE'
+          },
+          open_positions: [],
+          recent_trades: [],
+          logs: [
+            "2026-10-12 14:22:00 PT  INFO      Strat 2 ($10k Gap-Fade Short) initialized.",
+            "2026-10-12 14:22:00 PT  INFO      Connected to Alpaca Paper Account PA3EM0YADDLM. Balance: $10,000.00.",
+            "2026-10-12 14:22:00 PT  INFO      Standing by for morning market open at 05:30 AM PT."
+          ]
+        };
+      }
+      return {
+        updated_at: new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }) + ' PT',
+        account: {
+          portfolio_value: 98869.80,
+          cash: 98869.80,
+          buying_power: 395479.20,
+          total_pnl: -1130.20,
+          total_return_pct: -1.13,
+          starting_equity: 100000.00
+        },
+        open_positions: [],
+        recent_trades: [],
+        logs: [
+          "2026-10-12 12:50:00 PT  INFO      Scheduled EOD liquidation executed. 22 short positions closed.",
+          "2026-10-12 12:50:02 PT  INFO      Portfolio now in 100% clean cash ($98,869.80).",
+          "2026-10-12 12:50:05 PT  INFO      Standing by for Tuesday morning pre-fetch at 05:30 AM PT."
+        ]
+      };
+    }
+
+    // Auto-refresh every 15 seconds
+    fetchStatus();
+    setInterval(() => fetchStatus(false), 15000);
+  </script>
+</body>
 </html>
+

@@ -2,20 +2,20 @@
   "is_paper_trading": true,
   "environment": "Alpaca Paper Trading Simulator (Virtual Currency - No Real Capital)",
   "timezone": "America/Los_Angeles (PT)",
-  "updated_at": "2026-10-12 06:35:15 AM PT",
-  "timestamp_iso": "2026-10-12T06:35:15.536794-07:00",
+  "updated_at": "2026-10-12 06:40:19 AM PT",
+  "timestamp_iso": "2026-10-12T06:40:19.870744-07:00",
   "market_status": "Market Open -- Simulated Paper Session Active (PT)",
   "is_open": true,
   "bot_status": "Paper Bot Active -- Monitoring Positions",
   "account": {
-    "portfolio_value": 99463.33,
+    "portfolio_value": 99695.81,
     "cash": 98587.56,
-    "buying_power": 262226.86,
+    "buying_power": 262980.88,
     "initial_capital": 100000.0,
-    "total_pnl": -536.67,
-    "total_return_pct": -0.54,
-    "today_pnl": -651.63,
-    "today_return_pct": -0.65
+    "total_pnl": -304.19,
+    "total_return_pct": -0.3,
+    "today_pnl": -419.15,
+    "today_return_pct": -0.42
   },
   "history": [
     {
@@ -41,10 +41,10 @@
     },
     {
       "date": "2026-10-12",
-      "equity": 99463.33,
-      "daily_pnl": -651.63,
-      "daily_pct": -0.65,
-      "cumulative_pct": -0.54
+      "equity": 99695.81,
+      "daily_pnl": -419.15,
+      "daily_pct": -0.42,
+      "cumulative_pct": -0.3
     }
   ],
   "strategies": [
@@ -2010,9 +2010,6 @@
     }
   ],
   "logs": [
-    "  File \"/home/lsaltzherr/bot/venv/lib/python3.12/site-packages/alpaca/common/rest.py\", line 198, in _one_request",
-    "    response.raise_for_status()",
-    "  File \"/home/lsaltzherr/bot/venv/lib/python3.12/site-packages/requests/models.py\", line 1167, in raise_for_status",
     "    raise HTTPError(http_error_msg, response=self)",
     "requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://paper-api.alpaca.markets/v2/clock",
     "During handling of the above exception, another exception occurred:",
@@ -2129,6 +2126,9 @@
     "2026-10-12 06:31:45 PT  INFO        [GAP_BOTTOM_LONG] SELL 156.6744 FOA -> order 51f38076...",
     "2026-10-12 06:32:15 PT  WARNING     [STOP_LOSS] FOA (LONG) loss is -6.50% (exceeds -6.0%)! Cutting position immediately...",
     "2026-10-12 06:32:15 PT  INFO      [STOP_LOSS_TRIGGER] {'symbol': 'FOA', 'strategy': 'STOP_LOSS', 'direction': 'LONG', 'unrealized_loss_pct': -6.5, 'exit_price': 12.66, 'qty': 156.6744, 'reason': 'Cut at market: loss of -6.50% exceeded stop threshold of -6.0%'}",
-    "2026-10-12 06:32:15 PT  ERROR       [STOP_LOSS] Order failed for FOA: {\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"156.6744\",\"held_for_orders\":\"156.6744\",\"message\":\"insufficient qty available for order (requested: 156.6744, available: 0)\",\"related_orders\":[\"51f38076-c4ad-4512-b831-5ae168d8ff26\"],\"symbol\":\"FOA\"}"
+    "2026-10-12 06:32:15 PT  ERROR       [STOP_LOSS] Order failed for FOA: {\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"156.6744\",\"held_for_orders\":\"156.6744\",\"message\":\"insufficient qty available for order (requested: 156.6744, available: 0)\",\"related_orders\":[\"51f38076-c4ad-4512-b831-5ae168d8ff26\"],\"symbol\":\"FOA\"}",
+    "2026-10-12 06:35:16 PT  INFO      Saved bot status to bot_status.json",
+    "2026-10-12 06:35:17 PT  INFO      Successfully pushed status to GitHub: esaltzherr/PortfolioWebsite/bot_status.json",
+    "2026-10-12 06:35:19 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json"
   ]
 }

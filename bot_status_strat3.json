@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-12 03:06:42 PM PT",
-  "timestamp_utc": "2026-10-12T22:06:42.856521+00:00",
+  "updated_at": "2026-10-12 03:14:19 PM PT",
+  "timestamp_utc": "2026-10-12T22:14:19.335750+00:00",
   "bot_version": "3.2.1-strat3",
   "account_id": "PA33UNIQCZOZ",
   "account_label": "Portfolio 3: The Everything Strat ($1M)",
@@ -78,6 +78,17 @@
     }
   ],
   "logs": [
-    "2026-10-12 15:06:42 PT  INFO      Portfolio 3 service standby. 4 Alpha Engines armed for 05:30 AM PT market prep."
+    "2026-10-12 15:10:43 PT  INFO      =================================================================",
+    "2026-10-12 15:10:43 PT  INFO       STARTING PORTFOLIO 3 BOT (3.2.1-strat3) - $1,000,000 CAPITAL",
+    "2026-10-12 15:10:43 PT  INFO       Account: PA33UNIQCZOZ | Starting Equity: $1,000,000.00",
+    "2026-10-12 15:10:43 PT  INFO       4 Alpha Engines: Super Momentum, Capitulation Bounce, Micro-Burst, Parabolic Fade",
+    "2026-10-12 15:10:43 PT  INFO      =================================================================",
+    "2026-10-12 15:10:43 PT  INFO      Market closed. Sleeping 14.3 hrs until pre-market prep at 2026-10-13 05:30 AM PT",
+    "2026-10-12 15:13:48 PT  INFO      =================================================================",
+    "2026-10-12 15:13:48 PT  INFO       STARTING PORTFOLIO 3 BOT (3.2.1-strat3) - $1,000,000 CAPITAL",
+    "2026-10-12 15:13:48 PT  INFO       Account: PA33UNIQCZOZ | Starting Equity: $1,000,000.00",
+    "2026-10-12 15:13:48 PT  INFO       4 Alpha Engines: Super Momentum, Capitulation Bounce, Micro-Burst, Parabolic Fade",
+    "2026-10-12 15:13:48 PT  INFO      =================================================================",
+    "2026-10-12 15:13:48 PT  INFO      Market closed. Sleeping 14.3 hrs until pre-market prep at 2026-10-13 05:30 AM PT"
   ]
 }

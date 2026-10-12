@@ -2,20 +2,20 @@
   "is_paper_trading": true,
   "environment": "Alpaca Paper Trading Simulator (Virtual Currency - No Real Capital)",
   "timezone": "America/Los_Angeles (PT)",
-  "updated_at": "2026-10-12 07:15:46 AM PT",
-  "timestamp_iso": "2026-10-12T07:15:46.565534-07:00",
+  "updated_at": "2026-10-12 07:20:50 AM PT",
+  "timestamp_iso": "2026-10-12T07:20:50.124818-07:00",
   "market_status": "Market Open -- Simulated Paper Session Active (PT)",
   "is_open": true,
   "bot_status": "Paper Bot Active -- Monitoring Positions",
   "account": {
-    "portfolio_value": 99147.31,
+    "portfolio_value": 99081.15,
     "cash": 98249.65,
-    "buying_power": 270738.64,
+    "buying_power": 270625.51,
     "initial_capital": 100000.0,
-    "total_pnl": -852.69,
-    "total_return_pct": -0.85,
-    "today_pnl": -967.65,
-    "today_return_pct": -0.97
+    "total_pnl": -918.85,
+    "total_return_pct": -0.92,
+    "today_pnl": -1033.81,
+    "today_return_pct": -1.03
   },
   "history": [
     {
@@ -41,10 +41,10 @@
     },
     {
       "date": "2026-10-12",
-      "equity": 99147.31,
-      "daily_pnl": -967.65,
-      "daily_pct": -0.97,
-      "cumulative_pct": -0.85
+      "equity": 99081.15,
+      "daily_pnl": -1033.81,
+      "daily_pct": -1.03,
+      "cumulative_pct": -0.92
     }
   ],
   "strategies": [
@@ -1986,9 +1986,6 @@
     }
   ],
   "logs": [
-    "2026-10-09 18:31:03 PT  INFO      Starting continuous live trader (v3.2.1). Ctrl+C to stop.",
-    "2026-10-09 18:31:04 PT  INFO      Market closed. Next open: 2026-10-12 06:30 AM PT (09:30 ET). Sleeping 59.0h until pre-fetch at 05:30 AM PT...",
-    "2026-10-09 18:31:23 PT  INFO      Starting continuous live trader (v3.2.1). Ctrl+C to stop.",
     "2026-10-09 18:31:23 PT  INFO      Market closed. Next open: 2026-10-12 06:30 AM PT (09:30 ET). Sleeping 59.0h until pre-fetch at 05:30 AM PT...",
     "2026-10-12 05:30:01 PT  INFO",
     "============================================================",
@@ -2105,6 +2102,9 @@
     "2026-10-12 07:10:46 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json",
     "2026-10-12 07:11:46 PT  WARNING     [STOP_LOSS] ALMR (SHORT) loss is -6.21% (exceeds -6.0%)! Cutting position immediately...",
     "2026-10-12 07:11:46 PT  INFO      [STOP_LOSS_TRIGGER] {'symbol': 'ALMR', 'strategy': 'GAP_TOP_SHORT', 'direction': 'SHORT', 'unrealized_loss_pct': -6.21, 'exit_price': 26.34, 'qty': 79.0, 'reason': 'Cut at market: loss of -6.21% exceeded stop threshold of -6.0%'}",
-    "2026-10-12 07:11:46 PT  INFO        [GAP_TOP_SHORT] BUY 79 ALMR -> order 420f7eed..."
+    "2026-10-12 07:11:46 PT  INFO        [GAP_TOP_SHORT] BUY 79 ALMR -> order 420f7eed...",
+    "2026-10-12 07:15:46 PT  INFO      Saved bot status to bot_status.json",
+    "2026-10-12 07:15:48 PT  INFO      Successfully pushed status to GitHub: esaltzherr/PortfolioWebsite/bot_status.json",
+    "2026-10-12 07:15:49 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json"
   ]
 }

@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-12 02:26:23 PM PT",
-  "timestamp_utc": "2026-10-12T21:26:23.758764Z",
+  "updated_at": "2026-10-12 02:26:40 PM PT",
+  "timestamp_utc": "2026-10-12T21:26:41.107692Z",
   "bot_version": "3.2.1-strat2",
   "account_id": "PA3EM0YADDLM",
   "account_label": "Portfolio 2: High-Volume Gap-Fade Short ($10k)",
@@ -52,6 +52,12 @@
     "2026-10-12 14:26:23 PT  INFO      ============================================================",
     "2026-10-12 14:26:23 PT  INFO       STARTING STRATEGY 2 BOT (3.2.1-strat2) - $10,000 CAPITAL",
     "2026-10-12 14:26:23 PT  INFO       Account: PA3EM0YADDLM | Equity: $10,000.00",
-    "2026-10-12 14:26:23 PT  INFO      ============================================================"
+    "2026-10-12 14:26:23 PT  INFO      ============================================================",
+    "2026-10-12 14:26:26 PT  INFO      Warming up pre-market data...",
+    "2026-10-12 14:26:26 PT  INFO      Executing Morning Short Allocation. Equity: $10,000.00 | Capital/pos: $1,000.00",
+    "2026-10-12 14:26:40 PT  INFO      ============================================================",
+    "2026-10-12 14:26:40 PT  INFO       STARTING STRATEGY 2 BOT (3.2.1-strat2) - $10,000 CAPITAL",
+    "2026-10-12 14:26:40 PT  INFO       Account: PA3EM0YADDLM | Equity: $10,000.00",
+    "2026-10-12 14:26:40 PT  INFO      ============================================================"
   ]
 }

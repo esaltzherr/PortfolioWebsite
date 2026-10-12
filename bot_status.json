@@ -2,20 +2,20 @@
   "is_paper_trading": true,
   "environment": "Alpaca Paper Trading Simulator (Virtual Currency - No Real Capital)",
   "timezone": "America/Los_Angeles (PT)",
-  "updated_at": "2026-10-12 11:01:41 AM PT",
-  "timestamp_iso": "2026-10-12T11:01:41.067474-07:00",
+  "updated_at": "2026-10-12 11:16:46 AM PT",
+  "timestamp_iso": "2026-10-12T11:16:46.408109-07:00",
   "market_status": "Market Open -- Simulated Paper Session Active (PT)",
   "is_open": true,
   "bot_status": "Paper Bot Active -- Monitoring Positions",
   "account": {
-    "portfolio_value": 98914.54,
+    "portfolio_value": 98904.81,
     "cash": 140429.52,
-    "buying_power": 328779.63,
+    "buying_power": 328751.79,
     "initial_capital": 100000.0,
-    "total_pnl": -1085.46,
-    "total_return_pct": -1.09,
-    "today_pnl": -1200.42,
-    "today_return_pct": -1.2
+    "total_pnl": -1095.19,
+    "total_return_pct": -1.1,
+    "today_pnl": -1210.15,
+    "today_return_pct": -1.21
   },
   "history": [
     {
@@ -41,10 +41,10 @@
     },
     {
       "date": "2026-10-12",
-      "equity": 98914.54,
-      "daily_pnl": -1200.42,
-      "daily_pct": -1.2,
-      "cumulative_pct": -1.09
+      "equity": 98904.81,
+      "daily_pnl": -1210.15,
+      "daily_pct": -1.21,
+      "cumulative_pct": -1.1
     }
   ],
   "strategies": [
@@ -1616,9 +1616,6 @@
     }
   ],
   "logs": [
-    "2026-10-12 06:32:15 PT  WARNING     [STOP_LOSS] FOA (LONG) loss is -6.50% (exceeds -6.0%)! Cutting position immediately...",
-    "2026-10-12 06:32:15 PT  INFO      [STOP_LOSS_TRIGGER] {'symbol': 'FOA', 'strategy': 'STOP_LOSS', 'direction': 'LONG', 'unrealized_loss_pct': -6.5, 'exit_price': 12.66, 'qty': 156.6744, 'reason': 'Cut at market: loss of -6.50% exceeded stop threshold of -6.0%'}",
-    "2026-10-12 06:32:15 PT  ERROR       [STOP_LOSS] Order failed for FOA: {\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"156.6744\",\"held_for_orders\":\"156.6744\",\"message\":\"insufficient qty available for order (requested: 156.6744, available: 0)\",\"related_orders\":[\"51f38076-c4ad-4512-b831-5ae168d8ff26\"],\"symbol\":\"FOA\"}",
     "2026-10-12 06:35:16 PT  INFO      Saved bot status to bot_status.json",
     "2026-10-12 06:35:17 PT  INFO      Successfully pushed status to GitHub: esaltzherr/PortfolioWebsite/bot_status.json",
     "2026-10-12 06:35:19 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json",
@@ -1735,6 +1732,9 @@
     "2026-10-12 10:31:35 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json",
     "2026-10-12 10:46:36 PT  INFO      Saved bot status to bot_status.json",
     "2026-10-12 10:46:38 PT  INFO      Successfully pushed status to GitHub: esaltzherr/PortfolioWebsite/bot_status.json",
-    "2026-10-12 10:46:39 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json"
+    "2026-10-12 10:46:39 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json",
+    "2026-10-12 11:01:41 PT  INFO      Saved bot status to bot_status.json",
+    "2026-10-12 11:01:43 PT  INFO      Successfully pushed status to GitHub: esaltzherr/PortfolioWebsite/bot_status.json",
+    "2026-10-12 11:01:45 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json"
   ]
 }

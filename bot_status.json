@@ -2,20 +2,20 @@
   "is_paper_trading": true,
   "environment": "Alpaca Paper Trading Simulator (Virtual Currency - No Real Capital)",
   "timezone": "America/Los_Angeles (PT)",
-  "updated_at": "2026-10-12 09:16:08 AM PT",
-  "timestamp_iso": "2026-10-12T09:16:08.623153-07:00",
+  "updated_at": "2026-10-12 09:31:13 AM PT",
+  "timestamp_iso": "2026-10-12T09:31:13.076423-07:00",
   "market_status": "Market Open -- Simulated Paper Session Active (PT)",
   "is_open": true,
   "bot_status": "Paper Bot Active -- Monitoring Positions",
   "account": {
-    "portfolio_value": 98867.19,
+    "portfolio_value": 98989.2,
     "cash": 140429.52,
-    "buying_power": 328587.68,
+    "buying_power": 329122.67,
     "initial_capital": 100000.0,
-    "total_pnl": -1132.81,
-    "total_return_pct": -1.13,
-    "today_pnl": -1247.77,
-    "today_return_pct": -1.25
+    "total_pnl": -1010.8,
+    "total_return_pct": -1.01,
+    "today_pnl": -1125.76,
+    "today_return_pct": -1.12
   },
   "history": [
     {
@@ -41,10 +41,10 @@
     },
     {
       "date": "2026-10-12",
-      "equity": 98867.19,
-      "daily_pnl": -1247.77,
-      "daily_pct": -1.25,
-      "cumulative_pct": -1.13
+      "equity": 98989.2,
+      "daily_pnl": -1125.76,
+      "daily_pct": -1.12,
+      "cumulative_pct": -1.01
     }
   ],
   "strategies": [
@@ -1616,9 +1616,6 @@
     }
   ],
   "logs": [
-    "2026-10-12 06:30:09 PT  INFO        [GAP_TOP_SHORT] SELL 60 SQQQ -> order 22516ad1...",
-    "2026-10-12 06:30:10 PT  INFO        [GAP_TOP_SHORT] SELL 5 AAPL -> order 38f9a321...",
-    "2026-10-12 06:30:10 PT  INFO        [GAP_TOP_SHORT] SELL 154 VIPS -> order 10ae10a2...",
     "2026-10-12 06:30:10 PT  INFO        [GAP_TOP_SHORT] SELL 99 NRC -> order 9c21f44a...",
     "2026-10-12 06:30:10 PT  INFO        [GAP_TOP_SHORT] SELL 77 HUBG -> order 9a461bef...",
     "2026-10-12 06:30:10 PT  INFO        [GAP_TOP_SHORT] SELL 3 VRTX -> order f9a3e205...",
@@ -1735,6 +1732,9 @@
     "2026-10-12 08:54:02 PT  INFO        [GAP_TOP_SHORT] BUY 2 FICO -> order d10a709e...",
     "2026-10-12 09:01:04 PT  INFO      Saved bot status to bot_status.json",
     "2026-10-12 09:01:06 PT  INFO      Successfully pushed status to GitHub: esaltzherr/PortfolioWebsite/bot_status.json",
-    "2026-10-12 09:01:07 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json"
+    "2026-10-12 09:01:07 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json",
+    "2026-10-12 09:16:09 PT  INFO      Saved bot status to bot_status.json",
+    "2026-10-12 09:16:10 PT  INFO      Successfully pushed status to GitHub: esaltzherr/PortfolioWebsite/bot_status.json",
+    "2026-10-12 09:16:12 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json"
   ]
 }

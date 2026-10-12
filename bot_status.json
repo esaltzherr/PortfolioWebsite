@@ -2,20 +2,20 @@
   "is_paper_trading": true,
   "environment": "Alpaca Paper Trading Simulator (Virtual Currency - No Real Capital)",
   "timezone": "America/Los_Angeles (PT)",
-  "updated_at": "2026-10-12 07:00:34 AM PT",
-  "timestamp_iso": "2026-10-12T07:00:34.422586-07:00",
+  "updated_at": "2026-10-12 07:05:38 AM PT",
+  "timestamp_iso": "2026-10-12T07:05:38.237708-07:00",
   "market_status": "Market Open -- Simulated Paper Session Active (PT)",
   "is_open": true,
   "bot_status": "Paper Bot Active -- Monitoring Positions",
   "account": {
-    "portfolio_value": 99208.55,
-    "cash": 96535.02,
-    "buying_power": 263858.45,
+    "portfolio_value": 99022.08,
+    "cash": 98475.24,
+    "buying_power": 265671.27,
     "initial_capital": 100000.0,
-    "total_pnl": -791.45,
-    "total_return_pct": -0.79,
-    "today_pnl": -906.41,
-    "today_return_pct": -0.91
+    "total_pnl": -977.92,
+    "total_return_pct": -0.98,
+    "today_pnl": -1092.88,
+    "today_return_pct": -1.09
   },
   "history": [
     {
@@ -41,10 +41,10 @@
     },
     {
       "date": "2026-10-12",
-      "equity": 99208.55,
-      "daily_pnl": -906.41,
-      "daily_pct": -0.91,
-      "cumulative_pct": -0.79
+      "equity": 99022.08,
+      "daily_pnl": -1092.88,
+      "daily_pct": -1.09,
+      "cumulative_pct": -0.98
     }
   ],
   "strategies": [
@@ -72,11 +72,11 @@
     }
   ],
   "stats": {
-    "total_trades": 56,
+    "total_trades": 57,
     "wins": 25,
-    "losses": 31,
-    "win_rate": "44.6%",
-    "profit_factor": 0.85
+    "losses": 32,
+    "win_rate": "43.9%",
+    "profit_factor": 0.73
   },
   "open_positions": [
     {
@@ -168,24 +168,6 @@
       "pnl_pct": null,
       "status": "OPEN",
       "created_at": "2026-10-12 13:30:07"
-    },
-    {
-      "id": 101,
-      "strategy": "GAP_BOTTOM_LONG",
-      "symbol": "CABO",
-      "direction": "LONG",
-      "session": "OPEN",
-      "open_date": "2026-10-12",
-      "open_price": 11.07,
-      "open_shares": 181.1592,
-      "open_value": 2005.432344,
-      "close_date": null,
-      "close_price": null,
-      "close_value": null,
-      "pnl_dollars": null,
-      "pnl_pct": null,
-      "status": "OPEN",
-      "created_at": "2026-10-12 13:30:06"
     },
     {
       "id": 100,
@@ -1415,6 +1397,23 @@
   "recent_trades": [
     {
       "date": "2026-10-12",
+      "symbol": "CABO",
+      "strategy": "GAP_BOTTOM_LONG",
+      "direction": "LONG",
+      "open_date": "2026-10-12 06:33",
+      "close_date": "2026-10-12 07:01",
+      "open_time": "06:33:09 AM PT",
+      "close_time": "07:01:12 AM PT",
+      "duration": "28m 3s",
+      "shares": 181.1592,
+      "open_price": 11.63,
+      "close_price": 10.71,
+      "pnl_dollars": -166.48,
+      "pnl_pct": -7.9,
+      "status": "CLOSED"
+    },
+    {
+      "date": "2026-10-12",
       "symbol": "COAG",
       "strategy": "GAP_TOP_SHORT",
       "direction": "SHORT",
@@ -1820,39 +1819,22 @@
       "pnl_dollars": 2.55,
       "pnl_pct": 0.06,
       "status": "CLOSED"
-    },
-    {
-      "date": "2026-10-06",
-      "symbol": "SYY",
-      "strategy": "GAP_BOTTOM_LONG",
-      "direction": "LONG",
-      "open_date": "2026-10-06 06:32",
-      "close_date": "2026-10-06 06:46",
-      "open_time": "06:32:40 AM PT",
-      "close_time": "06:46:02 AM PT",
-      "duration": "13m 21s",
-      "shares": 52.6052,
-      "open_price": 76.65,
-      "close_price": 76.76,
-      "pnl_dollars": 5.79,
-      "pnl_pct": 0.14,
-      "status": "CLOSED"
     }
   ],
   "strategy_summary": [
     {
       "strategy": "GAP_BOTTOM_LONG",
-      "total_trades": 29,
+      "total_trades": 30,
       "total_wins": 15,
-      "total_losses": 14,
-      "total_pnl": 871.47,
-      "avg_pnl_pct": 0.7641965517241379,
+      "total_losses": 15,
+      "total_pnl": 842.49,
+      "avg_pnl_pct": 0.6905466666666666,
       "best_trade": 469.5563,
       "worst_trade": -113.9576,
-      "total_deployed": 111346.9896095,
+      "total_deployed": 113352.4219535,
       "first_trade_date": "2026-10-05",
       "last_trade_date": "2026-10-12",
-      "win_rate_pct": 51.7
+      "win_rate_pct": 50.0
     },
     {
       "strategy": "GAP_TOP_SHORT",
@@ -2001,15 +1983,21 @@
       "exit_price": 31.9,
       "qty": 63.0,
       "reason": "Cut at market: loss of -6.33% exceeded stop threshold of -6.0%"
+    },
+    {
+      "timestamp": "2026-10-12T07:01:07.856625-07:00",
+      "time_str": "07:01:07 AM PT",
+      "event_type": "STOP_LOSS_TRIGGER",
+      "symbol": "CABO",
+      "strategy": "GAP_BOTTOM_LONG",
+      "direction": "LONG",
+      "unrealized_loss_pct": -6.18,
+      "exit_price": 10.91,
+      "qty": 181.1592,
+      "reason": "Cut at market: loss of -6.18% exceeded stop threshold of -6.0%"
     }
   ],
   "logs": [
-    "           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
-    "  File \"/home/lsaltzherr/bot/venv/lib/python3.12/site-packages/alpaca/common/rest.py\", line 131, in _request",
-    "    return self._one_request(method, url, opts, retry)",
-    "           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
-    "  File \"/home/lsaltzherr/bot/venv/lib/python3.12/site-packages/alpaca/common/rest.py\", line 207, in _one_request",
-    "    raise APIError(error, http_error)",
     "alpaca.common.exceptions.APIError: <html>",
     "<head><title>401 Authorization Required</title></head>",
     "<body>",
@@ -2123,6 +2111,12 @@
     "2026-10-12 06:50:30 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json",
     "2026-10-12 06:55:31 PT  INFO      Saved bot status to bot_status.json",
     "2026-10-12 06:55:32 PT  INFO      Successfully pushed status to GitHub: esaltzherr/PortfolioWebsite/bot_status.json",
-    "2026-10-12 06:55:34 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json"
+    "2026-10-12 06:55:34 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json",
+    "2026-10-12 07:00:34 PT  INFO      Saved bot status to bot_status.json",
+    "2026-10-12 07:00:36 PT  INFO      Successfully pushed status to GitHub: esaltzherr/PortfolioWebsite/bot_status.json",
+    "2026-10-12 07:00:37 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json",
+    "2026-10-12 07:01:07 PT  WARNING     [STOP_LOSS] CABO (LONG) loss is -6.18% (exceeds -6.0%)! Cutting position immediately...",
+    "2026-10-12 07:01:07 PT  INFO      [STOP_LOSS_TRIGGER] {'symbol': 'CABO', 'strategy': 'GAP_BOTTOM_LONG', 'direction': 'LONG', 'unrealized_loss_pct': -6.18, 'exit_price': 10.91, 'qty': 181.1592, 'reason': 'Cut at market: loss of -6.18% exceeded stop threshold of -6.0%'}",
+    "2026-10-12 07:01:07 PT  INFO        [GAP_BOTTOM_LONG] SELL 181.1592 CABO -> order d36486a3..."
   ]
 }

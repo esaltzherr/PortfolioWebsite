@@ -2,20 +2,20 @@
   "is_paper_trading": true,
   "environment": "Alpaca Paper Trading Simulator (Virtual Currency - No Real Capital)",
   "timezone": "America/Los_Angeles (PT)",
-  "updated_at": "2026-10-12 08:45:58 AM PT",
-  "timestamp_iso": "2026-10-12T08:45:58.697546-07:00",
+  "updated_at": "2026-10-12 09:01:03 AM PT",
+  "timestamp_iso": "2026-10-12T09:01:03.772408-07:00",
   "market_status": "Market Open -- Simulated Paper Session Active (PT)",
   "is_open": true,
   "bot_status": "Paper Bot Active -- Monitoring Positions",
   "account": {
-    "portfolio_value": 98873.34,
-    "cash": 141846.5,
-    "buying_power": 326910.71,
+    "portfolio_value": 98849.74,
+    "cash": 140429.52,
+    "buying_power": 328493.23,
     "initial_capital": 100000.0,
-    "total_pnl": -1126.66,
-    "total_return_pct": -1.13,
-    "today_pnl": -1241.62,
-    "today_return_pct": -1.24
+    "total_pnl": -1150.26,
+    "total_return_pct": -1.15,
+    "today_pnl": -1265.22,
+    "today_return_pct": -1.26
   },
   "history": [
     {
@@ -41,10 +41,10 @@
     },
     {
       "date": "2026-10-12",
-      "equity": 98873.34,
-      "daily_pnl": -1241.62,
-      "daily_pct": -1.24,
-      "cumulative_pct": -1.13
+      "equity": 98849.74,
+      "daily_pnl": -1265.22,
+      "daily_pct": -1.26,
+      "cumulative_pct": -1.15
     }
   ],
   "strategies": [
@@ -72,11 +72,11 @@
     }
   ],
   "stats": {
-    "total_trades": 81,
+    "total_trades": 82,
     "wins": 30,
-    "losses": 51,
-    "win_rate": "37.0%",
-    "profit_factor": 0.48
+    "losses": 52,
+    "win_rate": "36.6%",
+    "profit_factor": 0.46
   },
   "open_positions": [
     {
@@ -125,24 +125,6 @@
       "open_price": 6.19,
       "open_shares": 323.0,
       "open_value": 1999.3700000000001,
-      "close_date": null,
-      "close_price": null,
-      "close_value": null,
-      "pnl_dollars": null,
-      "pnl_pct": null,
-      "status": "OPEN",
-      "created_at": "2026-10-12 13:30:10"
-    },
-    {
-      "id": 128,
-      "strategy": "GAP_TOP_SHORT",
-      "symbol": "FICO",
-      "direction": "SHORT",
-      "session": "OPEN",
-      "open_date": "2026-10-12",
-      "open_price": 669.45,
-      "open_shares": 2.0,
-      "open_value": 1338.9,
       "close_date": null,
       "close_price": null,
       "close_value": null,
@@ -965,6 +947,23 @@
   "recent_trades": [
     {
       "date": "2026-10-12",
+      "symbol": "FICO",
+      "strategy": "GAP_TOP_SHORT",
+      "direction": "SHORT",
+      "open_date": "2026-10-12 06:33",
+      "close_date": "2026-10-12 08:54",
+      "open_time": "06:33:47 AM PT",
+      "close_time": "08:54:04 AM PT",
+      "duration": "2h 20m",
+      "shares": 2.0,
+      "open_price": 667.08,
+      "close_price": 708.49,
+      "pnl_dollars": -82.82,
+      "pnl_pct": -6.21,
+      "status": "CLOSED"
+    },
+    {
+      "date": "2026-10-12",
       "symbol": "RGTI",
       "strategy": "GAP_BOTTOM_LONG",
       "direction": "LONG",
@@ -1370,23 +1369,6 @@
       "pnl_dollars": -125.15,
       "pnl_pct": -6.28,
       "status": "CLOSED"
-    },
-    {
-      "date": "2026-10-12",
-      "symbol": "CABO",
-      "strategy": "GAP_BOTTOM_LONG",
-      "direction": "LONG",
-      "open_date": "2026-10-12 06:33",
-      "close_date": "2026-10-12 07:01",
-      "open_time": "06:33:09 AM PT",
-      "close_time": "07:01:12 AM PT",
-      "duration": "28m 3s",
-      "shares": 181.1592,
-      "open_price": 11.63,
-      "close_price": 10.71,
-      "pnl_dollars": -166.48,
-      "pnl_pct": -7.9,
-      "status": "CLOSED"
     }
   ],
   "strategy_summary": [
@@ -1406,17 +1388,17 @@
     },
     {
       "strategy": "GAP_TOP_SHORT",
-      "total_trades": 3,
+      "total_trades": 4,
       "total_wins": 1,
-      "total_losses": 2,
-      "total_pnl": 14.47,
-      "avg_pnl_pct": -0.1298666666666665,
+      "total_losses": 3,
+      "total_pnl": -62.53,
+      "avg_pnl_pct": -1.53515,
       "best_trade": 109.71,
       "worst_trade": -82.95,
-      "total_deployed": 6501.695,
+      "total_deployed": 7840.594999999999,
       "first_trade_date": "2026-10-07",
       "last_trade_date": "2026-10-12",
-      "win_rate_pct": 33.3
+      "win_rate_pct": 25.0
     },
     {
       "strategy": "INTRADAY_15M_SIGNAL_TOP_SHORT",
@@ -1619,15 +1601,21 @@
         "SOFI",
         "CMG"
       ]
+    },
+    {
+      "timestamp": "2026-10-12T08:54:02.919817-07:00",
+      "time_str": "08:54:02 AM PT",
+      "event_type": "STOP_LOSS_TRIGGER",
+      "symbol": "FICO",
+      "strategy": "GAP_TOP_SHORT",
+      "direction": "SHORT",
+      "unrealized_loss_pct": -6.13,
+      "exit_price": 707.95,
+      "qty": 2.0,
+      "reason": "Cut at market: loss of -6.13% exceeded stop threshold of -6.0%"
     }
   ],
   "logs": [
-    "2026-10-12 06:30:08 PT  INFO        [GAP_TOP_SHORT] SELL 312 SNAP -> order 937b0c0e...",
-    "2026-10-12 06:30:08 PT  INFO        [GAP_TOP_SHORT] SELL 22 MDT -> order 89cb6948...",
-    "2026-10-12 06:30:08 PT  INFO        [GAP_TOP_SHORT] SELL 81 BMNR -> order 9bb8afbb...",
-    "2026-10-12 06:30:09 PT  INFO        [GAP_TOP_SHORT] SELL 2 META -> order 37da8d61...",
-    "2026-10-12 06:30:09 PT  INFO        [GAP_TOP_SHORT] SELL 4 TSM -> order 99de43d6...",
-    "2026-10-12 06:30:09 PT  INFO        [GAP_TOP_SHORT] SELL 299 NTRB -> order 5fbdcbdc...",
     "2026-10-12 06:30:09 PT  INFO        [GAP_TOP_SHORT] SELL 14 ACLS -> order 94fc15de...",
     "2026-10-12 06:30:09 PT  INFO        [GAP_TOP_SHORT] SELL 106 BCE -> order 48f5f1a6...",
     "2026-10-12 06:30:09 PT  INFO        [GAP_TOP_SHORT] SELL 3 MSFT -> order 6e7214af...",
@@ -1741,6 +1729,12 @@
     "2026-10-12 08:15:51 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json",
     "2026-10-12 08:30:53 PT  INFO      Saved bot status to bot_status.json",
     "2026-10-12 08:30:54 PT  INFO      Successfully pushed status to GitHub: esaltzherr/PortfolioWebsite/bot_status.json",
-    "2026-10-12 08:30:57 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json"
+    "2026-10-12 08:30:57 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json",
+    "2026-10-12 08:45:59 PT  INFO      Saved bot status to bot_status.json",
+    "2026-10-12 08:46:00 PT  INFO      Successfully pushed status to GitHub: esaltzherr/PortfolioWebsite/bot_status.json",
+    "2026-10-12 08:46:02 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json",
+    "2026-10-12 08:54:02 PT  WARNING     [STOP_LOSS] FICO (SHORT) loss is -6.13% (exceeds -6.0%)! Cutting position immediately...",
+    "2026-10-12 08:54:02 PT  INFO      [STOP_LOSS_TRIGGER] {'symbol': 'FICO', 'strategy': 'GAP_TOP_SHORT', 'direction': 'SHORT', 'unrealized_loss_pct': -6.13, 'exit_price': 707.95, 'qty': 2.0, 'reason': 'Cut at market: loss of -6.13% exceeded stop threshold of -6.0%'}",
+    "2026-10-12 08:54:02 PT  INFO        [GAP_TOP_SHORT] BUY 2 FICO -> order d10a709e..."
   ]
 }

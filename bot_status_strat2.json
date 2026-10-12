@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-12 02:22:48 PM PT",
-  "timestamp_utc": "2026-10-12T21:22:49.333251Z",
+  "updated_at": "2026-10-12 02:26:23 PM PT",
+  "timestamp_utc": "2026-10-12T21:26:23.758764Z",
   "bot_version": "3.2.1-strat2",
   "account_id": "PA3EM0YADDLM",
   "account_label": "Portfolio 2: High-Volume Gap-Fade Short ($10k)",
@@ -49,6 +49,9 @@
     }
   ],
   "logs": [
-    "2026-10-12 14:22:49 PT  INFO      Strat 2 service standby. Waiting for market session at 05:30 AM PT."
+    "2026-10-12 14:26:23 PT  INFO      ============================================================",
+    "2026-10-12 14:26:23 PT  INFO       STARTING STRATEGY 2 BOT (3.2.1-strat2) - $10,000 CAPITAL",
+    "2026-10-12 14:26:23 PT  INFO       Account: PA3EM0YADDLM | Equity: $10,000.00",
+    "2026-10-12 14:26:23 PT  INFO      ============================================================"
   ]
 }

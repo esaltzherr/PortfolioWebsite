@@ -2,20 +2,20 @@
   "is_paper_trading": true,
   "environment": "Alpaca Paper Trading Simulator (Virtual Currency - No Real Capital)",
   "timezone": "America/Los_Angeles (PT)",
-  "updated_at": "2026-10-12 06:45:23 AM PT",
-  "timestamp_iso": "2026-10-12T06:45:23.647510-07:00",
+  "updated_at": "2026-10-12 06:50:27 AM PT",
+  "timestamp_iso": "2026-10-12T06:50:27.315806-07:00",
   "market_status": "Market Open -- Simulated Paper Session Active (PT)",
   "is_open": true,
   "bot_status": "Paper Bot Active -- Monitoring Positions",
   "account": {
-    "portfolio_value": 99515.41,
+    "portfolio_value": 99345.84,
     "cash": 96535.02,
-    "buying_power": 264645.13,
+    "buying_power": 264208.62,
     "initial_capital": 100000.0,
-    "total_pnl": -484.59,
-    "total_return_pct": -0.48,
-    "today_pnl": -599.55,
-    "today_return_pct": -0.6
+    "total_pnl": -654.16,
+    "total_return_pct": -0.65,
+    "today_pnl": -769.12,
+    "today_return_pct": -0.77
   },
   "history": [
     {
@@ -41,10 +41,10 @@
     },
     {
       "date": "2026-10-12",
-      "equity": 99515.41,
-      "daily_pnl": -599.55,
-      "daily_pct": -0.6,
-      "cumulative_pct": -0.48
+      "equity": 99345.84,
+      "daily_pnl": -769.12,
+      "daily_pct": -0.77,
+      "cumulative_pct": -0.65
     }
   ],
   "strategies": [
@@ -2004,9 +2004,6 @@
     }
   ],
   "logs": [
-    "            ^^^^^^^^^^^",
-    "  File \"/home/lsaltzherr/bot/live_trader.py\", line 127, in get_clock",
-    "    return trade_client.get_clock()",
     "           ^^^^^^^^^^^^^^^^^^^^^^^^",
     "  File \"/home/lsaltzherr/bot/venv/lib/python3.12/site-packages/alpaca/trading/client.py\", line 431, in get_clock",
     "    response = self.get(\"/clock\")",
@@ -2123,6 +2120,9 @@
     "2026-10-12 06:40:23 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json",
     "2026-10-12 06:42:23 PT  WARNING     [STOP_LOSS] COAG (SHORT) loss is -6.33% (exceeds -6.0%)! Cutting position immediately...",
     "2026-10-12 06:42:23 PT  INFO      [STOP_LOSS_TRIGGER] {'symbol': 'COAG', 'strategy': 'GAP_TOP_SHORT', 'direction': 'SHORT', 'unrealized_loss_pct': -6.33, 'exit_price': 31.9, 'qty': 63.0, 'reason': 'Cut at market: loss of -6.33% exceeded stop threshold of -6.0%'}",
-    "2026-10-12 06:42:23 PT  INFO        [GAP_TOP_SHORT] BUY 63 COAG -> order e079eafb..."
+    "2026-10-12 06:42:23 PT  INFO        [GAP_TOP_SHORT] BUY 63 COAG -> order e079eafb...",
+    "2026-10-12 06:45:24 PT  INFO      Saved bot status to bot_status.json",
+    "2026-10-12 06:45:25 PT  INFO      Successfully pushed status to GitHub: esaltzherr/PortfolioWebsite/bot_status.json",
+    "2026-10-12 06:45:26 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json"
   ]
 }

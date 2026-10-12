@@ -2,20 +2,20 @@
   "is_paper_trading": true,
   "environment": "Alpaca Paper Trading Simulator (Virtual Currency - No Real Capital)",
   "timezone": "America/Los_Angeles (PT)",
-  "updated_at": "2026-10-12 10:01:21 AM PT",
-  "timestamp_iso": "2026-10-12T10:01:21.858349-07:00",
+  "updated_at": "2026-10-12 10:16:26 AM PT",
+  "timestamp_iso": "2026-10-12T10:16:26.403728-07:00",
   "market_status": "Market Open -- Simulated Paper Session Active (PT)",
   "is_open": true,
   "bot_status": "Paper Bot Active -- Monitoring Positions",
   "account": {
-    "portfolio_value": 99028.92,
+    "portfolio_value": 98982.84,
     "cash": 140429.52,
-    "buying_power": 329309.44,
+    "buying_power": 329091.43,
     "initial_capital": 100000.0,
-    "total_pnl": -971.08,
-    "total_return_pct": -0.97,
-    "today_pnl": -1086.04,
-    "today_return_pct": -1.08
+    "total_pnl": -1017.16,
+    "total_return_pct": -1.02,
+    "today_pnl": -1132.12,
+    "today_return_pct": -1.13
   },
   "history": [
     {
@@ -41,10 +41,10 @@
     },
     {
       "date": "2026-10-12",
-      "equity": 99028.92,
-      "daily_pnl": -1086.04,
-      "daily_pct": -1.08,
-      "cumulative_pct": -0.97
+      "equity": 98982.84,
+      "daily_pnl": -1132.12,
+      "daily_pct": -1.13,
+      "cumulative_pct": -1.02
     }
   ],
   "strategies": [
@@ -1616,9 +1616,6 @@
     }
   ],
   "logs": [
-    "2026-10-12 06:30:10 PT  INFO        [GAP_TOP_SHORT] SELL 2 FICO -> order 2452510e...",
-    "2026-10-12 06:30:10 PT  INFO        [GAP_TOP_SHORT] SELL 323 INGN -> order 2c2936ef...",
-    "2026-10-12 06:30:10 PT  INFO        [GAP_TOP_SHORT] SELL 63 TOST -> order f043d727...",
     "2026-10-12 06:30:11 PT  INFO        [GAP_TOP_SHORT] SELL 63 COAG -> order 694d882d...",
     "2026-10-12 06:30:11 PT  INFO        [GAP_TOP_SHORT] SELL 32 UL -> order f5cd8fd8...",
     "2026-10-12 06:30:11 PT  INFO      Saved bot status to bot_status.json",
@@ -1735,6 +1732,9 @@
     "2026-10-12 09:31:16 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json",
     "2026-10-12 09:46:18 PT  INFO      Saved bot status to bot_status.json",
     "2026-10-12 09:46:19 PT  INFO      Successfully pushed status to GitHub: esaltzherr/PortfolioWebsite/bot_status.json",
-    "2026-10-12 09:46:20 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json"
+    "2026-10-12 09:46:20 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json",
+    "2026-10-12 10:01:22 PT  INFO      Saved bot status to bot_status.json",
+    "2026-10-12 10:01:23 PT  INFO      Successfully pushed status to GitHub: esaltzherr/PortfolioWebsite/bot_status.json",
+    "2026-10-12 10:01:25 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json"
   ]
 }

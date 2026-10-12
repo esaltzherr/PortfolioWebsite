@@ -2,20 +2,20 @@
   "is_paper_trading": true,
   "environment": "Alpaca Paper Trading Simulator (Virtual Currency - No Real Capital)",
   "timezone": "America/Los_Angeles (PT)",
-  "updated_at": "2026-10-12 08:00:42 AM PT",
-  "timestamp_iso": "2026-10-12T08:00:42.588397-07:00",
+  "updated_at": "2026-10-12 08:15:48 AM PT",
+  "timestamp_iso": "2026-10-12T08:15:48.329670-07:00",
   "market_status": "Market Open -- Simulated Paper Session Active (PT)",
   "is_open": true,
   "bot_status": "Paper Bot Active -- Monitoring Positions",
   "account": {
-    "portfolio_value": 98961.17,
+    "portfolio_value": 98935.31,
     "cash": 141846.5,
-    "buying_power": 327301.49,
+    "buying_power": 327188.66,
     "initial_capital": 100000.0,
-    "total_pnl": -1038.83,
-    "total_return_pct": -1.04,
-    "today_pnl": -1153.79,
-    "today_return_pct": -1.15
+    "total_pnl": -1064.69,
+    "total_return_pct": -1.06,
+    "today_pnl": -1179.65,
+    "today_return_pct": -1.18
   },
   "history": [
     {
@@ -41,10 +41,10 @@
     },
     {
       "date": "2026-10-12",
-      "equity": 98961.17,
-      "daily_pnl": -1153.79,
-      "daily_pct": -1.15,
-      "cumulative_pct": -1.04
+      "equity": 98935.31,
+      "daily_pnl": -1179.65,
+      "daily_pct": -1.18,
+      "cumulative_pct": -1.06
     }
   ],
   "strategies": [
@@ -1622,9 +1622,6 @@
     }
   ],
   "logs": [
-    "2026-10-12 06:30:07 PT  INFO        [GAP_BOTTOM_LONG] BUY 8.79 NVDA -> order d009df96...",
-    "2026-10-12 06:30:07 PT  INFO        [GAP_BOTTOM_LONG] BUY 157.9703 SHOE -> order 7588d032...",
-    "2026-10-12 06:30:07 PT  INFO        [GAP_BOTTOM_LONG] BUY 78.1845 AVLN -> order 37fcf830...",
     "2026-10-12 06:30:07 PT  INFO        [GAP_BOTTOM_LONG] BUY 66.7032 HPQ -> order e16b5355...",
     "2026-10-12 06:30:07 PT  INFO        [GAP_BOTTOM_LONG] BUY 34.3278 TAYD -> order c9c53fbd...",
     "2026-10-12 06:30:08 PT  INFO        [GAP_BOTTOM_LONG] BUY 156.6744 FOA -> order f819b6e4...",
@@ -1741,6 +1738,9 @@
     "2026-10-12 07:30:36 PT  INFO      Longs closed. Holding short positions until 12:50 PM PT (15:50 ET) with active stop loss...",
     "2026-10-12 07:45:38 PT  INFO      Saved bot status to bot_status.json",
     "2026-10-12 07:45:39 PT  INFO      Successfully pushed status to GitHub: esaltzherr/PortfolioWebsite/bot_status.json",
-    "2026-10-12 07:45:41 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json"
+    "2026-10-12 07:45:41 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json",
+    "2026-10-12 08:00:43 PT  INFO      Saved bot status to bot_status.json",
+    "2026-10-12 08:00:45 PT  INFO      Successfully pushed status to GitHub: esaltzherr/PortfolioWebsite/bot_status.json",
+    "2026-10-12 08:00:47 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json"
   ]
 }

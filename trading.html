@@ -1440,7 +1440,7 @@
 
       // Account
       const acc = data.account || {};
-      const startingEq = acc.starting_equity || (currentAccount === 'account3' ? 1000000.00 : (currentAccount === 'account2' ? 10000.00 : 100000.00));
+      const startingEq = acc.starting_equity || acc.initial_capital || (currentAccount === 'account3' ? 1000000.00 : (currentAccount === 'account2' ? 10000.00 : 100000.00));
       const portfolioVal = acc.portfolio_value || startingEq;
       const totalPnl = acc.total_pnl !== undefined ? acc.total_pnl : (portfolioVal - startingEq);
       const totalRet = acc.total_return_pct !== undefined ? acc.total_return_pct : ((totalPnl / startingEq) * 100).toFixed(2);

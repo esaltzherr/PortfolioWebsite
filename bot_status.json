@@ -2,20 +2,20 @@
   "is_paper_trading": true,
   "environment": "Alpaca Paper Trading Simulator (Virtual Currency - No Real Capital)",
   "timezone": "America/Los_Angeles (PT)",
-  "updated_at": "2026-10-12 10:31:31 AM PT",
-  "timestamp_iso": "2026-10-12T10:31:31.489115-07:00",
+  "updated_at": "2026-10-12 10:46:36 AM PT",
+  "timestamp_iso": "2026-10-12T10:46:36.360322-07:00",
   "market_status": "Market Open -- Simulated Paper Session Active (PT)",
   "is_open": true,
   "bot_status": "Paper Bot Active -- Monitoring Positions",
   "account": {
-    "portfolio_value": 98984.12,
+    "portfolio_value": 98969.81,
     "cash": 140429.52,
-    "buying_power": 329105.18,
+    "buying_power": 329032.2,
     "initial_capital": 100000.0,
-    "total_pnl": -1015.88,
-    "total_return_pct": -1.02,
-    "today_pnl": -1130.84,
-    "today_return_pct": -1.13
+    "total_pnl": -1030.19,
+    "total_return_pct": -1.03,
+    "today_pnl": -1145.15,
+    "today_return_pct": -1.14
   },
   "history": [
     {
@@ -41,10 +41,10 @@
     },
     {
       "date": "2026-10-12",
-      "equity": 98984.12,
-      "daily_pnl": -1130.84,
-      "daily_pct": -1.13,
-      "cumulative_pct": -1.02
+      "equity": 98969.81,
+      "daily_pnl": -1145.15,
+      "daily_pct": -1.14,
+      "cumulative_pct": -1.03
     }
   ],
   "strategies": [
@@ -1616,9 +1616,6 @@
     }
   ],
   "logs": [
-    "2026-10-12 06:30:13 PT  INFO      Successfully pushed status to GitHub: esaltzherr/PortfolioWebsite/bot_status.json",
-    "2026-10-12 06:30:15 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json",
-    "2026-10-12 06:30:15 PT  INFO      Positions entered. Monitoring active stop-losses until 07:30 AM PT (1-hour bounce exit)...",
     "2026-10-12 06:31:45 PT  WARNING     [STOP_LOSS] FOA (LONG) loss is -6.50% (exceeds -6.0%)! Cutting position immediately...",
     "2026-10-12 06:31:45 PT  INFO      [STOP_LOSS_TRIGGER] {'symbol': 'FOA', 'strategy': 'GAP_BOTTOM_LONG', 'direction': 'LONG', 'unrealized_loss_pct': -6.5, 'exit_price': 12.66, 'qty': 156.6744, 'reason': 'Cut at market: loss of -6.50% exceeded stop threshold of -6.0%'}",
     "2026-10-12 06:31:45 PT  INFO        [GAP_BOTTOM_LONG] SELL 156.6744 FOA -> order 51f38076...",
@@ -1735,6 +1732,9 @@
     "2026-10-12 10:01:25 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json",
     "2026-10-12 10:16:26 PT  INFO      Saved bot status to bot_status.json",
     "2026-10-12 10:16:28 PT  INFO      Successfully pushed status to GitHub: esaltzherr/PortfolioWebsite/bot_status.json",
-    "2026-10-12 10:16:30 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json"
+    "2026-10-12 10:16:30 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json",
+    "2026-10-12 10:31:32 PT  INFO      Saved bot status to bot_status.json",
+    "2026-10-12 10:31:33 PT  INFO      Successfully pushed status to GitHub: esaltzherr/PortfolioWebsite/bot_status.json",
+    "2026-10-12 10:31:35 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json"
   ]
 }

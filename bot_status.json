@@ -2,11 +2,11 @@
   "is_paper_trading": true,
   "environment": "Alpaca Paper Trading Simulator (Virtual Currency - No Real Capital)",
   "timezone": "America/Los_Angeles (PT)",
-  "updated_at": "2026-10-12 12:59:07 PM PT",
-  "timestamp_iso": "2026-10-12T12:59:07.612685-07:00",
-  "market_status": "Market Open -- Simulated Paper Session Active (PT)",
-  "is_open": true,
-  "bot_status": "Paper Bot Active -- Monitoring Positions",
+  "updated_at": "2026-10-12 01:00:10 PM PT",
+  "timestamp_iso": "2026-10-12T13:00:10.901468-07:00",
+  "market_status": "Market Closed (Next Open: 2026-10-13 06:30 AM PT)",
+  "is_open": false,
+  "bot_status": "Paper Bot Active -- Standby (Next Open: 2026-10-13 06:30 AM PT)",
   "account": {
     "portfolio_value": 98869.8,
     "cash": 98869.8,
@@ -1469,7 +1469,6 @@
     }
   ],
   "logs": [
-    "2026-10-12 07:30:27 PT  INFO        [GAP_BOTTOM_LONG] SELL 10.1954 BELFA -> order ca909a52...",
     "2026-10-12 07:30:27 PT  INFO        [GAP_BOTTOM_LONG] SELL 7.172 RCL -> order 70d79694...",
     "2026-10-12 07:30:27 PT  INFO        [GAP_BOTTOM_LONG] SELL 85.3376 KGC -> order 8e622b29...",
     "2026-10-12 07:30:27 PT  INFO        [GAP_BOTTOM_LONG] SELL 5.2918 TSLA -> order b0e98f80...",
@@ -1588,6 +1587,7 @@
     "2026-10-12 12:50:37 PT  INFO      Saved bot status to bot_status.json",
     "2026-10-12 12:50:39 PT  INFO      Successfully pushed status to GitHub: esaltzherr/PortfolioWebsite/bot_status.json",
     "2026-10-12 12:50:41 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json",
-    "2026-10-12 12:50:41 PT  INFO      Waiting 9.3 min until 01:00 PM PT (16:00 ET) [OFFICIAL MARKET CLOSE (01:00 PM PT)]"
+    "2026-10-12 12:50:41 PT  INFO      Waiting 9.3 min until 01:00 PM PT (16:00 ET) [OFFICIAL MARKET CLOSE (01:00 PM PT)]",
+    "2026-10-12 13:00:00 PT  INFO      Market closed. Next open: 2026-10-13 06:30 AM PT (09:30 ET). Sleeping 16.5h until pre-fetch at 05:30 AM PT..."
   ]
 }

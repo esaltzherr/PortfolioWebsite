@@ -414,6 +414,16 @@
       font-weight: 600;
     }
 
+    .badge-purple {
+      background: rgba(168, 85, 247, 0.15);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.74rem;
+      font-weight: 600;
+    }
+
     .badge-saved {
       background: rgba(16, 185, 129, 0.18);
       color: #10b981;
@@ -580,7 +590,7 @@
     /* Account Navigation Tabs */
     .account-tabs-wrapper {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 16px;
       margin-bottom: 20px;
     }
@@ -620,6 +630,12 @@
       box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
     }
 
+    .account-tab-btn.active.tab-strat3 {
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(17, 23, 38, 0.98) 100%);
+      border: 1.5px solid #a855f7;
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.25);
+    }
+
     .tab-header-line {
       display: flex;
       align-items: center;
@@ -654,6 +670,12 @@
       background: rgba(56, 189, 248, 0.2);
       color: var(--blue);
       border-color: rgba(56, 189, 248, 0.4);
+    }
+
+    .account-tab-btn.active.tab-strat3 .tab-pill {
+      background: rgba(168, 85, 247, 0.2);
+      color: #c084fc;
+      border-color: rgba(168, 85, 247, 0.4);
     }
 
     .tab-desc {
@@ -730,6 +752,17 @@
           <div class="tab-desc">15M Runner Fade (06:45 PT) + 30M ORB Trend (07:00 PT) • Dynamic Profit Lock</div>
         </div>
         <div class="tab-equity mono" id="tab2EquityDisplay">$10,000.00</div>
+      </button>
+
+      <button class="account-tab-btn tab-strat3" id="tabAccount3" onclick="switchAccount('account3')">
+        <div>
+          <div class="tab-header-line">
+            <span class="tab-title">Portfolio 3: The Everything Strat</span>
+            <span class="tab-pill">New Live Paper • $1M Base</span>
+          </div>
+          <div class="tab-desc">4 Alpha Engines (Super Momentum, Panic Bounce, Micro-Burst, Parabolic Fade)</div>
+        </div>
+        <div class="tab-equity mono" id="tab3EquityDisplay">$1,000,000.00</div>
       </button>
     </div>
 
@@ -971,6 +1004,173 @@
       </div>
     </div>
 
+    <!-- Daily Strategy Recap for Portfolio 3 -->
+    <div class="strategy-grid" id="stratGridAccount3" style="display: none;">
+      <!-- SUPER_MOMENTUM_RUNNER Recap -->
+      <div class="strategy-card">
+        <div class="strategy-header">
+          <div>
+            <div style="font-weight: 800; font-size: 1.05rem; color: #a855f7; display: flex; align-items: center; gap: 8px;">
+              <span>🚀</span> SUPER_MOMENTUM_RUNNER
+            </div>
+            <div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 2px;">
+              Mega-Trend Continuation (06:35 AM PT • 5-Day Hold / Dynamic Ratchet)
+            </div>
+          </div>
+          <span class="badge-purple" id="strat3MomBadge">STANDBY</span>
+        </div>
+        <div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Allocated Capital:</span>
+            <span class="mono" style="font-weight: 600;">$250,000.00 (5 Positions @ $50,000)</span>
+          </div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Trigger Rule:</span>
+            <span class="mono" style="color: #ffffff; font-size: 0.8rem;">20-Day Return &ge; +25% to +30% &amp; Daily Green</span>
+          </div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Empirical Edge:</span>
+            <span class="mono val-positive" style="font-weight: 700;">72.6% Probability of +5% to +10% Extension</span>
+          </div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Profit Ratchet:</span>
+            <span class="mono val-positive" style="font-size: 0.78rem; font-weight: 600;">+2% Lock BE • +5% Lock +2.5% • +10% Trail (2.0%)</span>
+          </div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Risk & Max Loss:</span>
+            <span class="mono" style="color: #f59e0b; font-size: 0.8rem;">Hard -4.0% Stop</span>
+          </div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Backtest Performance:</span>
+            <span class="mono" style="color: #10b981; font-weight: 700;">8.60 Profit Factor • +2.82% Expected Value</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CAPITULATION_PANIC_BOUNCE Recap -->
+      <div class="strategy-card">
+        <div class="strategy-header">
+          <div>
+            <div style="font-weight: 800; font-size: 1.05rem; color: #10b981; display: flex; align-items: center; gap: 8px;">
+              <span>🌱</span> CAPITULATION_PANIC_BOUNCE
+            </div>
+            <div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 2px;">
+              Oversold Washout Harvest (06:40 AM PT • Mean Reversion Rebound)
+            </div>
+          </div>
+          <span class="badge-purple" id="strat3BounceBadge">STANDBY</span>
+        </div>
+        <div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Allocated Capital:</span>
+            <span class="mono" style="font-weight: 600;">$250,000.00 (5 Positions @ $50,000)</span>
+          </div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Trigger Rule:</span>
+            <span class="mono" style="color: #ffffff; font-size: 0.8rem;">1-to-3 Day Panic Flush (&le; -5.0% to -12.0%)</span>
+          </div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Empirical Edge:</span>
+            <span class="mono val-positive" style="font-weight: 700;">61.2% Win Rate • 7.63 Profit Factor</span>
+          </div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Profit Ratchet:</span>
+            <span class="mono val-positive" style="font-size: 0.78rem; font-weight: 600;">+1.5% Lock BE • +3.0% Lock +1.5% • +5.0% Trail (1.5%)</span>
+          </div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Risk & Max Loss:</span>
+            <span class="mono" style="color: #f59e0b; font-size: 0.8rem;">Hard -3.5% Stop</span>
+          </div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Backtest Performance:</span>
+            <span class="mono" style="color: #10b981; font-weight: 700;">+1.98% Average EV per Trade (N=8,872)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- INTRADAY_MICRO_BURST_RATCHET Recap -->
+      <div class="strategy-card">
+        <div class="strategy-header">
+          <div>
+            <div style="font-weight: 800; font-size: 1.05rem; color: #38bdf8; display: flex; align-items: center; gap: 8px;">
+              <span>⚡</span> INTRADAY_MICRO_BURST_RATCHET
+            </div>
+            <div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 2px;">
+              5-Minute Rapid Momentum Surge (06:50 AM PT • 1-Hr Hold)
+            </div>
+          </div>
+          <span class="badge-purple" id="strat3BurstBadge">STANDBY</span>
+        </div>
+        <div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Allocated Capital:</span>
+            <span class="mono" style="font-weight: 600;">$250,000.00 (5 Positions @ $50,000)</span>
+          </div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Trigger Rule:</span>
+            <span class="mono" style="color: #ffffff; font-size: 0.8rem;">5-Min Surge &ge; +1.5% on Heavy Volume Spike</span>
+          </div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Empirical Edge:</span>
+            <span class="mono val-positive" style="font-weight: 700;">10.74 Profit Factor • 59.2% Win Rate</span>
+          </div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Profit Ratchet:</span>
+            <span class="mono val-positive" style="font-size: 0.78rem; font-weight: 600;">+0.6% Lock BE • +1.2% Lock +0.6% • +2.5% Trail (0.8%)</span>
+          </div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Risk & Max Loss:</span>
+            <span class="mono" style="color: #f59e0b; font-size: 0.8rem;">Hard -1.5% Stop • 60-min Scheduled Time Exit</span>
+          </div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Backtest Performance:</span>
+            <span class="mono" style="color: #10b981; font-weight: 700;">+1.07% Average Gain per Burst (N=22,633)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PARABOLIC_BLOWOFF_FADE Recap -->
+      <div class="strategy-card">
+        <div class="strategy-header">
+          <div>
+            <div style="font-weight: 800; font-size: 1.05rem; color: #fb7185; display: flex; align-items: center; gap: 8px;">
+              <span>📉</span> PARABOLIC_BLOWOFF_FADE
+            </div>
+            <div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 2px;">
+              Exhaustion Blowoff Short (07:05 AM PT • EOD Liquidation)
+            </div>
+          </div>
+          <span class="badge-purple" id="strat3FadeBadge">STANDBY</span>
+        </div>
+        <div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Allocated Capital:</span>
+            <span class="mono" style="font-weight: 600;">$250,000.00 (5 Positions @ $50,000 • Short)</span>
+          </div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Trigger Rule:</span>
+            <span class="mono" style="color: #ffffff; font-size: 0.8rem;">1-Day Surge &ge; +15% or 5-Day &ge; +30% Parabolic</span>
+          </div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Empirical Edge:</span>
+            <span class="mono val-positive" style="font-weight: 700;">7.40 Profit Factor • 60.8% Win Rate</span>
+          </div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Profit Ratchet:</span>
+            <span class="mono val-positive" style="font-size: 0.78rem; font-weight: 600;">+1.0% Lock BE • +2.5% Lock +1.2% • +5.0% Trail (1.5%)</span>
+          </div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Risk & Max Loss:</span>
+            <span class="mono" style="color: #f59e0b; font-size: 0.8rem;">Hard -3.5% Stop • 12:50 PM PT EOD Liquidation</span>
+          </div>
+          <div class="stat-row">
+            <span style="color: var(--text-muted);">Backtest Performance:</span>
+            <span class="mono" style="color: #10b981; font-weight: 700;">Violent Distribution Crash Capture</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Interactive Performance Chart -->
     <div class="table-card" style="padding: 20px; margin-bottom: 24px;">
       <div class="section-title-bar" style="margin-bottom: 12px;">
@@ -1173,14 +1373,11 @@
 
       const t1 = document.getElementById('tabAccount1');
       const t2 = document.getElementById('tabAccount2');
+      const t3 = document.getElementById('tabAccount3');
 
-      if (acc === 'account1') {
-        t1.className = 'account-tab-btn active';
-        t2.className = 'account-tab-btn tab-strat2';
-      } else {
-        t1.className = 'account-tab-btn';
-        t2.className = 'account-tab-btn tab-strat2 active';
-      }
+      if (t1) t1.className = 'account-tab-btn' + (acc === 'account1' ? ' active' : '');
+      if (t2) t2.className = 'account-tab-btn tab-strat2' + (acc === 'account2' ? ' active' : '');
+      if (t3) t3.className = 'account-tab-btn tab-strat3' + (acc === 'account3' ? ' active' : '');
 
       await fetchStatus(true);
     }
@@ -1203,6 +1400,15 @@
           document.getElementById('tab2EquityDisplay').innerText = `$${val2.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
         }
       } catch (e) {}
+
+      try {
+        const r3 = await fetch(`bot_status_strat3.json?t=${Date.now()}`);
+        if (r3.ok) {
+          const d3 = await r3.json();
+          const val3 = d3.account?.portfolio_value || 1000000.00;
+          document.getElementById('tab3EquityDisplay').innerText = `$${val3.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        }
+      } catch (e) {}
     }
 
     // Data Fetching
@@ -1210,7 +1416,9 @@
       const btn = document.getElementById('refreshBtn');
       if (isManual) btn.innerText = '⏳ Loading...';
 
-      const file = (currentAccount === 'account2') ? 'bot_status_strat2.json' : 'bot_status.json';
+      let file = 'bot_status.json';
+      if (currentAccount === 'account2') file = 'bot_status_strat2.json';
+      else if (currentAccount === 'account3') file = 'bot_status_strat3.json';
 
       try {
         const res = await fetch(`${file}?t=${Date.now()}`);
@@ -1232,7 +1440,7 @@
 
       // Account
       const acc = data.account || {};
-      const startingEq = acc.starting_equity || (currentAccount === 'account2' ? 10000.00 : 100000.00);
+      const startingEq = acc.starting_equity || (currentAccount === 'account3' ? 1000000.00 : (currentAccount === 'account2' ? 10000.00 : 100000.00));
       const portfolioVal = acc.portfolio_value || startingEq;
       const totalPnl = acc.total_pnl !== undefined ? acc.total_pnl : (portfolioVal - startingEq);
       const totalRet = acc.total_return_pct !== undefined ? acc.total_return_pct : ((totalPnl / startingEq) * 100).toFixed(2);
@@ -1260,11 +1468,22 @@
       // Toggle Strategy Recaps & Banner
       const grid1 = document.getElementById('stratGridAccount1');
       const grid2 = document.getElementById('stratGridAccount2');
+      const grid3 = document.getElementById('stratGridAccount3');
       const subCard = document.querySelector('#valPositionsCount + .card-sub');
 
-      if (currentAccount === 'account2') {
+      if (currentAccount === 'account3') {
+        if (grid1) grid1.style.display = 'none';
+        if (grid2) grid2.style.display = 'none';
+        if (grid3) grid3.style.display = 'grid';
+        document.getElementById('botBannerTitle').innerText = "Portfolio 3: The Everything Strat ($1,000,000 Institutional Capital)";
+        document.getElementById('botBannerSub').innerText = "4 Diversified Alpha Engines (Super Momentum, Capitulation Bounce, Micro-Burst, Parabolic Fade) with dynamic profit ratchets.";
+        const vmT = document.getElementById('vmTerminalTitle');
+        if (vmT) vmT.innerText = "GCP VM Terminal Feed (stocksbot-strat3.service • Account PA33UNIQCZOZ)";
+        if (subCard) subCard.innerHTML = '<span class="badge-long">15 Long Engines</span> <span class="badge-short">5 Fade Shorts</span>';
+      } else if (currentAccount === 'account2') {
         if (grid1) grid1.style.display = 'none';
         if (grid2) grid2.style.display = 'grid';
+        if (grid3) grid3.style.display = 'none';
         document.getElementById('botBannerTitle').innerText = "Portfolio 2: Dual Trailing Ratchets ($10,000 Capital)";
         document.getElementById('botBannerSub').innerText = "15M Runner Fade (06:45 PT) + 30M ORB Trend (07:00 PT) • Dynamic Profit Ratchet & Breakeven Lock.";
         const vmT = document.getElementById('vmTerminalTitle');
@@ -1273,6 +1492,7 @@
       } else {
         if (grid1) grid1.style.display = 'grid';
         if (grid2) grid2.style.display = 'none';
+        if (grid3) grid3.style.display = 'none';
         document.getElementById('botBannerTitle').innerText = "Portfolio 1: 24/7 Cloud Trading Active on GCP VM ($100k Base)";
         document.getElementById('botBannerSub').innerText = "Guaranteed 50 Orders (25 Longs + 25 Shorts) executed daily at 06:30 AM PT.";
         const vmT = document.getElementById('vmTerminalTitle');
@@ -1330,14 +1550,20 @@
         return (p.direction || p.side || '').toUpperCase() === currentFilter;
       });
 
-      const targetDefault = (currentAccount === 'account2') ? '10 Targets' : '50 Targets';
+      let targetDefault = '50 Targets';
+      if (currentAccount === 'account3') targetDefault = '20 Targets (4 Engines)';
+      else if (currentAccount === 'account2') targetDefault = '10 Targets';
+
       document.getElementById('posCountHeader').innerText = positions.length;
       document.getElementById('valPositionsCount').innerText = `${positions.length > 0 ? positions.length + ' Active' : targetDefault}`;
 
       if (filtered.length === 0) {
-        const emptyMsg = (currentAccount === 'account2')
-          ? 'No positions open currently. Bot executes 15M Runner Fades at 06:45 AM PT and 30M ORB Trends at 07:00 AM PT.'
-          : 'No positions open currently. Bot re-allocates 50 positions (25 Longs + 25 Shorts) at 06:30 AM PT.';
+        let emptyMsg = 'No positions open currently. Bot re-allocates 50 positions (25 Longs + 25 Shorts) at 06:30 AM PT.';
+        if (currentAccount === 'account3') {
+          emptyMsg = 'No positions open currently. Portfolio 3 executes 4 Engines: Super Momentum (06:35 PT), Capitulation Bounce (06:40 PT), Micro-Burst (06:50 PT), and Parabolic Fade (07:05 PT).';
+        } else if (currentAccount === 'account2') {
+          emptyMsg = 'No positions open currently. Bot executes 15M Runner Fades at 06:45 AM PT and 30M ORB Trends at 07:00 AM PT.';
+        }
         tbody.innerHTML = `
           <tr>
             <td colspan="7" style="text-align: center; color: var(--text-dim); padding: 32px;">
@@ -1536,19 +1762,22 @@
       const ctx = document.getElementById('equityChart').getContext('2d');
       if (chartInstance) chartInstance.destroy();
 
+      const isStrat3 = (currentAccount === 'account3');
       const isStrat2 = (currentAccount === 'account2');
 
-      // Account 1 vs Account 2 baseline
-      const baseMap = isStrat2
-        ? { '2026-10-12': 10000.00 }
-        : {
-            '2026-10-02': 100192.33,
-            '2026-10-06': 100243.98,
-            '2026-10-07': 100114.96,
-            '2026-10-08': 100114.79,
-            '2026-10-09': 100114.79,
-            '2026-10-12': 98869.80
-          };
+      // Baseline maps
+      const baseMap = isStrat3
+        ? { '2026-10-12': 1000000.00 }
+        : (isStrat2
+            ? { '2026-10-12': 10000.00 }
+            : {
+                '2026-10-02': 100192.33,
+                '2026-10-06': 100243.98,
+                '2026-10-07': 100114.96,
+                '2026-10-08': 100114.79,
+                '2026-10-09': 100114.79,
+                '2026-10-12': 98869.80
+              });
 
       if (history && Array.isArray(history)) {
         history.forEach(h => {
@@ -1574,8 +1803,8 @@
       const dataPoints = allDates.map(d => baseMap[d]);
 
       const gradient = ctx.createLinearGradient(0, 0, 0, 260);
-      const lineColor = isStrat2 ? '#38bdf8' : '#10b981';
-      const glowColor = isStrat2 ? 'rgba(56, 189, 248, 0.35)' : 'rgba(16, 185, 129, 0.35)';
+      const lineColor = isStrat3 ? '#a855f7' : (isStrat2 ? '#38bdf8' : '#10b981');
+      const glowColor = isStrat3 ? 'rgba(168, 85, 247, 0.35)' : (isStrat2 ? 'rgba(56, 189, 248, 0.35)' : 'rgba(16, 185, 129, 0.35)');
 
       gradient.addColorStop(0, glowColor);
       gradient.addColorStop(1, 'rgba(0, 0, 0, 0.0)');
@@ -1585,7 +1814,7 @@
         data: {
           labels: labels,
           datasets: [{
-            label: isStrat2 ? 'Portfolio 2 Equity ($10k Base)' : 'Portfolio 1 Equity ($100k Base)',
+            label: isStrat3 ? 'Portfolio 3 Equity ($1M Base)' : (isStrat2 ? 'Portfolio 2 Equity ($10k Base)' : 'Portfolio 1 Equity ($100k Base)'),
             data: dataPoints,
             borderColor: lineColor,
             borderWidth: 2.5,
@@ -1627,6 +1856,11 @@
     }
 
     function getFallbackHistory(acc) {
+      if (acc === 'account3') {
+        return [
+          { date: 'Oct 12', equity: 1000000.00 }
+        ];
+      }
       if (acc === 'account2') {
         return [
           { date: 'Oct 12', equity: 10000.00 }
@@ -1644,6 +1878,28 @@
     }
 
     function getFallbackData(acc) {
+      if (acc === 'account3') {
+        return {
+          updated_at: new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }) + ' PT',
+          account: {
+            portfolio_value: 1000000.00,
+            cash: 1000000.00,
+            buying_power: 4000000.00,
+            total_pnl: 0.00,
+            total_return_pct: '0.00',
+            starting_equity: 1000000.00,
+            status: 'ACTIVE'
+          },
+          open_positions: [],
+          recent_trades: [],
+          logs: [
+            "2026-10-12 15:05:00 PT  INFO      Portfolio 3 ($1M The Everything Strat) initialized.",
+            "2026-10-12 15:05:00 PT  INFO      Connected to Alpaca Paper Account PA33UNIQCZOZ. Balance: $1,000,000.00.",
+            "2026-10-12 15:05:00 PT  INFO      4 Alpha Engines armed: Super Momentum, Panic Bounce, Micro-Burst, Parabolic Fade.",
+            "2026-10-12 15:05:00 PT  INFO      Standing by for morning market open at 05:30 AM PT."
+          ]
+        };
+      }
       if (acc === 'account2') {
         return {
           updated_at: new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }) + ' PT',

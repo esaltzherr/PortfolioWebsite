@@ -2,8 +2,8 @@
   "is_paper_trading": true,
   "environment": "Alpaca Paper Trading Simulator (Virtual Currency - No Real Capital)",
   "timezone": "America/Los_Angeles (PT)",
-  "updated_at": "2026-10-12 01:45:17 PM PT",
-  "timestamp_iso": "2026-10-12T13:45:17.569394-07:00",
+  "updated_at": "2026-10-12 01:48:41 PM PT",
+  "timestamp_iso": "2026-10-12T13:48:41.127916-07:00",
   "market_status": "Market Closed (Next Open: 2026-10-13 06:30 AM PT)",
   "is_open": false,
   "bot_status": "Paper Bot Active -- Standby (Next Open: 2026-10-13 06:30 AM PT)",
@@ -14,8 +14,8 @@
     "initial_capital": 100000.0,
     "total_pnl": -1130.2,
     "total_return_pct": -1.13,
-    "today_pnl": -1322.53,
-    "today_return_pct": -1.32
+    "today_pnl": -1244.99,
+    "today_return_pct": -1.24
   },
   "history": [
     {
@@ -26,10 +26,38 @@
       "cumulative_pct": 0.19
     },
     {
+      "date": "2026-10-06",
+      "equity": 100243.98,
+      "daily_pnl": 51.65,
+      "daily_pct": 0.05,
+      "cumulative_pct": 0.24
+    },
+    {
+      "date": "2026-10-07",
+      "equity": 100114.96,
+      "daily_pnl": -129.02,
+      "daily_pct": -0.13,
+      "cumulative_pct": 0.11
+    },
+    {
+      "date": "2026-10-08",
+      "equity": 100114.79,
+      "daily_pnl": -0.17,
+      "daily_pct": -0.0,
+      "cumulative_pct": 0.11
+    },
+    {
+      "date": "2026-10-09",
+      "equity": 100114.79,
+      "daily_pnl": 0.0,
+      "daily_pct": 0.0,
+      "cumulative_pct": 0.11
+    },
+    {
       "date": "2026-10-12",
       "equity": 98869.8,
-      "daily_pnl": -1322.53,
-      "daily_pct": -1.32,
+      "daily_pnl": -1244.99,
+      "daily_pct": -1.24,
       "cumulative_pct": -1.13
     }
   ],
@@ -1455,8 +1483,6 @@
     }
   ],
   "logs": [
-    "2026-10-12 07:30:28 PT  INFO        [GAP_BOTTOM_LONG] SELL 1.9955 MU -> order a9070eb8...",
-    "2026-10-12 07:30:28 PT  INFO        [GAP_BOTTOM_LONG] SELL 285.6742 SMR -> order cca7f061...",
     "2026-10-12 07:30:28 PT  INFO        [GAP_BOTTOM_LONG] SELL 130.054 SOFI -> order 4e62a0fe...",
     "2026-10-12 07:30:28 PT  INFO        [GAP_BOTTOM_LONG] SELL 65.1326 CMG -> order 21d7a485...",
     "2026-10-12 07:30:28 PT  INFO      [STRATEGY_EXIT] {'strategy': 'GAP_BOTTOM_LONG', 'label': '1H_EXIT', 'positions_closed': 22, 'symbols': ['TAYD', 'HPQ', 'AVLN', 'SHOE', 'NVDA', 'BELFA', 'RCL', 'KGC', 'TSLA', 'SOUN', 'HL', 'JOBY', 'RGTI', 'INTC', 'WDC', 'MARA', 'CRWV', 'AAOI', 'MU', 'SMR', 'SOFI', 'CMG']}",
@@ -1574,6 +1600,8 @@
     "2026-10-12 13:44:24 PT  INFO      Starting continuous live trader (v3.2.1). Ctrl+C to stop.",
     "2026-10-12 13:44:24 PT  INFO      Market closed. Next open: 2026-10-13 06:30 AM PT (09:30 ET). Sleeping 15.8h until pre-fetch at 05:30 AM PT...",
     "2026-10-12 13:45:03 PT  INFO      Starting continuous live trader (v3.2.1). Ctrl+C to stop.",
-    "2026-10-12 13:45:04 PT  INFO      Market closed. Next open: 2026-10-13 06:30 AM PT (09:30 ET). Sleeping 15.7h until pre-fetch at 05:30 AM PT..."
+    "2026-10-12 13:45:04 PT  INFO      Market closed. Next open: 2026-10-13 06:30 AM PT (09:30 ET). Sleeping 15.7h until pre-fetch at 05:30 AM PT...",
+    "2026-10-12 13:48:32 PT  INFO      Starting continuous live trader (v3.2.1). Ctrl+C to stop.",
+    "2026-10-12 13:48:32 PT  INFO      Market closed. Next open: 2026-10-13 06:30 AM PT (09:30 ET). Sleeping 15.7h until pre-fetch at 05:30 AM PT..."
   ]
 }

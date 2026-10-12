@@ -2,10 +2,17 @@
   "is_paper_trading": true,
   "environment": "Alpaca Paper Trading Simulator (Virtual Currency - No Real Capital)",
   "timezone": "America/Los_Angeles (PT)",
-  "updated_at": "2026-10-12 01:48:41 PM PT",
-  "timestamp_iso": "2026-10-12T13:48:41.127916-07:00",
+  "updated_at": "2026-10-12 03:14:07 PM PT",
+  "timestamp_iso": "2026-10-12T15:14:07.809299-07:00",
+  "account_id": "PKWUL6SHOQRV6B6JR6VY3YMP7S",
+  "account_label": "Portfolio 1: Market-Neutral Pairs ($100k)",
   "market_status": "Market Closed (Next Open: 2026-10-13 06:30 AM PT)",
   "is_open": false,
+  "market": {
+    "is_open": false,
+    "next_open": "2026-10-13 06:30 AM PT",
+    "next_close": "2026-10-13 01:00 PM PT"
+  },
   "bot_status": "Paper Bot Active -- Standby (Next Open: 2026-10-13 06:30 AM PT)",
   "account": {
     "portfolio_value": 98869.8,
@@ -1483,14 +1490,6 @@
     }
   ],
   "logs": [
-    "2026-10-12 07:30:28 PT  INFO        [GAP_BOTTOM_LONG] SELL 130.054 SOFI -> order 4e62a0fe...",
-    "2026-10-12 07:30:28 PT  INFO        [GAP_BOTTOM_LONG] SELL 65.1326 CMG -> order 21d7a485...",
-    "2026-10-12 07:30:28 PT  INFO      [STRATEGY_EXIT] {'strategy': 'GAP_BOTTOM_LONG', 'label': '1H_EXIT', 'positions_closed': 22, 'symbols': ['TAYD', 'HPQ', 'AVLN', 'SHOE', 'NVDA', 'BELFA', 'RCL', 'KGC', 'TSLA', 'SOUN', 'HL', 'JOBY', 'RGTI', 'INTC', 'WDC', 'MARA', 'CRWV', 'AAOI', 'MU', 'SMR', 'SOFI', 'CMG']}",
-    "2026-10-12 07:30:33 PT  INFO      [GAP_BOTTOM_LONG] All 1H_EXIT positions liquidated successfully.",
-    "2026-10-12 07:30:33 PT  INFO      Saved bot status to bot_status.json",
-    "2026-10-12 07:30:35 PT  INFO      Successfully pushed status to GitHub: esaltzherr/PortfolioWebsite/bot_status.json",
-    "2026-10-12 07:30:36 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json",
-    "2026-10-12 07:30:36 PT  INFO      Longs closed. Holding short positions until 12:50 PM PT (15:50 ET) with active stop loss...",
     "2026-10-12 07:45:38 PT  INFO      Saved bot status to bot_status.json",
     "2026-10-12 07:45:39 PT  INFO      Successfully pushed status to GitHub: esaltzherr/PortfolioWebsite/bot_status.json",
     "2026-10-12 07:45:41 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json",
@@ -1602,6 +1601,14 @@
     "2026-10-12 13:45:03 PT  INFO      Starting continuous live trader (v3.2.1). Ctrl+C to stop.",
     "2026-10-12 13:45:04 PT  INFO      Market closed. Next open: 2026-10-13 06:30 AM PT (09:30 ET). Sleeping 15.7h until pre-fetch at 05:30 AM PT...",
     "2026-10-12 13:48:32 PT  INFO      Starting continuous live trader (v3.2.1). Ctrl+C to stop.",
-    "2026-10-12 13:48:32 PT  INFO      Market closed. Next open: 2026-10-13 06:30 AM PT (09:30 ET). Sleeping 15.7h until pre-fetch at 05:30 AM PT..."
+    "2026-10-12 13:48:32 PT  INFO      Market closed. Next open: 2026-10-13 06:30 AM PT (09:30 ET). Sleeping 15.7h until pre-fetch at 05:30 AM PT...",
+    "2026-10-12 14:26:23 PT  INFO      Starting continuous live trader (v3.2.1). Ctrl+C to stop.",
+    "2026-10-12 14:26:23 PT  INFO      Market closed. Next open: 2026-10-13 06:30 AM PT (09:30 ET). Sleeping 15.1h until pre-fetch at 05:30 AM PT...",
+    "2026-10-12 14:37:18 PT  INFO      Starting continuous live trader (v3.2.1). Ctrl+C to stop.",
+    "2026-10-12 14:37:18 PT  INFO      Market closed. Next open: 2026-10-13 06:30 AM PT (09:30 ET). Sleeping 14.9h until pre-fetch at 05:30 AM PT...",
+    "2026-10-12 15:10:43 PT  INFO      Starting continuous live trader (v3.2.1). Ctrl+C to stop.",
+    "2026-10-12 15:10:43 PT  INFO      Market closed. Next open: 2026-10-13 06:30 AM PT (09:30 ET). Sleeping 14.3h until pre-fetch at 05:30 AM PT...",
+    "2026-10-12 15:13:48 PT  INFO      Starting continuous live trader (v3.2.1). Ctrl+C to stop.",
+    "2026-10-12 15:13:48 PT  INFO      Market closed. Next open: 2026-10-13 06:30 AM PT (09:30 ET). Sleeping 14.3h until pre-fetch at 05:30 AM PT..."
   ]
 }

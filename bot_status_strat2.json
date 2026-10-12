@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-12 03:13:48 PM PT",
-  "timestamp_utc": "2026-10-12T22:13:48.412988Z",
+  "updated_at": "2026-10-12 03:14:15 PM PT",
+  "timestamp_utc": "2026-10-12T22:14:15.319063Z",
   "bot_version": "3.2.1-strat2",
   "account_id": "PA3EM0YADDLM",
   "account_label": "Portfolio 2: Dual Trailing Ratchets ($10k)",
@@ -109,6 +109,7 @@
     "2026-10-12 15:13:48 PT  INFO       STARTING STRATEGY 2 BOT (3.2.1-strat2) - $10,000 CAPITAL",
     "2026-10-12 15:13:48 PT  INFO       Account: PA3EM0YADDLM | Equity: $10,000.00",
     "2026-10-12 15:13:48 PT  INFO       Dual Architecture: 15M Runner Fade (06:45 PT) + 30M ORB Trend (07:00 PT)",
-    "2026-10-12 15:13:48 PT  INFO      ============================================================"
+    "2026-10-12 15:13:48 PT  INFO      ============================================================",
+    "2026-10-12 15:13:50 PT  INFO      Market closed. Sleeping 14.3 hrs until pre-market prep at 2026-10-13 05:30 AM PT (08:30 AM ET)"
   ]
 }

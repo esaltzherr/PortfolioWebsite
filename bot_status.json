@@ -2,20 +2,20 @@
   "is_paper_trading": true,
   "environment": "Alpaca Paper Trading Simulator (Virtual Currency - No Real Capital)",
   "timezone": "America/Los_Angeles (PT)",
-  "updated_at": "2026-10-12 06:30:11 AM PT",
-  "timestamp_iso": "2026-10-12T06:30:11.153754-07:00",
+  "updated_at": "2026-10-12 06:35:15 AM PT",
+  "timestamp_iso": "2026-10-12T06:35:15.536794-07:00",
   "market_status": "Market Open -- Simulated Paper Session Active (PT)",
   "is_open": true,
   "bot_status": "Paper Bot Active -- Monitoring Positions",
   "account": {
-    "portfolio_value": 100114.79,
-    "cash": 100114.79,
-    "buying_power": 278340.24,
+    "portfolio_value": 99463.33,
+    "cash": 98587.56,
+    "buying_power": 262226.86,
     "initial_capital": 100000.0,
-    "total_pnl": 114.79,
-    "total_return_pct": 0.11,
-    "today_pnl": -0.17,
-    "today_return_pct": -0.0
+    "total_pnl": -536.67,
+    "total_return_pct": -0.54,
+    "today_pnl": -651.63,
+    "today_return_pct": -0.65
   },
   "history": [
     {
@@ -41,10 +41,10 @@
     },
     {
       "date": "2026-10-12",
-      "equity": 100114.79,
-      "daily_pnl": -0.17,
-      "daily_pct": -0.0,
-      "cumulative_pct": 0.11
+      "equity": 99463.33,
+      "daily_pnl": -651.63,
+      "daily_pct": -0.65,
+      "cumulative_pct": -0.54
     }
   ],
   "strategies": [
@@ -72,31 +72,13 @@
     }
   ],
   "stats": {
-    "total_trades": 54,
+    "total_trades": 55,
     "wins": 25,
-    "losses": 29,
-    "win_rate": "46.3%",
-    "profit_factor": 1.26
+    "losses": 30,
+    "win_rate": "45.5%",
+    "profit_factor": 1.02
   },
   "open_positions": [
-    {
-      "id": 107,
-      "strategy": "GAP_BOTTOM_LONG",
-      "symbol": "FOA",
-      "direction": "LONG",
-      "session": "OPEN",
-      "open_date": "2026-10-12",
-      "open_price": 12.8,
-      "open_shares": 156.6744,
-      "open_value": 2005.43232,
-      "close_date": null,
-      "close_price": null,
-      "close_value": null,
-      "pnl_dollars": null,
-      "pnl_pct": null,
-      "status": "OPEN",
-      "created_at": "2026-10-12 13:30:08"
-    },
     {
       "id": 106,
       "strategy": "GAP_BOTTOM_LONG",
@@ -1450,6 +1432,23 @@
   ],
   "recent_trades": [
     {
+      "date": "2026-10-12",
+      "symbol": "FOA",
+      "strategy": "GAP_BOTTOM_LONG",
+      "direction": "LONG",
+      "open_date": "2026-10-12 06:31",
+      "close_date": "2026-10-12 06:33",
+      "open_time": "06:31:38 AM PT",
+      "close_time": "06:33:25 AM PT",
+      "duration": "1m 46s",
+      "shares": 156.6744,
+      "open_price": 13.54,
+      "close_price": 12.48,
+      "pnl_dollars": -166.07,
+      "pnl_pct": -7.83,
+      "status": "CLOSED"
+    },
+    {
       "date": "2026-10-07",
       "symbol": "U",
       "strategy": "GAP_TOP_SHORT",
@@ -1856,39 +1855,22 @@
       "pnl_dollars": 0.0,
       "pnl_pct": 0.0,
       "status": "CLOSED"
-    },
-    {
-      "date": "2026-10-06",
-      "symbol": "MCD",
-      "strategy": "GAP_BOTTOM_LONG",
-      "direction": "LONG",
-      "open_date": "2026-10-06 06:32",
-      "close_date": "2026-10-06 06:46",
-      "open_time": "06:32:49 AM PT",
-      "close_time": "06:46:02 AM PT",
-      "duration": "13m 12s",
-      "shares": 17.2434,
-      "open_price": 232.97,
-      "close_price": 232.2,
-      "pnl_dollars": -13.28,
-      "pnl_pct": -0.33,
-      "status": "CLOSED"
     }
   ],
   "strategy_summary": [
     {
       "strategy": "GAP_BOTTOM_LONG",
-      "total_trades": 28,
+      "total_trades": 29,
       "total_wins": 15,
-      "total_losses": 13,
-      "total_pnl": 893.41,
-      "avg_pnl_pct": 0.8305535714285714,
+      "total_losses": 14,
+      "total_pnl": 871.47,
+      "avg_pnl_pct": 0.7641965517241379,
       "best_trade": 469.5563,
       "worst_trade": -113.9576,
-      "total_deployed": 109341.55728950001,
+      "total_deployed": 111346.9896095,
       "first_trade_date": "2026-10-05",
-      "last_trade_date": "2026-10-07",
-      "win_rate_pct": 53.6
+      "last_trade_date": "2026-10-12",
+      "win_rate_pct": 51.7
     },
     {
       "strategy": "GAP_TOP_SHORT",
@@ -2001,18 +1983,33 @@
     ],
     "stop_loss_audit": []
   },
-  "intraday_events": [],
+  "intraday_events": [
+    {
+      "timestamp": "2026-10-12T06:31:45.224930-07:00",
+      "time_str": "06:31:45 AM PT",
+      "event_type": "STOP_LOSS_TRIGGER",
+      "symbol": "FOA",
+      "strategy": "GAP_BOTTOM_LONG",
+      "direction": "LONG",
+      "unrealized_loss_pct": -6.5,
+      "exit_price": 12.66,
+      "qty": 156.6744,
+      "reason": "Cut at market: loss of -6.50% exceeded stop threshold of -6.0%"
+    },
+    {
+      "timestamp": "2026-10-12T06:32:15.324200-07:00",
+      "time_str": "06:32:15 AM PT",
+      "event_type": "STOP_LOSS_TRIGGER",
+      "symbol": "FOA",
+      "strategy": "STOP_LOSS",
+      "direction": "LONG",
+      "unrealized_loss_pct": -6.5,
+      "exit_price": 12.66,
+      "qty": 156.6744,
+      "reason": "Cut at market: loss of -6.50% exceeded stop threshold of -6.0%"
+    }
+  ],
   "logs": [
-    "</html>",
-    "2026-10-09 17:02:37 PT  INFO      Sleeping 60s before retry...",
-    "2026-10-09 17:03:37 PT  ERROR     ERROR in continuous live trader: <html>",
-    "<head><title>401 Authorization Required</title></head>",
-    "<body>",
-    "<center><h1>401 Authorization Required</h1></center>",
-    "<hr><center>nginx</center>",
-    "</body>",
-    "</html>",
-    "Traceback (most recent call last):",
     "  File \"/home/lsaltzherr/bot/venv/lib/python3.12/site-packages/alpaca/common/rest.py\", line 198, in _one_request",
     "    response.raise_for_status()",
     "  File \"/home/lsaltzherr/bot/venv/lib/python3.12/site-packages/requests/models.py\", line 1167, in raise_for_status",
@@ -2122,6 +2119,16 @@
     "2026-10-12 06:30:10 PT  INFO        [GAP_TOP_SHORT] SELL 323 INGN -> order 2c2936ef...",
     "2026-10-12 06:30:10 PT  INFO        [GAP_TOP_SHORT] SELL 63 TOST -> order f043d727...",
     "2026-10-12 06:30:11 PT  INFO        [GAP_TOP_SHORT] SELL 63 COAG -> order 694d882d...",
-    "2026-10-12 06:30:11 PT  INFO        [GAP_TOP_SHORT] SELL 32 UL -> order f5cd8fd8..."
+    "2026-10-12 06:30:11 PT  INFO        [GAP_TOP_SHORT] SELL 32 UL -> order f5cd8fd8...",
+    "2026-10-12 06:30:11 PT  INFO      Saved bot status to bot_status.json",
+    "2026-10-12 06:30:13 PT  INFO      Successfully pushed status to GitHub: esaltzherr/PortfolioWebsite/bot_status.json",
+    "2026-10-12 06:30:15 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json",
+    "2026-10-12 06:30:15 PT  INFO      Positions entered. Monitoring active stop-losses until 07:30 AM PT (1-hour bounce exit)...",
+    "2026-10-12 06:31:45 PT  WARNING     [STOP_LOSS] FOA (LONG) loss is -6.50% (exceeds -6.0%)! Cutting position immediately...",
+    "2026-10-12 06:31:45 PT  INFO      [STOP_LOSS_TRIGGER] {'symbol': 'FOA', 'strategy': 'GAP_BOTTOM_LONG', 'direction': 'LONG', 'unrealized_loss_pct': -6.5, 'exit_price': 12.66, 'qty': 156.6744, 'reason': 'Cut at market: loss of -6.50% exceeded stop threshold of -6.0%'}",
+    "2026-10-12 06:31:45 PT  INFO        [GAP_BOTTOM_LONG] SELL 156.6744 FOA -> order 51f38076...",
+    "2026-10-12 06:32:15 PT  WARNING     [STOP_LOSS] FOA (LONG) loss is -6.50% (exceeds -6.0%)! Cutting position immediately...",
+    "2026-10-12 06:32:15 PT  INFO      [STOP_LOSS_TRIGGER] {'symbol': 'FOA', 'strategy': 'STOP_LOSS', 'direction': 'LONG', 'unrealized_loss_pct': -6.5, 'exit_price': 12.66, 'qty': 156.6744, 'reason': 'Cut at market: loss of -6.50% exceeded stop threshold of -6.0%'}",
+    "2026-10-12 06:32:15 PT  ERROR       [STOP_LOSS] Order failed for FOA: {\"available\":\"0\",\"code\":40310000,\"existing_qty\":\"156.6744\",\"held_for_orders\":\"156.6744\",\"message\":\"insufficient qty available for order (requested: 156.6744, available: 0)\",\"related_orders\":[\"51f38076-c4ad-4512-b831-5ae168d8ff26\"],\"symbol\":\"FOA\"}"
   ]
 }

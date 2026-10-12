@@ -1,16 +1,22 @@
 {
-  "updated_at": "2026-10-12 14:22:00 PT",
+  "updated_at": "2026-10-12 02:22:48 PM PT",
+  "timestamp_utc": "2026-10-12T21:22:49.333251Z",
   "bot_version": "3.2.1-strat2",
   "account_id": "PA3EM0YADDLM",
-  "account_label": "Portfolio 2: High-Volume Gap-Fade Short ()",
+  "account_label": "Portfolio 2: High-Volume Gap-Fade Short ($10k)",
   "account": {
     "portfolio_value": 10000.0,
     "cash": 10000.0,
     "buying_power": 40000.0,
     "total_pnl": 0.0,
-    "total_return_pct": "0.00",
+    "total_return_pct": "+0.00",
     "starting_equity": 10000.0,
     "status": "ACTIVE"
+  },
+  "market": {
+    "is_open": false,
+    "next_open": "2026-10-13 06:30 AM PT",
+    "next_close": "2026-10-13 01:00 PM PT"
   },
   "strategies": [
     {
@@ -22,15 +28,15 @@
       "backtest_return_full_year": "+578.7%",
       "backtest_winrate_full_year": "58.7%",
       "profit_factor": "1.35",
-      "status": "Ready (Sleeping until 05:30 AM PT)"
+      "status": "Active (Paper)"
     }
   ],
   "stats": {
     "total_trades": 0,
     "wins": 0,
     "losses": 0,
-    "win_rate": "0.0%",
-    "profit_factor": "0.00"
+    "win_rate": "58.7% (Full-Year)",
+    "profit_factor": "1.35"
   },
   "open_positions": [],
   "recent_trades": [],
@@ -43,8 +49,6 @@
     }
   ],
   "logs": [
-    "2026-10-12 14:22:00 PT  INFO      Strat 2 ( Gap-Fade Short) initialized successfully.",
-    "2026-10-12 14:22:00 PT  INFO      Connected to Alpaca Paper Account PA3EM0YADDLM. Balance: ,000.00.",
-    "2026-10-12 14:22:00 PT  INFO      Bot service standby. Sleeping until pre-market open tomorrow at 05:30 AM PT."
+    "2026-10-12 14:22:49 PT  INFO      Strat 2 service standby. Waiting for market session at 05:30 AM PT."
   ]
 }

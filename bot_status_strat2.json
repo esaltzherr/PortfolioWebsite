@@ -1,9 +1,9 @@
 {
-  "updated_at": "2026-10-12 02:27:27 PM PT",
-  "timestamp_utc": "2026-10-12T21:27:27.979142Z",
+  "updated_at": "2026-10-12 02:33:13 PM PT",
+  "timestamp_utc": "2026-10-12T21:33:13.925708Z",
   "bot_version": "3.2.1-strat2",
   "account_id": "PA3EM0YADDLM",
-  "account_label": "Portfolio 2: High-Volume Gap-Fade Short ($10k)",
+  "account_label": "Portfolio 2: Dual Trailing Ratchets ($10k)",
   "account": {
     "portfolio_value": 10000.0,
     "cash": 10000.0,
@@ -20,14 +20,23 @@
   },
   "strategies": [
     {
-      "name": "GAP_TOP_SHORT (Aggressive Gap Fade)",
-      "schedule": "06:30 AM PT -> 12:50 PM PT (EOD Close)",
-      "allocation": "100%",
-      "type": "Fade Overextended Gap-Ups (Short)",
-      "description": "Shorts the top overextended gap-up stocks (>= +2.0% gap) at 06:30 AM PT open with dynamic +2%/+4% trailing profit-lock and -5% stop-loss, holding into the 12:50 PM PT close.",
-      "backtest_return_full_year": "+578.7%",
-      "backtest_winrate_full_year": "58.7%",
-      "profit_factor": "1.35",
+      "name": "INTRADAY_15M_RUNNER_FADE",
+      "schedule": "06:45 AM PT -> 07:45 AM PT (1-Hr Scheduled Hold)",
+      "allocation": "50% ($5,000 \u2022 5 Positions)",
+      "type": "Fade Morning Euphoria (Short)",
+      "description": "Waits 15 minutes to bypass open chaos. Shorts overextended morning spike runners (>= +1.0% to +1.5%) with tight dynamic ratchet (+0.6% locks BE, +1.2% locks +0.6%, +2% locks +1.2%, +3% trails 1%).",
+      "backtest_winrate": "65.0%",
+      "profit_factor": "6.89",
+      "status": "Active (Paper)"
+    },
+    {
+      "name": "ORB_30M_TREND_RATCHET",
+      "schedule": "07:00 AM PT -> 12:50 PM PT (EOD Close)",
+      "allocation": "50% ($5,000 \u2022 5 Positions)",
+      "type": "Opening Range Breakout (Long & Short)",
+      "description": "Waits 30 minutes for institutional reference levels to set. Takes trend continuation trades > 30M High or < 30M Low supported by VWAP, riding trends with stepped profit ratchets until 12:50 PM PT close.",
+      "backtest_winrate": "54.9%",
+      "profit_factor": "1.17",
       "status": "Active (Paper)"
     }
   ],
@@ -49,33 +58,6 @@
     }
   ],
   "logs": [
-    "2026-10-12 14:26:23 PT  INFO      ============================================================",
-    "2026-10-12 14:26:23 PT  INFO       STARTING STRATEGY 2 BOT (3.2.1-strat2) - $10,000 CAPITAL",
-    "2026-10-12 14:26:23 PT  INFO       Account: PA3EM0YADDLM | Equity: $10,000.00",
-    "2026-10-12 14:26:23 PT  INFO      ============================================================",
-    "2026-10-12 14:26:26 PT  INFO      Warming up pre-market data...",
-    "2026-10-12 14:26:26 PT  INFO      Executing Morning Short Allocation. Equity: $10,000.00 | Capital/pos: $1,000.00",
-    "2026-10-12 14:26:40 PT  INFO      ============================================================",
-    "2026-10-12 14:26:40 PT  INFO       STARTING STRATEGY 2 BOT (3.2.1-strat2) - $10,000 CAPITAL",
-    "2026-10-12 14:26:40 PT  INFO       Account: PA3EM0YADDLM | Equity: $10,000.00",
-    "2026-10-12 14:26:40 PT  INFO      ============================================================",
-    "2026-10-12 14:26:43 PT  INFO      Warming up pre-market data...",
-    "2026-10-12 14:26:43 PT  INFO      Executing Morning Short Allocation. Equity: $10,000.00 | Capital/pos: $1,000.00",
-    "2026-10-12 14:26:57 PT  INFO      ============================================================",
-    "2026-10-12 14:26:57 PT  INFO       STARTING STRATEGY 2 BOT (3.2.1-strat2) - $10,000 CAPITAL",
-    "2026-10-12 14:26:57 PT  INFO       Account: PA3EM0YADDLM | Equity: $10,000.00",
-    "2026-10-12 14:26:57 PT  INFO      ============================================================",
-    "2026-10-12 14:27:00 PT  INFO      Warming up pre-market data...",
-    "2026-10-12 14:27:00 PT  INFO      Executing Morning Short Allocation. Equity: $10,000.00 | Capital/pos: $1,000.00",
-    "2026-10-12 14:27:12 PT  INFO      ============================================================",
-    "2026-10-12 14:27:12 PT  INFO       STARTING STRATEGY 2 BOT (3.2.1-strat2) - $10,000 CAPITAL",
-    "2026-10-12 14:27:12 PT  INFO       Account: PA3EM0YADDLM | Equity: $10,000.00",
-    "2026-10-12 14:27:12 PT  INFO      ============================================================",
-    "2026-10-12 14:27:15 PT  INFO      Warming up pre-market data...",
-    "2026-10-12 14:27:15 PT  INFO      Executing Morning Short Allocation. Equity: $10,000.00 | Capital/pos: $1,000.00",
-    "2026-10-12 14:27:27 PT  INFO      ============================================================",
-    "2026-10-12 14:27:27 PT  INFO       STARTING STRATEGY 2 BOT (3.2.1-strat2) - $10,000 CAPITAL",
-    "2026-10-12 14:27:27 PT  INFO       Account: PA3EM0YADDLM | Equity: $10,000.00",
-    "2026-10-12 14:27:27 PT  INFO      ============================================================"
+    "2026-10-12 14:33:13 PT  INFO      Strat 2 service standby. Waiting for market session at 05:30 AM PT."
   ]
 }

@@ -2,20 +2,20 @@
   "is_paper_trading": true,
   "environment": "Alpaca Paper Trading Simulator (Virtual Currency - No Real Capital)",
   "timezone": "America/Los_Angeles (PT)",
-  "updated_at": "2026-10-12 07:20:50 AM PT",
-  "timestamp_iso": "2026-10-12T07:20:50.124818-07:00",
+  "updated_at": "2026-10-12 07:25:53 AM PT",
+  "timestamp_iso": "2026-10-12T07:25:53.722230-07:00",
   "market_status": "Market Open -- Simulated Paper Session Active (PT)",
   "is_open": true,
   "bot_status": "Paper Bot Active -- Monitoring Positions",
   "account": {
-    "portfolio_value": 99081.15,
+    "portfolio_value": 99013.21,
     "cash": 98249.65,
-    "buying_power": 270625.51,
+    "buying_power": 270482.26,
     "initial_capital": 100000.0,
-    "total_pnl": -918.85,
-    "total_return_pct": -0.92,
-    "today_pnl": -1033.81,
-    "today_return_pct": -1.03
+    "total_pnl": -986.79,
+    "total_return_pct": -0.99,
+    "today_pnl": -1101.75,
+    "today_return_pct": -1.1
   },
   "history": [
     {
@@ -41,10 +41,10 @@
     },
     {
       "date": "2026-10-12",
-      "equity": 99081.15,
-      "daily_pnl": -1033.81,
-      "daily_pct": -1.03,
-      "cumulative_pct": -0.92
+      "equity": 99013.21,
+      "daily_pnl": -1101.75,
+      "daily_pct": -1.1,
+      "cumulative_pct": -0.99
     }
   ],
   "strategies": [
@@ -1986,9 +1986,6 @@
     }
   ],
   "logs": [
-    "2026-10-09 18:31:23 PT  INFO      Market closed. Next open: 2026-10-12 06:30 AM PT (09:30 ET). Sleeping 59.0h until pre-fetch at 05:30 AM PT...",
-    "2026-10-12 05:30:01 PT  INFO",
-    "============================================================",
     "2026-10-12 05:30:01 PT  INFO        TRADING DAY: 2026-10-12",
     "2026-10-12 05:30:01 PT  INFO      ============================================================",
     "2026-10-12 05:30:01 PT  INFO      Pre-fetching liquid universe and daily metrics...",
@@ -2105,6 +2102,9 @@
     "2026-10-12 07:11:46 PT  INFO        [GAP_TOP_SHORT] BUY 79 ALMR -> order 420f7eed...",
     "2026-10-12 07:15:46 PT  INFO      Saved bot status to bot_status.json",
     "2026-10-12 07:15:48 PT  INFO      Successfully pushed status to GitHub: esaltzherr/PortfolioWebsite/bot_status.json",
-    "2026-10-12 07:15:49 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json"
+    "2026-10-12 07:15:49 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json",
+    "2026-10-12 07:20:50 PT  INFO      Saved bot status to bot_status.json",
+    "2026-10-12 07:20:51 PT  INFO      Successfully pushed status to GitHub: esaltzherr/PortfolioWebsite/bot_status.json",
+    "2026-10-12 07:20:53 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json"
   ]
 }

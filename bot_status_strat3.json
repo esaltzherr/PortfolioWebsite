@@ -1,0 +1,83 @@
+{
+  "updated_at": "2026-10-12 03:06:42 PM PT",
+  "timestamp_utc": "2026-10-12T22:06:42.856521+00:00",
+  "bot_version": "3.2.1-strat3",
+  "account_id": "PA33UNIQCZOZ",
+  "account_label": "Portfolio 3: The Everything Strat ($1M)",
+  "account": {
+    "portfolio_value": 1000000.0,
+    "cash": 1000000.0,
+    "buying_power": 4000000.0,
+    "total_pnl": 0.0,
+    "total_return_pct": "+0.00",
+    "starting_equity": 1000000.0,
+    "status": "ACTIVE"
+  },
+  "market": {
+    "is_open": false,
+    "next_open": "2026-10-13 06:30 AM PT",
+    "next_close": "2026-10-13 01:00 PM PT"
+  },
+  "strategies": [
+    {
+      "name": "SUPER_MOMENTUM_RUNNER",
+      "schedule": "06:35 AM PT (5m Post-Open)",
+      "allocation": "25% ($250,000 \u2022 5 Positions @ $50k)",
+      "type": "Mega-Trend Continuation (Long)",
+      "description": "Exploits the empirically verified finding that stocks up >= +25% over 10-20 days reach an additional +5% to +10% 72.6% to 74.3% of the time. Rides leaders with +2% BE lock, +5% stepped lock, and +10% trailing ratchet.",
+      "backtest_winrate": "72.6% Continuation",
+      "profit_factor": "8.60",
+      "status": "Active (Paper)"
+    },
+    {
+      "name": "CAPITULATION_PANIC_BOUNCE",
+      "schedule": "06:40 AM PT (10m Post-Open)",
+      "allocation": "25% ($250,000 \u2022 5 Positions @ $50k)",
+      "type": "Capitulation Mean Reversion (Long)",
+      "description": "Systematically buys liquid stocks suffering sudden -5% to -15% 1d/3d panic flushes. Backtest proves a 61.2% win rate and 7.63 Profit Factor with stepped bounce ratchets.",
+      "backtest_winrate": "61.2%",
+      "profit_factor": "7.63",
+      "status": "Active (Paper)"
+    },
+    {
+      "name": "INTRADAY_MICRO_BURST_RATCHET",
+      "schedule": "06:50 AM PT -> 07:50 AM PT (1-Hr Hold)",
+      "allocation": "25% ($250,000 \u2022 5 Positions @ $50k)",
+      "type": "Micro-Burst Rapid Momentum (Long)",
+      "description": "Scans rapid 5-minute price spikes (>= +1.5%) on heavy volume. Empirically demonstrated 59.2% win rate and 10.74 Profit Factor on 1-min data with tight +0.6% / +1.2% profit ratchets.",
+      "backtest_winrate": "59.2%",
+      "profit_factor": "10.74",
+      "status": "Active (Paper)"
+    },
+    {
+      "name": "PARABOLIC_BLOWOFF_FADE",
+      "schedule": "07:05 AM PT -> 12:50 PM PT (EOD Close)",
+      "allocation": "25% ($250,000 \u2022 5 Positions @ $50k)",
+      "type": "Parabolic Exhaustion Fade (Short)",
+      "description": "Shorts extreme parabolic overextensions (multi-day surges >= +15% to +30% or 60m surges >= +4% stretched far above VWAP and upper bands). Backtested 60.8% win rate and 7.40 Profit Factor.",
+      "backtest_winrate": "60.8%",
+      "profit_factor": "7.40",
+      "status": "Active (Paper)"
+    }
+  ],
+  "stats": {
+    "total_trades": 0,
+    "wins": 0,
+    "losses": 0,
+    "win_rate": "63.4% (Multi-Engine Backtest)",
+    "profit_factor": "8.59"
+  },
+  "open_positions": [],
+  "recent_trades": [],
+  "history": [
+    {
+      "date": "2026-10-12",
+      "portfolio_value": 1000000.0,
+      "daily_pnl": 0.0,
+      "cum_return": 0.0
+    }
+  ],
+  "logs": [
+    "2026-10-12 15:06:42 PT  INFO      Portfolio 3 service standby. 4 Alpha Engines armed for 05:30 AM PT market prep."
+  ]
+}

@@ -1,21 +1,21 @@
 {
-  "updated_at": "2026-10-13 05:30:00 AM PT",
-  "timestamp_utc": "2026-10-13T12:30:00.442691+00:00",
+  "updated_at": "2026-10-13 06:45:09 AM PT",
+  "timestamp_utc": "2026-10-13T13:45:09.603633+00:00",
   "bot_version": "3.2.1-strat2",
   "account_id": "PA3EM0YADDLM",
   "account_label": "Portfolio 2: Dual Trailing Ratchets ($10k)",
   "account": {
     "portfolio_value": 10000.0,
     "cash": 10000.0,
-    "buying_power": 40000.0,
+    "buying_power": 32385.16,
     "total_pnl": 0.0,
     "total_return_pct": "+0.00",
     "starting_equity": 10000.0,
     "status": "ACTIVE"
   },
   "market": {
-    "is_open": false,
-    "next_open": "2026-10-13 06:30 AM PT",
+    "is_open": true,
+    "next_open": "2026-10-14 06:30 AM PT",
     "next_close": "2026-10-13 01:00 PM PT"
   },
   "strategies": [
@@ -47,8 +47,71 @@
     "win_rate": "58.7% (Full-Year)",
     "profit_factor": "1.35"
   },
-  "open_positions": [],
-  "recent_trades": [],
+  "open_positions": [
+    {
+      "symbol": "MDB",
+      "direction": "SHORT",
+      "side": "short",
+      "qty": 1.0,
+      "entry_price": 405.5,
+      "current_price": 405.5,
+      "market_value": 405.5,
+      "unrealized_pnl": -0.0,
+      "unrealized_plpc": 0.0
+    }
+  ],
+  "recent_trades": [
+    {
+      "symbol": "CRM",
+      "strategy": "INTRADAY_15M_RUNNER_FADE",
+      "direction": "SHORT",
+      "shares": 4.0,
+      "price": 243.47,
+      "close_price": null,
+      "realized_pnl": null,
+      "date": "2026-10-13 06:45:09"
+    },
+    {
+      "symbol": "SNOW",
+      "strategy": "INTRADAY_15M_RUNNER_FADE",
+      "direction": "SHORT",
+      "shares": 2.0,
+      "price": 368.47,
+      "close_price": null,
+      "realized_pnl": null,
+      "date": "2026-10-13 06:45:08"
+    },
+    {
+      "symbol": "HPE",
+      "strategy": "INTRADAY_15M_RUNNER_FADE",
+      "direction": "SHORT",
+      "shares": 14.0,
+      "price": 70.38,
+      "close_price": null,
+      "realized_pnl": null,
+      "date": "2026-10-13 06:45:08"
+    },
+    {
+      "symbol": "ZS",
+      "strategy": "INTRADAY_15M_RUNNER_FADE",
+      "direction": "SHORT",
+      "shares": 4.0,
+      "price": 234.855,
+      "close_price": null,
+      "realized_pnl": null,
+      "date": "2026-10-13 06:45:08"
+    },
+    {
+      "symbol": "MDB",
+      "strategy": "INTRADAY_15M_RUNNER_FADE",
+      "direction": "SHORT",
+      "shares": 2.0,
+      "price": 406.4,
+      "close_price": null,
+      "realized_pnl": null,
+      "date": "2026-10-13 06:45:07"
+    }
+  ],
   "history": [
     {
       "date": "2026-10-13",
@@ -154,6 +217,23 @@
     "2026-10-13 03:30:08 PT  INFO      Market closed. Next open: 2026-10-13 06:30 AM PT (09:30 ET). Sleeping 2.0h until pre-market prep at 05:30 AM PT...",
     "2026-10-13 04:00:11 PT  INFO      Market closed. Next open: 2026-10-13 06:30 AM PT (09:30 ET). Sleeping 1.5h until pre-market prep at 05:30 AM PT...",
     "2026-10-13 04:30:15 PT  INFO      Market closed. Next open: 2026-10-13 06:30 AM PT (09:30 ET). Sleeping 1.0h until pre-market prep at 05:30 AM PT...",
-    "2026-10-13 05:00:18 PT  INFO      Market closed. Next open: 2026-10-13 06:30 AM PT (09:30 ET). Sleeping 0.5h until pre-market prep at 05:30 AM PT..."
+    "2026-10-13 05:00:18 PT  INFO      Market closed. Next open: 2026-10-13 06:30 AM PT (09:30 ET). Sleeping 0.5h until pre-market prep at 05:30 AM PT...",
+    "2026-10-13 05:30:03 PT  INFO      Within pre-market preparation window (after 05:30 AM PT). Arming daily strategy execution...",
+    "2026-10-13 05:30:03 PT  INFO      Waiting 74.9 min until 06:45 AM PT (09:45 ET) [Execution 1: 15M Runner Fade]",
+    "2026-10-13 06:45:00 PT  INFO      ============================================================",
+    "2026-10-13 06:45:00 PT  INFO       EXECUTING STRATEGY 3A: 15-MINUTE RUNNER FADE (06:45 AM PT / 09:45 ET)",
+    "2026-10-13 06:45:00 PT  INFO       Scanning for overextended morning spikes (>= +1.0% to +1.5%)...",
+    "2026-10-13 06:45:00 PT  INFO      ============================================================",
+    "2026-10-13 06:45:07 PT  INFO      Selected 5 Morning Runners to SHORT:",
+    "2026-10-13 06:45:07 PT  INFO        MDB    Surge: +7.23%  Price: $406.40",
+    "2026-10-13 06:45:07 PT  INFO        ZS     Surge: +4.30%  Price: $234.85",
+    "2026-10-13 06:45:07 PT  INFO        HPE    Surge: +3.88%  Price: $70.38",
+    "2026-10-13 06:45:07 PT  INFO        SNOW   Surge: +3.66%  Price: $368.47",
+    "2026-10-13 06:45:07 PT  INFO        CRM    Surge: +3.60%  Price: $243.47",
+    "2026-10-13 06:45:08 PT  INFO      [INTRADAY_15M_RUNNER_FADE] SHORT SUBMITTED: 2 shares of MDB at ~$406.40",
+    "2026-10-13 06:45:08 PT  INFO      [INTRADAY_15M_RUNNER_FADE] SHORT SUBMITTED: 4 shares of ZS at ~$234.85",
+    "2026-10-13 06:45:08 PT  INFO      [INTRADAY_15M_RUNNER_FADE] SHORT SUBMITTED: 14 shares of HPE at ~$70.38",
+    "2026-10-13 06:45:08 PT  INFO      [INTRADAY_15M_RUNNER_FADE] SHORT SUBMITTED: 2 shares of SNOW at ~$368.47",
+    "2026-10-13 06:45:09 PT  INFO      [INTRADAY_15M_RUNNER_FADE] SHORT SUBMITTED: 4 shares of CRM at ~$243.47"
   ]
 }

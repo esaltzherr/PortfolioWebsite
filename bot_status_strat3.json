@@ -1,21 +1,21 @@
 {
-  "updated_at": "2026-10-13 06:29:44 AM PT",
-  "timestamp_utc": "2026-10-13T13:29:44.775696+00:00",
+  "updated_at": "2026-10-13 06:35:12 AM PT",
+  "timestamp_utc": "2026-10-13T13:35:12.423663+00:00",
   "bot_version": "3.2.1-strat3",
   "account_id": "PA33UNIQCZOZ",
   "account_label": "Portfolio 3: The Everything Strat ($1M)",
   "account": {
     "portfolio_value": 1000000.0,
     "cash": 1000000.0,
-    "buying_power": 4000000.0,
+    "buying_power": 3750404.27,
     "total_pnl": 0.0,
     "total_return_pct": "+0.00",
     "starting_equity": 1000000.0,
     "status": "ACTIVE"
   },
   "market": {
-    "is_open": false,
-    "next_open": "2026-10-13 06:30 AM PT",
+    "is_open": true,
+    "next_open": "2026-10-14 06:30 AM PT",
     "next_close": "2026-10-13 01:00 PM PT"
   },
   "strategies": [
@@ -68,7 +68,58 @@
     "profit_factor": "8.59"
   },
   "open_positions": [],
-  "recent_trades": [],
+  "recent_trades": [
+    {
+      "symbol": "SHOP",
+      "strategy": "SUPER_MOMENTUM_RUNNER",
+      "direction": "LONG",
+      "shares": 285.0,
+      "price": 174.99,
+      "close_price": null,
+      "realized_pnl": null,
+      "date": "2026-10-13 06:35:11"
+    },
+    {
+      "symbol": "PANW",
+      "strategy": "SUPER_MOMENTUM_RUNNER",
+      "direction": "LONG",
+      "shares": 124.0,
+      "price": 403.04,
+      "close_price": null,
+      "realized_pnl": null,
+      "date": "2026-10-13 06:35:11"
+    },
+    {
+      "symbol": "CRWD",
+      "strategy": "SUPER_MOMENTUM_RUNNER",
+      "direction": "LONG",
+      "shares": 189.0,
+      "price": 264.43,
+      "close_price": null,
+      "realized_pnl": null,
+      "date": "2026-10-13 06:35:11"
+    },
+    {
+      "symbol": "SNPS",
+      "strategy": "SUPER_MOMENTUM_RUNNER",
+      "direction": "LONG",
+      "shares": 99.0,
+      "price": 500.035,
+      "close_price": null,
+      "realized_pnl": null,
+      "date": "2026-10-13 06:35:11"
+    },
+    {
+      "symbol": "DDOG",
+      "strategy": "SUPER_MOMENTUM_RUNNER",
+      "direction": "LONG",
+      "shares": 174.0,
+      "price": 285.99,
+      "close_price": null,
+      "realized_pnl": null,
+      "date": "2026-10-13 06:35:11"
+    }
+  ],
   "history": [
     {
       "date": "2026-10-13",
@@ -78,14 +129,6 @@
     }
   ],
   "logs": [
-    "2026-10-12 23:59:43 PT  INFO      Market closed. Sleeping 5.5 hrs until pre-market prep at 2026-10-13 05:30 AM PT",
-    "2026-10-13 00:29:46 PT  INFO      Market closed. Sleeping 5.0 hrs until pre-market prep at 2026-10-13 05:30 AM PT",
-    "2026-10-13 00:59:49 PT  INFO      Market closed. Sleeping 4.5 hrs until pre-market prep at 2026-10-13 05:30 AM PT",
-    "2026-10-13 01:29:52 PT  INFO      Market closed. Sleeping 4.0 hrs until pre-market prep at 2026-10-13 05:30 AM PT",
-    "2026-10-13 01:59:56 PT  INFO      Market closed. Sleeping 3.5 hrs until pre-market prep at 2026-10-13 05:30 AM PT",
-    "2026-10-13 02:29:59 PT  INFO      Market closed. Sleeping 3.0 hrs until pre-market prep at 2026-10-13 05:30 AM PT",
-    "2026-10-13 03:00:02 PT  INFO      Market closed. Sleeping 2.5 hrs until pre-market prep at 2026-10-13 05:30 AM PT",
-    "2026-10-13 03:30:05 PT  INFO      Market closed. Sleeping 2.0 hrs until pre-market prep at 2026-10-13 05:30 AM PT",
     "2026-10-13 04:00:08 PT  INFO      Market closed. Sleeping 1.5 hrs until pre-market prep at 2026-10-13 05:30 AM PT",
     "2026-10-13 04:30:11 PT  INFO      Market closed. Sleeping 1.0 hrs until pre-market prep at 2026-10-13 05:30 AM PT",
     "2026-10-13 05:00:15 PT  INFO      Market closed. Sleeping 0.5 hrs until pre-market prep at 2026-10-13 05:30 AM PT",
@@ -197,6 +240,14 @@
     "2026-10-13 06:28:05 PT  INFO      Market closed. Sleeping 0.0 hrs until pre-market prep at 2026-10-13 05:30 AM PT",
     "2026-10-13 06:28:38 PT  INFO      Market closed. Sleeping 0.0 hrs until pre-market prep at 2026-10-13 05:30 AM PT",
     "2026-10-13 06:29:11 PT  INFO      Market closed. Sleeping 0.0 hrs until pre-market prep at 2026-10-13 05:30 AM PT",
-    "2026-10-13 06:29:44 PT  INFO      Market closed. Sleeping 0.0 hrs until pre-market prep at 2026-10-13 05:30 AM PT"
+    "2026-10-13 06:29:44 PT  INFO      Market closed. Sleeping 0.0 hrs until pre-market prep at 2026-10-13 05:30 AM PT",
+    "2026-10-13 06:35:03 PT  INFO      >>> TIME TRIGGER: 06:35 AM PT -> Executing Engine 1 (Super Momentum Runner)...",
+    "2026-10-13 06:35:03 PT  INFO      [Engine 1] Scanning for 20-Day Super Momentum leaders (>= +25%)...",
+    "2026-10-13 06:35:11 PT  INFO      [Engine 1] Selected 5 Super Momentum leaders: ['DDOG', 'SNPS', 'CRWD', 'PANW', 'SHOP']",
+    "2026-10-13 06:35:11 PT  INFO      [SUPER_MOMENTUM_RUNNER] SUBMITTED LONG order: 174 shares of DDOG @ ~$285.99 (Order ID: fab2fd1e-daa9-4af7-a083-d781056fb551)",
+    "2026-10-13 06:35:11 PT  INFO      [SUPER_MOMENTUM_RUNNER] SUBMITTED LONG order: 99 shares of SNPS @ ~$500.04 (Order ID: 99522e56-9a6a-4d74-b2fe-a3b32e0b24b7)",
+    "2026-10-13 06:35:11 PT  INFO      [SUPER_MOMENTUM_RUNNER] SUBMITTED LONG order: 189 shares of CRWD @ ~$264.43 (Order ID: 97ff9c65-dc47-4117-828f-87f572ead736)",
+    "2026-10-13 06:35:12 PT  INFO      [SUPER_MOMENTUM_RUNNER] SUBMITTED LONG order: 124 shares of PANW @ ~$403.04 (Order ID: f412fd1a-0d4a-48b7-a327-6ca5cd80cd61)",
+    "2026-10-13 06:35:12 PT  INFO      [SUPER_MOMENTUM_RUNNER] SUBMITTED LONG order: 285 shares of SHOP @ ~$174.99 (Order ID: 75a12d66-a0e7-4631-8c02-d45447309c07)"
   ]
 }

@@ -1,15 +1,15 @@
 {
-  "updated_at": "2026-10-13 06:45:09 AM PT",
-  "timestamp_utc": "2026-10-13T13:45:09.603633+00:00",
+  "updated_at": "2026-10-13 07:00:11 AM PT",
+  "timestamp_utc": "2026-10-13T14:00:12.060913+00:00",
   "bot_version": "3.2.1-strat2",
   "account_id": "PA3EM0YADDLM",
   "account_label": "Portfolio 2: Dual Trailing Ratchets ($10k)",
   "account": {
-    "portfolio_value": 10000.0,
-    "cash": 10000.0,
-    "buying_power": 32385.16,
-    "total_pnl": 0.0,
-    "total_return_pct": "+0.00",
+    "portfolio_value": 9990.11,
+    "cash": 14434.79,
+    "buying_power": 26959.47,
+    "total_pnl": -9.89,
+    "total_return_pct": "-0.10",
     "starting_equity": 10000.0,
     "status": "ACTIVE"
   },
@@ -49,18 +49,112 @@
   },
   "open_positions": [
     {
+      "symbol": "CRM",
+      "direction": "SHORT",
+      "side": "short",
+      "qty": 4.0,
+      "entry_price": 243.15,
+      "current_price": 243.82,
+      "market_value": 975.28,
+      "unrealized_pnl": -2.68,
+      "unrealized_plpc": -0.28
+    },
+    {
+      "symbol": "HPE",
+      "direction": "SHORT",
+      "side": "short",
+      "qty": 14.0,
+      "entry_price": 70.11,
+      "current_price": 70.49,
+      "market_value": 986.86,
+      "unrealized_pnl": -5.32,
+      "unrealized_plpc": -0.54
+    },
+    {
       "symbol": "MDB",
       "direction": "SHORT",
       "side": "short",
-      "qty": 1.0,
+      "qty": 2.0,
       "entry_price": 405.5,
-      "current_price": 405.5,
-      "market_value": 405.5,
-      "unrealized_pnl": -0.0,
-      "unrealized_plpc": 0.0
+      "current_price": 407.79,
+      "market_value": 815.57,
+      "unrealized_pnl": -4.57,
+      "unrealized_plpc": -0.56
+    },
+    {
+      "symbol": "SNOW",
+      "direction": "SHORT",
+      "side": "short",
+      "qty": 2.0,
+      "entry_price": 367.26,
+      "current_price": 365.44,
+      "market_value": 730.89,
+      "unrealized_pnl": 3.64,
+      "unrealized_plpc": 0.5
+    },
+    {
+      "symbol": "ZS",
+      "direction": "SHORT",
+      "side": "short",
+      "qty": 4.0,
+      "entry_price": 233.78,
+      "current_price": 234.02,
+      "market_value": 936.08,
+      "unrealized_pnl": -0.96,
+      "unrealized_plpc": -0.1
     }
   ],
   "recent_trades": [
+    {
+      "symbol": "BMNR",
+      "strategy": "ORB_30M_TREND_RATCHET",
+      "direction": "SHORT",
+      "shares": 42.0,
+      "price": 23.475,
+      "close_price": null,
+      "realized_pnl": null,
+      "date": "2026-10-13 07:00:10"
+    },
+    {
+      "symbol": "CAT",
+      "strategy": "ORB_30M_TREND_RATCHET",
+      "direction": "SHORT",
+      "shares": 1.0,
+      "price": 775.59,
+      "close_price": null,
+      "realized_pnl": null,
+      "date": "2026-10-13 07:00:10"
+    },
+    {
+      "symbol": "USB",
+      "strategy": "ORB_30M_TREND_RATCHET",
+      "direction": "SHORT",
+      "shares": 17.0,
+      "price": 56.885,
+      "close_price": null,
+      "realized_pnl": null,
+      "date": "2026-10-13 07:00:10"
+    },
+    {
+      "symbol": "C",
+      "strategy": "ORB_30M_TREND_RATCHET",
+      "direction": "SHORT",
+      "shares": 7.0,
+      "price": 129.935,
+      "close_price": null,
+      "realized_pnl": null,
+      "date": "2026-10-13 07:00:09"
+    },
+    {
+      "symbol": "MDT",
+      "strategy": "ORB_30M_TREND_RATCHET",
+      "direction": "SHORT",
+      "shares": 10.0,
+      "price": 91.03,
+      "close_price": null,
+      "realized_pnl": null,
+      "date": "2026-10-13 07:00:09"
+    },
     {
       "symbol": "CRM",
       "strategy": "INTRADAY_15M_RUNNER_FADE",
@@ -115,22 +209,12 @@
   "history": [
     {
       "date": "2026-10-13",
-      "portfolio_value": 10000.0,
-      "daily_pnl": 0.0,
-      "cum_return": 0.0
+      "portfolio_value": 9990.11,
+      "daily_pnl": -9.89,
+      "cum_return": -0.1
     }
   ],
   "logs": [
-    "2026-10-12 14:26:23 PT  INFO      ============================================================",
-    "2026-10-12 14:26:23 PT  INFO       STARTING STRATEGY 2 BOT (3.2.1-strat2) - $10,000 CAPITAL",
-    "2026-10-12 14:26:23 PT  INFO       Account: PA3EM0YADDLM | Equity: $10,000.00",
-    "2026-10-12 14:26:23 PT  INFO      ============================================================",
-    "2026-10-12 14:26:26 PT  INFO      Warming up pre-market data...",
-    "2026-10-12 14:26:26 PT  INFO      Executing Morning Short Allocation. Equity: $10,000.00 | Capital/pos: $1,000.00",
-    "2026-10-12 14:26:40 PT  INFO      ============================================================",
-    "2026-10-12 14:26:40 PT  INFO       STARTING STRATEGY 2 BOT (3.2.1-strat2) - $10,000 CAPITAL",
-    "2026-10-12 14:26:40 PT  INFO       Account: PA3EM0YADDLM | Equity: $10,000.00",
-    "2026-10-12 14:26:40 PT  INFO      ============================================================",
     "2026-10-12 14:26:43 PT  INFO      Warming up pre-market data...",
     "2026-10-12 14:26:43 PT  INFO      Executing Morning Short Allocation. Equity: $10,000.00 | Capital/pos: $1,000.00",
     "2026-10-12 14:26:57 PT  INFO      ============================================================",
@@ -234,6 +318,22 @@
     "2026-10-13 06:45:08 PT  INFO      [INTRADAY_15M_RUNNER_FADE] SHORT SUBMITTED: 4 shares of ZS at ~$234.85",
     "2026-10-13 06:45:08 PT  INFO      [INTRADAY_15M_RUNNER_FADE] SHORT SUBMITTED: 14 shares of HPE at ~$70.38",
     "2026-10-13 06:45:08 PT  INFO      [INTRADAY_15M_RUNNER_FADE] SHORT SUBMITTED: 2 shares of SNOW at ~$368.47",
-    "2026-10-13 06:45:09 PT  INFO      [INTRADAY_15M_RUNNER_FADE] SHORT SUBMITTED: 4 shares of CRM at ~$243.47"
+    "2026-10-13 06:45:09 PT  INFO      [INTRADAY_15M_RUNNER_FADE] SHORT SUBMITTED: 4 shares of CRM at ~$243.47",
+    "2026-10-13 06:45:12 PT  INFO      Waiting 14.8 min until 07:00 AM PT (10:00 ET) [Execution 2: 30M ORB Trend Runner]",
+    "2026-10-13 07:00:00 PT  INFO      ============================================================",
+    "2026-10-13 07:00:00 PT  INFO       EXECUTING STRATEGY 3B: 30-MINUTE RANGE BREAKOUT (07:00 AM PT / 10:00 ET)",
+    "2026-10-13 07:00:00 PT  INFO       Scanning for institutional breakout/breakdowns relative to 30M range & VWAP...",
+    "2026-10-13 07:00:00 PT  INFO      ============================================================",
+    "2026-10-13 07:00:09 PT  INFO      Selected 5 30M ORB Trend Candidates:",
+    "2026-10-13 07:00:09 PT  INFO        MDT    SHORT Breakout: +0.39%  Price: $91.03",
+    "2026-10-13 07:00:09 PT  INFO        C      SHORT Breakout: +0.34%  Price: $129.94",
+    "2026-10-13 07:00:09 PT  INFO        USB    SHORT Breakout: +0.32%  Price: $56.88",
+    "2026-10-13 07:00:09 PT  INFO        CAT    SHORT Breakout: +0.28%  Price: $775.59",
+    "2026-10-13 07:00:09 PT  INFO        BMNR   SHORT Breakout: +0.28%  Price: $23.48",
+    "2026-10-13 07:00:09 PT  INFO      [ORB_30M_TREND_RATCHET] SHORT SUBMITTED: 10 shares of MDT at ~$91.03",
+    "2026-10-13 07:00:09 PT  INFO      [ORB_30M_TREND_RATCHET] SHORT SUBMITTED: 7 shares of C at ~$129.94",
+    "2026-10-13 07:00:10 PT  INFO      [ORB_30M_TREND_RATCHET] SHORT SUBMITTED: 17 shares of USB at ~$56.88",
+    "2026-10-13 07:00:10 PT  INFO      [ORB_30M_TREND_RATCHET] SHORT SUBMITTED: 1 shares of CAT at ~$775.59",
+    "2026-10-13 07:00:10 PT  INFO      [ORB_30M_TREND_RATCHET] SHORT SUBMITTED: 42 shares of BMNR at ~$23.48"
   ]
 }

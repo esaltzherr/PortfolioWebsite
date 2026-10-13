@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-13 07:00:11 AM PT",
-  "timestamp_utc": "2026-10-13T14:00:12.060913+00:00",
+  "updated_at": "2026-10-13 07:00:15 AM PT",
+  "timestamp_utc": "2026-10-13T14:00:15.747482+00:00",
   "bot_version": "3.2.1-strat2",
   "account_id": "PA3EM0YADDLM",
   "account_label": "Portfolio 2: Dual Trailing Ratchets ($10k)",
   "account": {
-    "portfolio_value": 9990.11,
-    "cash": 14434.79,
-    "buying_power": 26959.47,
-    "total_pnl": -9.89,
+    "portfolio_value": 9989.66,
+    "cash": 18979.59,
+    "buying_power": 27124.25,
+    "total_pnl": -10.34,
     "total_return_pct": "-0.10",
     "starting_equity": 10000.0,
     "status": "ACTIVE"
@@ -49,15 +49,48 @@
   },
   "open_positions": [
     {
+      "symbol": "BMNR",
+      "direction": "SHORT",
+      "side": "short",
+      "qty": 42.0,
+      "entry_price": 23.51,
+      "current_price": 23.51,
+      "market_value": 987.42,
+      "unrealized_pnl": 0.0,
+      "unrealized_plpc": 0.0
+    },
+    {
+      "symbol": "C",
+      "direction": "SHORT",
+      "side": "short",
+      "qty": 7.0,
+      "entry_price": 129.55,
+      "current_price": 129.62,
+      "market_value": 907.3,
+      "unrealized_pnl": -0.47,
+      "unrealized_plpc": -0.05
+    },
+    {
+      "symbol": "CAT",
+      "direction": "SHORT",
+      "side": "short",
+      "qty": 1.0,
+      "entry_price": 775.54,
+      "current_price": 775.5,
+      "market_value": 775.5,
+      "unrealized_pnl": 0.04,
+      "unrealized_plpc": 0.01
+    },
+    {
       "symbol": "CRM",
       "direction": "SHORT",
       "side": "short",
       "qty": 4.0,
       "entry_price": 243.15,
-      "current_price": 243.82,
-      "market_value": 975.28,
-      "unrealized_pnl": -2.68,
-      "unrealized_plpc": -0.28
+      "current_price": 243.95,
+      "market_value": 975.8,
+      "unrealized_pnl": -3.2,
+      "unrealized_plpc": -0.33
     },
     {
       "symbol": "HPE",
@@ -65,10 +98,10 @@
       "side": "short",
       "qty": 14.0,
       "entry_price": 70.11,
-      "current_price": 70.49,
-      "market_value": 986.86,
-      "unrealized_pnl": -5.32,
-      "unrealized_plpc": -0.54
+      "current_price": 70.48,
+      "market_value": 986.75,
+      "unrealized_pnl": -5.21,
+      "unrealized_plpc": -0.53
     },
     {
       "symbol": "MDB",
@@ -76,10 +109,21 @@
       "side": "short",
       "qty": 2.0,
       "entry_price": 405.5,
-      "current_price": 407.79,
-      "market_value": 815.57,
-      "unrealized_pnl": -4.57,
-      "unrealized_plpc": -0.56
+      "current_price": 407.66,
+      "market_value": 815.32,
+      "unrealized_pnl": -4.32,
+      "unrealized_plpc": -0.53
+    },
+    {
+      "symbol": "MDT",
+      "direction": "SHORT",
+      "side": "short",
+      "qty": 10.0,
+      "entry_price": 90.94,
+      "current_price": 91.0,
+      "market_value": 910.0,
+      "unrealized_pnl": -0.6,
+      "unrealized_plpc": -0.07
     },
     {
       "symbol": "SNOW",
@@ -93,15 +137,26 @@
       "unrealized_plpc": 0.5
     },
     {
+      "symbol": "USB",
+      "direction": "SHORT",
+      "side": "short",
+      "qty": 17.0,
+      "entry_price": 56.8,
+      "current_price": 56.8,
+      "market_value": 965.6,
+      "unrealized_pnl": -0.0,
+      "unrealized_plpc": 0.0
+    },
+    {
       "symbol": "ZS",
       "direction": "SHORT",
       "side": "short",
       "qty": 4.0,
       "entry_price": 233.78,
-      "current_price": 234.02,
-      "market_value": 936.08,
-      "unrealized_pnl": -0.96,
-      "unrealized_plpc": -0.1
+      "current_price": 233.84,
+      "market_value": 935.34,
+      "unrealized_pnl": -0.22,
+      "unrealized_plpc": -0.02
     }
   ],
   "recent_trades": [
@@ -209,13 +264,12 @@
   "history": [
     {
       "date": "2026-10-13",
-      "portfolio_value": 9990.11,
-      "daily_pnl": -9.89,
+      "portfolio_value": 9989.66,
+      "daily_pnl": -10.34,
       "cum_return": -0.1
     }
   ],
   "logs": [
-    "2026-10-12 14:26:43 PT  INFO      Warming up pre-market data...",
     "2026-10-12 14:26:43 PT  INFO      Executing Morning Short Allocation. Equity: $10,000.00 | Capital/pos: $1,000.00",
     "2026-10-12 14:26:57 PT  INFO      ============================================================",
     "2026-10-12 14:26:57 PT  INFO       STARTING STRATEGY 2 BOT (3.2.1-strat2) - $10,000 CAPITAL",
@@ -334,6 +388,7 @@
     "2026-10-13 07:00:09 PT  INFO      [ORB_30M_TREND_RATCHET] SHORT SUBMITTED: 7 shares of C at ~$129.94",
     "2026-10-13 07:00:10 PT  INFO      [ORB_30M_TREND_RATCHET] SHORT SUBMITTED: 17 shares of USB at ~$56.88",
     "2026-10-13 07:00:10 PT  INFO      [ORB_30M_TREND_RATCHET] SHORT SUBMITTED: 1 shares of CAT at ~$775.59",
-    "2026-10-13 07:00:10 PT  INFO      [ORB_30M_TREND_RATCHET] SHORT SUBMITTED: 42 shares of BMNR at ~$23.48"
+    "2026-10-13 07:00:10 PT  INFO      [ORB_30M_TREND_RATCHET] SHORT SUBMITTED: 42 shares of BMNR at ~$23.48",
+    "2026-10-13 07:00:15 PT  INFO      Starting Dynamic Trailing Ratchet Monitor Loop..."
   ]
 }

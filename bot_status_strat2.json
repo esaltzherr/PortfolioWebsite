@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-13 07:25:49 AM PT",
-  "timestamp_utc": "2026-10-13T14:25:50.141558+00:00",
+  "updated_at": "2026-10-13 07:26:53 AM PT",
+  "timestamp_utc": "2026-10-13T14:26:53.913268+00:00",
   "bot_version": "3.2.1-strat2",
   "account_id": "PA3EM0YADDLM",
   "account_label": "Portfolio 2: Dual Trailing Ratchets ($10k)",
   "account": {
-    "portfolio_value": 10014.62,
+    "portfolio_value": 10015.17,
     "cash": 17272.16,
-    "buying_power": 29324.86,
-    "total_pnl": 14.62,
+    "buying_power": 29330.64,
+    "total_pnl": 15.17,
     "total_return_pct": "+0.15",
     "starting_equity": 10000.0,
     "status": "ACTIVE"
@@ -65,10 +65,10 @@
       "side": "short",
       "qty": 1.0,
       "entry_price": 775.54,
-      "current_price": 775.92,
-      "market_value": 775.92,
-      "unrealized_pnl": -0.38,
-      "unrealized_plpc": -0.05
+      "current_price": 776.16,
+      "market_value": 776.16,
+      "unrealized_pnl": -0.62,
+      "unrealized_plpc": -0.08
     },
     {
       "symbol": "CRM",
@@ -76,10 +76,10 @@
       "side": "short",
       "qty": 4.0,
       "entry_price": 243.15,
-      "current_price": 241.08,
-      "market_value": 964.32,
-      "unrealized_pnl": 8.28,
-      "unrealized_plpc": 0.85
+      "current_price": 241.12,
+      "market_value": 964.5,
+      "unrealized_pnl": 8.1,
+      "unrealized_plpc": 0.83
     },
     {
       "symbol": "HPE",
@@ -87,10 +87,10 @@
       "side": "short",
       "qty": 14.0,
       "entry_price": 70.11,
-      "current_price": 69.69,
-      "market_value": 975.66,
-      "unrealized_pnl": 5.88,
-      "unrealized_plpc": 0.6
+      "current_price": 69.74,
+      "market_value": 976.36,
+      "unrealized_pnl": 5.18,
+      "unrealized_plpc": 0.53
     },
     {
       "symbol": "MDT",
@@ -98,10 +98,10 @@
       "side": "short",
       "qty": 10.0,
       "entry_price": 90.94,
-      "current_price": 90.72,
-      "market_value": 907.2,
-      "unrealized_pnl": 2.2,
-      "unrealized_plpc": 0.24
+      "current_price": 90.77,
+      "market_value": 907.7,
+      "unrealized_pnl": 1.7,
+      "unrealized_plpc": 0.19
     },
     {
       "symbol": "SNOW",
@@ -109,10 +109,10 @@
       "side": "short",
       "qty": 2.0,
       "entry_price": 367.26,
-      "current_price": 361.53,
-      "market_value": 723.06,
-      "unrealized_pnl": 11.47,
-      "unrealized_plpc": 1.56
+      "current_price": 361.01,
+      "market_value": 722.02,
+      "unrealized_pnl": 12.51,
+      "unrealized_plpc": 1.7
     },
     {
       "symbol": "USB",
@@ -120,10 +120,10 @@
       "side": "short",
       "qty": 17.0,
       "entry_price": 56.8,
-      "current_price": 56.99,
-      "market_value": 968.83,
-      "unrealized_pnl": -3.23,
-      "unrealized_plpc": -0.34
+      "current_price": 56.97,
+      "market_value": 968.49,
+      "unrealized_pnl": -2.89,
+      "unrealized_plpc": -0.3
     },
     {
       "symbol": "ZS",
@@ -131,10 +131,10 @@
       "side": "short",
       "qty": 4.0,
       "entry_price": 233.78,
-      "current_price": 233.9,
-      "market_value": 935.6,
-      "unrealized_pnl": -0.48,
-      "unrealized_plpc": -0.05
+      "current_price": 233.72,
+      "market_value": 934.86,
+      "unrealized_pnl": 0.26,
+      "unrealized_plpc": 0.03
     }
   ],
   "recent_trades": [
@@ -242,8 +242,8 @@
   "history": [
     {
       "date": "2026-10-13",
-      "portfolio_value": 10014.62,
-      "daily_pnl": 14.62,
+      "portfolio_value": 10015.17,
+      "daily_pnl": 15.17,
       "cum_return": 0.15
     }
   ],

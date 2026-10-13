@@ -1,15 +1,15 @@
 {
-  "updated_at": "2026-10-13 07:22:15 AM PT",
-  "timestamp_utc": "2026-10-13T14:22:15.273108+00:00",
+  "updated_at": "2026-10-13 07:29:05 AM PT",
+  "timestamp_utc": "2026-10-13T14:29:05.638553+00:00",
   "bot_version": "3.2.1-strat3",
   "account_id": "PA33UNIQCZOZ",
   "account_label": "Portfolio 3: The Everything Strat ($1M)",
   "account": {
-    "portfolio_value": 1001218.59,
+    "portfolio_value": 1000378.26,
     "cash": 582657.93,
-    "buying_power": 3265782.83,
-    "total_pnl": 1218.59,
-    "total_return_pct": "+0.12",
+    "buying_power": 3263670.88,
+    "total_pnl": 378.26,
+    "total_return_pct": "+0.04",
     "starting_equity": 1000000.0,
     "status": "ACTIVE"
   },
@@ -61,9 +61,9 @@
     }
   ],
   "stats": {
-    "total_trades": 1,
+    "total_trades": 2,
     "wins": 0,
-    "losses": 1,
+    "losses": 2,
     "win_rate": "0.0%",
     "profit_factor": "1.00"
   },
@@ -74,10 +74,10 @@
       "side": "long",
       "qty": 189.0,
       "entry_price": 265.14,
-      "current_price": 265.62,
-      "market_value": 50202.18,
-      "unrealized_pnl": 90.72,
-      "unrealized_plpc": 0.18
+      "current_price": 265.5,
+      "market_value": 50179.5,
+      "unrealized_pnl": 68.04,
+      "unrealized_plpc": 0.14
     },
     {
       "symbol": "DDOG",
@@ -85,10 +85,10 @@
       "side": "long",
       "qty": 174.0,
       "entry_price": 288.02,
-      "current_price": 287.52,
-      "market_value": 50028.48,
-      "unrealized_pnl": -87.0,
-      "unrealized_plpc": -0.17
+      "current_price": 285.5,
+      "market_value": 49676.57,
+      "unrealized_pnl": -438.92,
+      "unrealized_plpc": -0.88
     },
     {
       "symbol": "MU",
@@ -96,10 +96,10 @@
       "side": "long",
       "qty": 88.0,
       "entry_price": 947.06,
-      "current_price": 948.01,
-      "market_value": 83424.88,
-      "unrealized_pnl": 83.57,
-      "unrealized_plpc": 0.1
+      "current_price": 945.4,
+      "market_value": 83195.2,
+      "unrealized_pnl": -146.11,
+      "unrealized_plpc": -0.18
     },
     {
       "symbol": "NBIS",
@@ -107,10 +107,10 @@
       "side": "long",
       "qty": 418.0,
       "entry_price": 200.2,
-      "current_price": 202.34,
-      "market_value": 84578.12,
-      "unrealized_pnl": 894.34,
-      "unrealized_plpc": 1.07
+      "current_price": 202.13,
+      "market_value": 84492.05,
+      "unrealized_pnl": 808.27,
+      "unrealized_plpc": 0.97
     },
     {
       "symbol": "PANW",
@@ -118,10 +118,10 @@
       "side": "long",
       "qty": 124.0,
       "entry_price": 406.0,
-      "current_price": 403.59,
-      "market_value": 50045.16,
-      "unrealized_pnl": -298.84,
-      "unrealized_plpc": -0.59
+      "current_price": 403.41,
+      "market_value": 50022.23,
+      "unrealized_pnl": -321.77,
+      "unrealized_plpc": -0.64
     },
     {
       "symbol": "SHOP",
@@ -129,10 +129,10 @@
       "side": "long",
       "qty": 285.0,
       "entry_price": 175.31,
-      "current_price": 178.3,
-      "market_value": 50815.5,
-      "unrealized_pnl": 852.15,
-      "unrealized_plpc": 1.71
+      "current_price": 178.21,
+      "market_value": 50788.43,
+      "unrealized_pnl": 825.08,
+      "unrealized_plpc": 1.65
     },
     {
       "symbol": "SNPS",
@@ -140,10 +140,10 @@
       "side": "long",
       "qty": 99.0,
       "entry_price": 500.48,
-      "current_price": 499.66,
-      "market_value": 49466.34,
-      "unrealized_pnl": -81.18,
-      "unrealized_plpc": -0.16
+      "current_price": 498.65,
+      "market_value": 49366.35,
+      "unrealized_pnl": -181.17,
+      "unrealized_plpc": -0.37
     }
   ],
   "recent_trades": [
@@ -223,21 +223,20 @@
       "direction": "LONG",
       "shares": 174.0,
       "price": 285.99,
-      "close_price": null,
-      "realized_pnl": null,
+      "close_price": 285.42,
+      "realized_pnl": -99.18,
       "date": "2026-10-13 06:35:11"
     }
   ],
   "history": [
     {
       "date": "2026-10-13",
-      "portfolio_value": 1001218.59,
-      "daily_pnl": 1218.59,
-      "cum_return": 0.12
+      "portfolio_value": 1000378.26,
+      "daily_pnl": 378.26,
+      "cum_return": 0.04
     }
   ],
   "logs": [
-    "2026-10-13 05:36:39 PT  INFO      Market closed. Sleeping 0.0 hrs until pre-market prep at 2026-10-13 05:30 AM PT",
     "2026-10-13 05:37:12 PT  INFO      Market closed. Sleeping 0.0 hrs until pre-market prep at 2026-10-13 05:30 AM PT",
     "2026-10-13 05:37:45 PT  INFO      Market closed. Sleeping 0.0 hrs until pre-market prep at 2026-10-13 05:30 AM PT",
     "2026-10-13 05:38:18 PT  INFO      Market closed. Sleeping 0.0 hrs until pre-market prep at 2026-10-13 05:30 AM PT",
@@ -356,6 +355,7 @@
     "2026-10-13 07:05:04 PT  INFO      [Engine 4] Scanning for Parabolic Blowoff Fade candidates (Short)...",
     "2026-10-13 07:05:10 PT  INFO      [Engine 4] Selected 0 Parabolic Blowoff Fade short targets: []",
     "2026-10-13 07:05:10 PT  INFO      [PARABOLIC_BLOWOFF_FADE] No qualifying candidates found.",
-    "2026-10-13 07:22:14 PT  INFO      [CAPITULATION_PANIC_BOUNCE] CLOSED LONG ANET @ $201.85 | P&L: -10.30 (-0.01%) | Reason: Breakeven Floor Protected"
+    "2026-10-13 07:22:14 PT  INFO      [CAPITULATION_PANIC_BOUNCE] CLOSED LONG ANET @ $201.85 | P&L: -10.30 (-0.01%) | Reason: Breakeven Floor Protected",
+    "2026-10-13 07:29:05 PT  INFO      [SUPER_MOMENTUM_RUNNER] CLOSED LONG DDOG @ $285.42 | P&L: -99.18 (-0.20%) | Reason: Breakeven Floor Protected"
   ]
 }

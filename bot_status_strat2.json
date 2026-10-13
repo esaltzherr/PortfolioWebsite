@@ -1,15 +1,15 @@
 {
-  "updated_at": "2026-10-13 09:15:07 AM PT",
-  "timestamp_utc": "2026-10-13T16:15:07.591207+00:00",
+  "updated_at": "2026-10-13 09:16:10 AM PT",
+  "timestamp_utc": "2026-10-13T16:16:10.785443+00:00",
   "bot_version": "3.2.1-strat2",
   "account_id": "PA3EM0YADDLM",
   "account_label": "Portfolio 2: Dual Trailing Ratchets ($10k)",
   "account": {
-    "portfolio_value": 10064.15,
+    "portfolio_value": 10063.03,
     "cash": 12790.46,
-    "buying_power": 36985.0,
-    "total_pnl": 64.15,
-    "total_return_pct": "+0.64",
+    "buying_power": 36979.2,
+    "total_pnl": 63.03,
+    "total_return_pct": "+0.63",
     "starting_equity": 10000.0,
     "status": "ACTIVE"
   },
@@ -54,10 +54,10 @@
       "side": "short",
       "qty": 42.0,
       "entry_price": 23.51,
-      "current_price": 23.84,
-      "market_value": 1001.49,
-      "unrealized_pnl": -14.07,
-      "unrealized_plpc": -1.43
+      "current_price": 23.88,
+      "market_value": 1002.96,
+      "unrealized_pnl": -15.54,
+      "unrealized_plpc": -1.57
     },
     {
       "symbol": "CAT",
@@ -65,10 +65,10 @@
       "side": "short",
       "qty": 1.0,
       "entry_price": 775.54,
-      "current_price": 759.14,
-      "market_value": 759.14,
-      "unrealized_pnl": 16.4,
-      "unrealized_plpc": 2.11
+      "current_price": 759.38,
+      "market_value": 759.38,
+      "unrealized_pnl": 16.16,
+      "unrealized_plpc": 2.08
     },
     {
       "symbol": "USB",
@@ -76,10 +76,10 @@
       "side": "short",
       "qty": 17.0,
       "entry_price": 56.8,
-      "current_price": 56.8,
-      "market_value": 965.68,
-      "unrealized_pnl": -0.09,
-      "unrealized_plpc": -0.01
+      "current_price": 56.77,
+      "market_value": 965.09,
+      "unrealized_pnl": 0.51,
+      "unrealized_plpc": 0.05
     }
   ],
   "recent_trades": [
@@ -187,9 +187,9 @@
   "history": [
     {
       "date": "2026-10-13",
-      "portfolio_value": 10064.15,
-      "daily_pnl": 64.15,
-      "cum_return": 0.64
+      "portfolio_value": 10063.03,
+      "daily_pnl": 63.03,
+      "cum_return": 0.63
     }
   ],
   "logs": [

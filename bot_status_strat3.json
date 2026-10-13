@@ -1,15 +1,15 @@
 {
-  "updated_at": "2026-10-13 06:35:12 AM PT",
-  "timestamp_utc": "2026-10-13T13:35:12.423663+00:00",
+  "updated_at": "2026-10-13 06:40:07 AM PT",
+  "timestamp_utc": "2026-10-13T13:40:07.358581+00:00",
   "bot_version": "3.2.1-strat3",
   "account_id": "PA33UNIQCZOZ",
   "account_label": "Portfolio 3: The Everything Strat ($1M)",
   "account": {
-    "portfolio_value": 1000000.0,
-    "cash": 1000000.0,
-    "buying_power": 3750404.27,
-    "total_pnl": 0.0,
-    "total_return_pct": "+0.00",
+    "portfolio_value": 1000866.66,
+    "cash": 749918.19,
+    "buying_power": 3201056.4,
+    "total_pnl": 866.66,
+    "total_return_pct": "+0.09",
     "starting_equity": 1000000.0,
     "status": "ACTIVE"
   },
@@ -67,8 +67,94 @@
     "win_rate": "63.4% (Multi-Engine Backtest)",
     "profit_factor": "8.59"
   },
-  "open_positions": [],
+  "open_positions": [
+    {
+      "symbol": "CRWD",
+      "direction": "LONG",
+      "side": "long",
+      "qty": 189.0,
+      "entry_price": 265.14,
+      "current_price": 266.14,
+      "market_value": 50300.46,
+      "unrealized_pnl": 189.0,
+      "unrealized_plpc": 0.38
+    },
+    {
+      "symbol": "DDOG",
+      "direction": "LONG",
+      "side": "long",
+      "qty": 174.0,
+      "entry_price": 288.02,
+      "current_price": 290.25,
+      "market_value": 50503.5,
+      "unrealized_pnl": 388.02,
+      "unrealized_plpc": 0.77
+    },
+    {
+      "symbol": "PANW",
+      "direction": "LONG",
+      "side": "long",
+      "qty": 124.0,
+      "entry_price": 406.0,
+      "current_price": 404.77,
+      "market_value": 50191.48,
+      "unrealized_pnl": -152.52,
+      "unrealized_plpc": -0.3
+    },
+    {
+      "symbol": "SHOP",
+      "direction": "LONG",
+      "side": "long",
+      "qty": 285.0,
+      "entry_price": 175.31,
+      "current_price": 176.95,
+      "market_value": 50430.75,
+      "unrealized_pnl": 467.4,
+      "unrealized_plpc": 0.94
+    },
+    {
+      "symbol": "SNPS",
+      "direction": "LONG",
+      "side": "long",
+      "qty": 99.0,
+      "entry_price": 500.48,
+      "current_price": 500.23,
+      "market_value": 49522.28,
+      "unrealized_pnl": -25.25,
+      "unrealized_plpc": -0.05
+    }
+  ],
   "recent_trades": [
+    {
+      "symbol": "ANET",
+      "strategy": "CAPITULATION_PANIC_BOUNCE",
+      "direction": "LONG",
+      "shares": 412.0,
+      "price": 201.875,
+      "close_price": null,
+      "realized_pnl": null,
+      "date": "2026-10-13 06:40:06"
+    },
+    {
+      "symbol": "MU",
+      "strategy": "CAPITULATION_PANIC_BOUNCE",
+      "direction": "LONG",
+      "shares": 88.0,
+      "price": 946.13,
+      "close_price": null,
+      "realized_pnl": null,
+      "date": "2026-10-13 06:40:06"
+    },
+    {
+      "symbol": "NBIS",
+      "strategy": "CAPITULATION_PANIC_BOUNCE",
+      "direction": "LONG",
+      "shares": 418.0,
+      "price": 199.325,
+      "close_price": null,
+      "realized_pnl": null,
+      "date": "2026-10-13 06:40:06"
+    },
     {
       "symbol": "SHOP",
       "strategy": "SUPER_MOMENTUM_RUNNER",
@@ -123,18 +209,12 @@
   "history": [
     {
       "date": "2026-10-13",
-      "portfolio_value": 1000000.0,
-      "daily_pnl": 0.0,
-      "cum_return": 0.0
+      "portfolio_value": 1000866.66,
+      "daily_pnl": 866.66,
+      "cum_return": 0.09
     }
   ],
   "logs": [
-    "2026-10-13 04:00:08 PT  INFO      Market closed. Sleeping 1.5 hrs until pre-market prep at 2026-10-13 05:30 AM PT",
-    "2026-10-13 04:30:11 PT  INFO      Market closed. Sleeping 1.0 hrs until pre-market prep at 2026-10-13 05:30 AM PT",
-    "2026-10-13 05:00:15 PT  INFO      Market closed. Sleeping 0.5 hrs until pre-market prep at 2026-10-13 05:30 AM PT",
-    "2026-10-13 05:30:03 PT  INFO      Market closed. Sleeping 0.0 hrs until pre-market prep at 2026-10-13 05:30 AM PT",
-    "2026-10-13 05:30:36 PT  INFO      Market closed. Sleeping 0.0 hrs until pre-market prep at 2026-10-13 05:30 AM PT",
-    "2026-10-13 05:31:09 PT  INFO      Market closed. Sleeping 0.0 hrs until pre-market prep at 2026-10-13 05:30 AM PT",
     "2026-10-13 05:31:42 PT  INFO      Market closed. Sleeping 0.0 hrs until pre-market prep at 2026-10-13 05:30 AM PT",
     "2026-10-13 05:32:15 PT  INFO      Market closed. Sleeping 0.0 hrs until pre-market prep at 2026-10-13 05:30 AM PT",
     "2026-10-13 05:32:48 PT  INFO      Market closed. Sleeping 0.0 hrs until pre-market prep at 2026-10-13 05:30 AM PT",
@@ -248,6 +328,12 @@
     "2026-10-13 06:35:11 PT  INFO      [SUPER_MOMENTUM_RUNNER] SUBMITTED LONG order: 99 shares of SNPS @ ~$500.04 (Order ID: 99522e56-9a6a-4d74-b2fe-a3b32e0b24b7)",
     "2026-10-13 06:35:11 PT  INFO      [SUPER_MOMENTUM_RUNNER] SUBMITTED LONG order: 189 shares of CRWD @ ~$264.43 (Order ID: 97ff9c65-dc47-4117-828f-87f572ead736)",
     "2026-10-13 06:35:12 PT  INFO      [SUPER_MOMENTUM_RUNNER] SUBMITTED LONG order: 124 shares of PANW @ ~$403.04 (Order ID: f412fd1a-0d4a-48b7-a327-6ca5cd80cd61)",
-    "2026-10-13 06:35:12 PT  INFO      [SUPER_MOMENTUM_RUNNER] SUBMITTED LONG order: 285 shares of SHOP @ ~$174.99 (Order ID: 75a12d66-a0e7-4631-8c02-d45447309c07)"
+    "2026-10-13 06:35:12 PT  INFO      [SUPER_MOMENTUM_RUNNER] SUBMITTED LONG order: 285 shares of SHOP @ ~$174.99 (Order ID: 75a12d66-a0e7-4631-8c02-d45447309c07)",
+    "2026-10-13 06:40:01 PT  INFO      >>> TIME TRIGGER: 06:40 AM PT -> Executing Engine 2 (Capitulation Panic Bounce)...",
+    "2026-10-13 06:40:01 PT  INFO      [Engine 2] Scanning for Capitulation Panic Bounce candidates (-5% to -15%)...",
+    "2026-10-13 06:40:06 PT  INFO      [Engine 2] Selected 3 Capitulation Bounce targets: ['NBIS', 'MU', 'ANET']",
+    "2026-10-13 06:40:06 PT  INFO      [CAPITULATION_PANIC_BOUNCE] SUBMITTED LONG order: 418 shares of NBIS @ ~$199.32 (Order ID: 6c040296-4e2f-4b6d-918e-f57a413dd64e)",
+    "2026-10-13 06:40:07 PT  INFO      [CAPITULATION_PANIC_BOUNCE] SUBMITTED LONG order: 88 shares of MU @ ~$946.13 (Order ID: 5747d575-90ff-450c-8066-d53f024a940a)",
+    "2026-10-13 06:40:07 PT  INFO      [CAPITULATION_PANIC_BOUNCE] SUBMITTED LONG order: 412 shares of ANET @ ~$201.88 (Order ID: ba5dc6d9-5e0d-408a-8172-a3040c035a2a)"
   ]
 }

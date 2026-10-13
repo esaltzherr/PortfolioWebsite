@@ -1,22 +1,22 @@
 {
-  "updated_at": "2026-10-13 12:50:05 PM PT",
-  "timestamp_utc": "2026-10-13T19:50:05.834954+00:00",
+  "updated_at": "2026-10-13 01:30:30 PM PT",
+  "timestamp_utc": "2026-10-13T20:30:30.395973+00:00",
   "bot_version": "3.2.1-strat2",
   "account_id": "PA3EM0YADDLM",
   "account_label": "Portfolio 2: Dual Trailing Ratchets ($10k)",
   "account": {
-    "portfolio_value": 10072.61,
-    "cash": 12023.99,
-    "buying_power": 37948.76,
-    "total_pnl": 72.61,
-    "total_return_pct": "+0.73",
+    "portfolio_value": 10071.92,
+    "cash": 10071.92,
+    "buying_power": 40287.68,
+    "total_pnl": 71.92,
+    "total_return_pct": "+0.72",
     "starting_equity": 10000.0,
     "status": "ACTIVE"
   },
   "market": {
-    "is_open": true,
+    "is_open": false,
     "next_open": "2026-10-14 06:30 AM PT",
-    "next_close": "2026-10-13 01:00 PM PT"
+    "next_close": "2026-10-14 01:00 PM PT"
   },
   "strategies": [
     {
@@ -47,30 +47,7 @@
     "win_rate": "100.0%",
     "profit_factor": "1.00"
   },
-  "open_positions": [
-    {
-      "symbol": "BMNR",
-      "direction": "SHORT",
-      "side": "short",
-      "qty": 42.0,
-      "entry_price": 23.51,
-      "current_price": 23.38,
-      "market_value": 981.96,
-      "unrealized_pnl": 5.46,
-      "unrealized_plpc": 0.55
-    },
-    {
-      "symbol": "USB",
-      "direction": "SHORT",
-      "side": "short",
-      "qty": 17.0,
-      "entry_price": 56.8,
-      "current_price": 57.02,
-      "market_value": 969.42,
-      "unrealized_pnl": -3.83,
-      "unrealized_plpc": -0.4
-    }
-  ],
+  "open_positions": [],
   "recent_trades": [
     {
       "symbol": "BMNR",
@@ -176,16 +153,12 @@
   "history": [
     {
       "date": "2026-10-13",
-      "portfolio_value": 10072.61,
-      "daily_pnl": 72.61,
-      "cum_return": 0.73
+      "portfolio_value": 10071.92,
+      "daily_pnl": 71.92,
+      "cum_return": 0.72
     }
   ],
   "logs": [
-    "2026-10-12 14:27:27 PT  INFO       Account: PA3EM0YADDLM | Equity: $10,000.00",
-    "2026-10-12 14:27:27 PT  INFO      ============================================================",
-    "2026-10-12 14:27:30 PT  INFO      Market closed. Sleeping 15.0 hrs until pre-market prep at 2026-10-13 05:30 AM PT (08:30 AM ET)",
-    "2026-10-12 14:33:37 PT  INFO      ============================================================",
     "2026-10-12 14:33:37 PT  INFO       STARTING STRATEGY 2 BOT (3.2.1-strat2) - $10,000 CAPITAL",
     "2026-10-12 14:33:38 PT  INFO       Account: PA3EM0YADDLM | Equity: $10,000.00",
     "2026-10-12 14:33:38 PT  INFO       Dual Architecture: 15M Runner Fade (06:45 PT) + 30M ORB Trend (07:00 PT)",
@@ -301,6 +274,10 @@
     "2026-10-13 11:19:00 PT  INFO      [RATCHET TIER 2] CAT Short peaked at +2.6%, crossed locked floor. Securing gains!",
     "2026-10-13 11:19:00 PT  INFO      [CLOSED POSITION] CAT 1.0 shares @ $766.26 (Entry: $775.54, P&L: $+9.28) [RATCHET_TIER2]",
     "2026-10-13 12:50:03 PT  INFO      9.9 min to close. Triggering scheduled EOD liquidation...",
-    "2026-10-13 12:50:03 PT  INFO      Closing ALL positions [SCHEDULED_EOD] into 100% clean cash..."
+    "2026-10-13 12:50:03 PT  INFO      Closing ALL positions [SCHEDULED_EOD] into 100% clean cash...",
+    "2026-10-13 12:50:08 PT  INFO      All positions closed successfully.",
+    "2026-10-13 12:50:08 PT  INFO      Today's session (2026-10-13) already executed. Waiting for market close...",
+    "2026-10-13 12:50:08 PT  INFO      Waiting 9.9 min until 01:00 PM PT (16:00 ET) [MARKET CLOSE (01:00 PM PT)]",
+    "2026-10-13 13:00:30 PT  INFO      Market closed. Next open: 2026-10-14 06:30 AM PT (09:30 ET). Sleeping 16.5h until pre-market prep at 05:30 AM PT..."
   ]
 }

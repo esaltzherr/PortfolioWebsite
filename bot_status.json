@@ -2,8 +2,8 @@
   "is_paper_trading": true,
   "environment": "Alpaca Paper Trading Simulator (Virtual Currency - No Real Capital)",
   "timezone": "America/Los_Angeles (PT)",
-  "updated_at": "2026-10-13 03:30:18 PM PT",
-  "timestamp_iso": "2026-10-13T15:30:18.426523-07:00",
+  "updated_at": "2026-10-13 04:00:22 PM PT",
+  "timestamp_iso": "2026-10-13T16:00:22.725594-07:00",
   "account_id": "PKWUL6SHOQRV6B6JR6VY3YMP7S",
   "account_label": "Portfolio 1: Market-Neutral Pairs ($100k)",
   "market_status": "Market Closed (Next Open: 2026-10-14 06:30 AM PT)",
@@ -1584,10 +1584,6 @@
     }
   ],
   "logs": [
-    "2026-10-13 07:30:21 PT  INFO      Longs closed. Holding short positions until 12:50 PM PT (15:50 ET) with active stop loss...",
-    "2026-10-13 07:41:52 PT  WARNING     [TRAILING_TAKE_PROFIT] HUM (SHORT) Trailing profit lock: reached peak +6.39%, pulled back to +4.87% (trail floor: +4.89%)! Executing market exit...",
-    "2026-10-13 07:41:52 PT  INFO      [TRAILING_TAKE_PROFIT_TRIGGER] {'symbol': 'HUM', 'strategy': 'GAP_TOP_SHORT', 'direction': 'SHORT', 'unrealized_plpc': 4.87, 'peak_plpc': 6.39, 'exit_price': 417.7, 'qty': 4.0, 'reason': 'Trailing profit lock: reached peak +6.39%, pulled back to +4.87% (trail floor: +4.89%)'}",
-    "2026-10-13 07:41:52 PT  INFO        [GAP_TOP_SHORT] BUY 4 HUM -> order 9e6584b6...",
     "2026-10-13 07:45:23 PT  INFO      Saved bot status to /home/lsaltzherr/bot/bot_status.json",
     "2026-10-13 07:45:25 PT  INFO      Successfully pushed status to GitHub: esaltzherr/PortfolioWebsite/bot_status.json",
     "2026-10-13 07:45:27 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json",
@@ -1703,6 +1699,10 @@
     "2026-10-13 15:00:14 PT  INFO      Saved bot status to /home/lsaltzherr/bot/bot_status.json",
     "2026-10-13 15:00:16 PT  INFO      Successfully pushed status to GitHub: esaltzherr/PortfolioWebsite/bot_status.json",
     "2026-10-13 15:00:18 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json",
-    "2026-10-13 15:00:18 PT  INFO      Market closed. Next open: 2026-10-14 06:30 AM PT (09:30 ET). Sleeping 14.5h until pre-fetch at 05:30 AM PT..."
+    "2026-10-13 15:00:18 PT  INFO      Market closed. Next open: 2026-10-14 06:30 AM PT (09:30 ET). Sleeping 14.5h until pre-fetch at 05:30 AM PT...",
+    "2026-10-13 15:30:19 PT  INFO      Saved bot status to /home/lsaltzherr/bot/bot_status.json",
+    "2026-10-13 15:30:21 PT  INFO      Successfully pushed status to GitHub: esaltzherr/PortfolioWebsite/bot_status.json",
+    "2026-10-13 15:30:22 PT  INFO      Successfully pushed status to GitHub: esaltzherr/Trader/bot_status.json",
+    "2026-10-13 15:30:22 PT  INFO      Market closed. Next open: 2026-10-14 06:30 AM PT (09:30 ET). Sleeping 14.0h until pre-fetch at 05:30 AM PT..."
   ]
 }

@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-13 10:39:01 AM PT",
-  "timestamp_utc": "2026-10-13T17:39:02.097303+00:00",
+  "updated_at": "2026-10-13 10:40:05 AM PT",
+  "timestamp_utc": "2026-10-13T17:40:06.185436+00:00",
   "bot_version": "3.2.1-strat2",
   "account_id": "PA3EM0YADDLM",
   "account_label": "Portfolio 2: Dual Trailing Ratchets ($10k)",
   "account": {
-    "portfolio_value": 10060.47,
+    "portfolio_value": 10060.29,
     "cash": 12790.46,
-    "buying_power": 36965.87,
-    "total_pnl": 60.47,
+    "buying_power": 36964.96,
+    "total_pnl": 60.29,
     "total_return_pct": "+0.60",
     "starting_equity": 10000.0,
     "status": "ACTIVE"
@@ -54,10 +54,10 @@
       "side": "short",
       "qty": 42.0,
       "entry_price": 23.51,
-      "current_price": 23.8,
-      "market_value": 999.81,
-      "unrealized_pnl": -12.39,
-      "unrealized_plpc": -1.26
+      "current_price": 23.81,
+      "market_value": 1000.02,
+      "unrealized_pnl": -12.6,
+      "unrealized_plpc": -1.28
     },
     {
       "symbol": "CAT",
@@ -65,10 +65,10 @@
       "side": "short",
       "qty": 1.0,
       "entry_price": 775.54,
-      "current_price": 763.82,
-      "market_value": 763.82,
-      "unrealized_pnl": 11.72,
-      "unrealized_plpc": 1.51
+      "current_price": 764.12,
+      "market_value": 764.12,
+      "unrealized_pnl": 11.41,
+      "unrealized_plpc": 1.47
     },
     {
       "symbol": "USB",
@@ -76,10 +76,10 @@
       "side": "short",
       "qty": 17.0,
       "entry_price": 56.8,
-      "current_price": 56.84,
-      "market_value": 966.37,
-      "unrealized_pnl": -0.77,
-      "unrealized_plpc": -0.08
+      "current_price": 56.83,
+      "market_value": 966.02,
+      "unrealized_pnl": -0.42,
+      "unrealized_plpc": -0.04
     }
   ],
   "recent_trades": [
@@ -187,8 +187,8 @@
   "history": [
     {
       "date": "2026-10-13",
-      "portfolio_value": 10060.47,
-      "daily_pnl": 60.47,
+      "portfolio_value": 10060.29,
+      "daily_pnl": 60.29,
       "cum_return": 0.6
     }
   ],

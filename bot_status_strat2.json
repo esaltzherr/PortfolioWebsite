@@ -1,15 +1,15 @@
 {
-  "updated_at": "2026-10-13 10:26:18 AM PT",
-  "timestamp_utc": "2026-10-13T17:26:19.096534+00:00",
+  "updated_at": "2026-10-13 10:27:22 AM PT",
+  "timestamp_utc": "2026-10-13T17:27:22.256321+00:00",
   "bot_version": "3.2.1-strat2",
   "account_id": "PA3EM0YADDLM",
   "account_label": "Portfolio 2: Dual Trailing Ratchets ($10k)",
   "account": {
-    "portfolio_value": 10059.3,
+    "portfolio_value": 10060.39,
     "cash": 12790.46,
-    "buying_power": 36959.78,
-    "total_pnl": 59.3,
-    "total_return_pct": "+0.59",
+    "buying_power": 36965.48,
+    "total_pnl": 60.39,
+    "total_return_pct": "+0.60",
     "starting_equity": 10000.0,
     "status": "ACTIVE"
   },
@@ -55,9 +55,9 @@
       "qty": 42.0,
       "entry_price": 23.51,
       "current_price": 23.86,
-      "market_value": 1002.12,
-      "unrealized_pnl": -14.7,
-      "unrealized_plpc": -1.49
+      "market_value": 1001.91,
+      "unrealized_pnl": -14.49,
+      "unrealized_plpc": -1.47
     },
     {
       "symbol": "CAT",
@@ -65,10 +65,10 @@
       "side": "short",
       "qty": 1.0,
       "entry_price": 775.54,
-      "current_price": 763.02,
-      "market_value": 763.02,
-      "unrealized_pnl": 12.52,
-      "unrealized_plpc": 1.61
+      "current_price": 762.82,
+      "market_value": 762.82,
+      "unrealized_pnl": 12.72,
+      "unrealized_plpc": 1.64
     },
     {
       "symbol": "USB",
@@ -76,10 +76,10 @@
       "side": "short",
       "qty": 17.0,
       "entry_price": 56.8,
-      "current_price": 56.83,
-      "market_value": 966.02,
-      "unrealized_pnl": -0.42,
-      "unrealized_plpc": -0.04
+      "current_price": 56.78,
+      "market_value": 965.35,
+      "unrealized_pnl": 0.26,
+      "unrealized_plpc": 0.03
     }
   ],
   "recent_trades": [
@@ -187,9 +187,9 @@
   "history": [
     {
       "date": "2026-10-13",
-      "portfolio_value": 10059.3,
-      "daily_pnl": 59.3,
-      "cum_return": 0.59
+      "portfolio_value": 10060.39,
+      "daily_pnl": 60.39,
+      "cum_return": 0.6
     }
   ],
   "logs": [

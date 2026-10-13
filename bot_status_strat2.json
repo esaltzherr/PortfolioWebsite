@@ -1,15 +1,15 @@
 {
-  "updated_at": "2026-10-13 07:43:58 AM PT",
-  "timestamp_utc": "2026-10-13T14:43:59.097464+00:00",
+  "updated_at": "2026-10-13 07:45:03 AM PT",
+  "timestamp_utc": "2026-10-13T14:45:03.637616+00:00",
   "bot_version": "3.2.1-strat2",
   "account_id": "PA3EM0YADDLM",
   "account_label": "Portfolio 2: Dual Trailing Ratchets ($10k)",
   "account": {
-    "portfolio_value": 10048.78,
-    "cash": 16363.56,
-    "buying_power": 30600.63,
-    "total_pnl": 48.78,
-    "total_return_pct": "+0.49",
+    "portfolio_value": 10048.02,
+    "cash": 16002.81,
+    "buying_power": 32037.4,
+    "total_pnl": 48.02,
+    "total_return_pct": "+0.48",
     "starting_equity": 10000.0,
     "status": "ACTIVE"
   },
@@ -41,8 +41,8 @@
     }
   ],
   "stats": {
-    "total_trades": 3,
-    "wins": 3,
+    "total_trades": 7,
+    "wins": 7,
     "losses": 0,
     "win_rate": "100.0%",
     "profit_factor": "1.00"
@@ -54,10 +54,10 @@
       "side": "short",
       "qty": 42.0,
       "entry_price": 23.51,
-      "current_price": 23.86,
-      "market_value": 1002.33,
-      "unrealized_pnl": -14.91,
-      "unrealized_plpc": -1.51
+      "current_price": 23.88,
+      "market_value": 1003.11,
+      "unrealized_pnl": -15.69,
+      "unrealized_plpc": -1.59
     },
     {
       "symbol": "CAT",
@@ -65,10 +65,10 @@
       "side": "short",
       "qty": 1.0,
       "entry_price": 775.54,
-      "current_price": 772.0,
-      "market_value": 772.0,
-      "unrealized_pnl": 3.54,
-      "unrealized_plpc": 0.46
+      "current_price": 772.97,
+      "market_value": 772.97,
+      "unrealized_pnl": 2.57,
+      "unrealized_plpc": 0.33
     },
     {
       "symbol": "CRM",
@@ -76,32 +76,32 @@
       "side": "short",
       "qty": 4.0,
       "entry_price": 243.15,
-      "current_price": 239.01,
-      "market_value": 956.04,
-      "unrealized_pnl": 16.56,
-      "unrealized_plpc": 1.7
+      "current_price": 238.82,
+      "market_value": 955.28,
+      "unrealized_pnl": 17.32,
+      "unrealized_plpc": 1.78
     },
     {
       "symbol": "HPE",
       "direction": "SHORT",
       "side": "short",
-      "qty": 14.0,
+      "qty": 2.0,
       "entry_price": 70.11,
       "current_price": 69.31,
-      "market_value": 970.34,
-      "unrealized_pnl": 11.2,
-      "unrealized_plpc": 1.14
+      "market_value": 138.61,
+      "unrealized_pnl": 1.61,
+      "unrealized_plpc": 1.15
     },
     {
       "symbol": "SNOW",
       "direction": "SHORT",
       "side": "short",
-      "qty": 2.0,
+      "qty": 1.0,
       "entry_price": 367.26,
-      "current_price": 360.13,
-      "market_value": 720.26,
-      "unrealized_pnl": 14.27,
-      "unrealized_plpc": 1.94
+      "current_price": 360.34,
+      "market_value": 360.34,
+      "unrealized_pnl": 6.92,
+      "unrealized_plpc": 1.89
     },
     {
       "symbol": "USB",
@@ -120,10 +120,10 @@
       "side": "short",
       "qty": 4.0,
       "entry_price": 233.78,
-      "current_price": 231.4,
-      "market_value": 925.58,
-      "unrealized_pnl": 9.54,
-      "unrealized_plpc": 1.02
+      "current_price": 231.15,
+      "market_value": 924.58,
+      "unrealized_pnl": 10.54,
+      "unrealized_plpc": 1.13
     }
   ],
   "recent_trades": [
@@ -183,8 +183,8 @@
       "direction": "SHORT",
       "shares": 4.0,
       "price": 243.47,
-      "close_price": null,
-      "realized_pnl": null,
+      "close_price": 238.82,
+      "realized_pnl": 17.32,
       "date": "2026-10-13 06:45:09"
     },
     {
@@ -193,8 +193,8 @@
       "direction": "SHORT",
       "shares": 2.0,
       "price": 368.47,
-      "close_price": null,
-      "realized_pnl": null,
+      "close_price": 360.3401,
+      "realized_pnl": 13.8498,
       "date": "2026-10-13 06:45:08"
     },
     {
@@ -203,8 +203,8 @@
       "direction": "SHORT",
       "shares": 14.0,
       "price": 70.38,
-      "close_price": null,
-      "realized_pnl": null,
+      "close_price": 69.305,
+      "realized_pnl": 11.27,
       "date": "2026-10-13 06:45:08"
     },
     {
@@ -213,8 +213,8 @@
       "direction": "SHORT",
       "shares": 4.0,
       "price": 234.855,
-      "close_price": null,
-      "realized_pnl": null,
+      "close_price": 231.145,
+      "realized_pnl": 10.54,
       "date": "2026-10-13 06:45:08"
     },
     {
@@ -231,17 +231,12 @@
   "history": [
     {
       "date": "2026-10-13",
-      "portfolio_value": 10048.78,
-      "daily_pnl": 48.78,
-      "cum_return": 0.49
+      "portfolio_value": 10048.02,
+      "daily_pnl": 48.02,
+      "cum_return": 0.48
     }
   ],
   "logs": [
-    "2026-10-12 14:27:00 PT  INFO      Executing Morning Short Allocation. Equity: $10,000.00 | Capital/pos: $1,000.00",
-    "2026-10-12 14:27:12 PT  INFO      ============================================================",
-    "2026-10-12 14:27:12 PT  INFO       STARTING STRATEGY 2 BOT (3.2.1-strat2) - $10,000 CAPITAL",
-    "2026-10-12 14:27:12 PT  INFO       Account: PA3EM0YADDLM | Equity: $10,000.00",
-    "2026-10-12 14:27:12 PT  INFO      ============================================================",
     "2026-10-12 14:27:15 PT  INFO      Warming up pre-market data...",
     "2026-10-12 14:27:15 PT  INFO      Executing Morning Short Allocation. Equity: $10,000.00 | Capital/pos: $1,000.00",
     "2026-10-12 14:27:27 PT  INFO      ============================================================",
@@ -356,6 +351,11 @@
     "2026-10-13 07:19:38 PT  INFO      [RATCHET TIER 2] MDB Short peaked at +2.1%, crossed locked floor. Securing gains!",
     "2026-10-13 07:19:38 PT  INFO      [CLOSED POSITION] MDB 2.0 shares @ $400.64 (Entry: $405.50, P&L: $+9.72) [RATCHET_TIER2]",
     "2026-10-13 07:27:37 PT  INFO      [RATCHET BREAKEVEN] MDT Short hit breakeven stop. Zero loss exit!",
-    "2026-10-13 07:27:37 PT  INFO      [CLOSED POSITION] MDT 10.0 shares @ $90.85 (Entry: $90.94, P&L: $+0.90) [RATCHET_BREAKEVEN]"
+    "2026-10-13 07:27:37 PT  INFO      [CLOSED POSITION] MDT 10.0 shares @ $90.85 (Entry: $90.94, P&L: $+0.90) [RATCHET_BREAKEVEN]",
+    "2026-10-13 07:45:02 PT  INFO      07:45 AM PT reached. Closing 15M Runner Fade positions (1-hour scheduled hold)...",
+    "2026-10-13 07:45:02 PT  INFO      [CLOSED POSITION] ZS 4.0 shares @ $231.15 (Entry: $233.78, P&L: $+10.54) [1H_SCHEDULED_EXIT]",
+    "2026-10-13 07:45:03 PT  INFO      [CLOSED POSITION] HPE 14.0 shares @ $69.31 (Entry: $70.11, P&L: $+11.27) [1H_SCHEDULED_EXIT]",
+    "2026-10-13 07:45:03 PT  INFO      [CLOSED POSITION] SNOW 2.0 shares @ $360.34 (Entry: $367.26, P&L: $+13.85) [1H_SCHEDULED_EXIT]",
+    "2026-10-13 07:45:03 PT  INFO      [CLOSED POSITION] CRM 4.0 shares @ $238.82 (Entry: $243.15, P&L: $+17.32) [1H_SCHEDULED_EXIT]"
   ]
 }

@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-13 10:17:50 AM PT",
-  "timestamp_utc": "2026-10-13T17:17:51.000579+00:00",
+  "updated_at": "2026-10-13 10:18:53 AM PT",
+  "timestamp_utc": "2026-10-13T17:18:54.146895+00:00",
   "bot_version": "3.2.1-strat2",
   "account_id": "PA3EM0YADDLM",
   "account_label": "Portfolio 2: Dual Trailing Ratchets ($10k)",
   "account": {
-    "portfolio_value": 10061.54,
+    "portfolio_value": 10061.88,
     "cash": 12790.46,
-    "buying_power": 36971.46,
-    "total_pnl": 61.54,
+    "buying_power": 36973.22,
+    "total_pnl": 61.88,
     "total_return_pct": "+0.62",
     "starting_equity": 10000.0,
     "status": "ACTIVE"
@@ -54,10 +54,10 @@
       "side": "short",
       "qty": 42.0,
       "entry_price": 23.51,
-      "current_price": 23.84,
-      "market_value": 1001.49,
-      "unrealized_pnl": -14.07,
-      "unrealized_plpc": -1.43
+      "current_price": 23.82,
+      "market_value": 1000.65,
+      "unrealized_pnl": -13.23,
+      "unrealized_plpc": -1.34
     },
     {
       "symbol": "CAT",
@@ -65,10 +65,10 @@
       "side": "short",
       "qty": 1.0,
       "entry_price": 775.54,
-      "current_price": 761.66,
-      "market_value": 761.66,
-      "unrealized_pnl": 13.88,
-      "unrealized_plpc": 1.79
+      "current_price": 761.99,
+      "market_value": 761.99,
+      "unrealized_pnl": 13.55,
+      "unrealized_plpc": 1.75
     },
     {
       "symbol": "USB",
@@ -76,10 +76,10 @@
       "side": "short",
       "qty": 17.0,
       "entry_price": 56.8,
-      "current_price": 56.81,
-      "market_value": 965.77,
-      "unrealized_pnl": -0.17,
-      "unrealized_plpc": -0.02
+      "current_price": 56.82,
+      "market_value": 965.94,
+      "unrealized_pnl": -0.34,
+      "unrealized_plpc": -0.03
     }
   ],
   "recent_trades": [
@@ -187,8 +187,8 @@
   "history": [
     {
       "date": "2026-10-13",
-      "portfolio_value": 10061.54,
-      "daily_pnl": 61.54,
+      "portfolio_value": 10061.88,
+      "daily_pnl": 61.88,
       "cum_return": 0.62
     }
   ],

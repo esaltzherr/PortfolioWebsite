@@ -1,15 +1,15 @@
 {
-  "updated_at": "2026-10-13 12:18:36 PM PT",
-  "timestamp_utc": "2026-10-13T19:18:36.746361+00:00",
+  "updated_at": "2026-10-13 12:19:39 PM PT",
+  "timestamp_utc": "2026-10-13T19:19:40.056088+00:00",
   "bot_version": "3.2.1-strat2",
   "account_id": "PA3EM0YADDLM",
   "account_label": "Portfolio 2: Dual Trailing Ratchets ($10k)",
   "account": {
-    "portfolio_value": 10066.51,
+    "portfolio_value": 10065.7,
     "cash": 12023.99,
-    "buying_power": 37917.06,
-    "total_pnl": 66.51,
-    "total_return_pct": "+0.67",
+    "buying_power": 37912.85,
+    "total_pnl": 65.7,
+    "total_return_pct": "+0.66",
     "starting_equity": 10000.0,
     "status": "ACTIVE"
   },
@@ -54,10 +54,10 @@
       "side": "short",
       "qty": 42.0,
       "entry_price": 23.51,
-      "current_price": 23.58,
-      "market_value": 990.44,
-      "unrealized_pnl": -3.02,
-      "unrealized_plpc": -0.3
+      "current_price": 23.59,
+      "market_value": 990.99,
+      "unrealized_pnl": -3.57,
+      "unrealized_plpc": -0.36
     },
     {
       "symbol": "USB",
@@ -65,10 +65,10 @@
       "side": "short",
       "qty": 17.0,
       "entry_price": 56.8,
-      "current_price": 56.88,
-      "market_value": 967.04,
-      "unrealized_pnl": -1.45,
-      "unrealized_plpc": -0.15
+      "current_price": 56.9,
+      "market_value": 967.3,
+      "unrealized_pnl": -1.7,
+      "unrealized_plpc": -0.18
     }
   ],
   "recent_trades": [
@@ -176,9 +176,9 @@
   "history": [
     {
       "date": "2026-10-13",
-      "portfolio_value": 10066.51,
-      "daily_pnl": 66.51,
-      "cum_return": 0.67
+      "portfolio_value": 10065.7,
+      "daily_pnl": 65.7,
+      "cum_return": 0.66
     }
   ],
   "logs": [
